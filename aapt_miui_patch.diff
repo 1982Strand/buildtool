@@ -1,0 +1,23 @@
+diff --git a/tools/aapt/AaptAssets.cpp b/tools/aapt/AaptAssets.cpp
+index 3d6537a..e4c069c 100644
+--- a/tools/aapt/AaptAssets.cpp
++++ b/tools/aapt/AaptAssets.cpp
+@@ -1019,6 +1019,18 @@ bool AaptGroupEntry::getUiModeTypeName(const char* name,
+               (out->uiMode&~ResTable_config::MASK_UI_MODE_TYPE)
+               | ResTable_config::UI_MODE_TYPE_TELEVISION;
+         return true;
++    } else if (strcmp(name, "smallui") == 0) {
++        if (out) out->uiMode = (out->uiMode&~ResTable_config::MASK_UI_MODE_TYPE) | 0x0c;
++        return true;
++    } else if (strcmp(name, "mediumui") == 0) {
++        if (out) out->uiMode = (out->uiMode&~ResTable_config::MASK_UI_MODE_TYPE) | 0x0d;
++        return true;
++    } else if (strcmp(name, "largeui") == 0) {
++        if (out) out->uiMode = (out->uiMode&~ResTable_config::MASK_UI_MODE_TYPE) | 0x0e;
++        return true;
++    } else if (strcmp(name, "hugeui") == 0) {
++        if (out) out->uiMode = (out->uiMode&~ResTable_config::MASK_UI_MODE_TYPE) | 0x0f;
++        return true;
+     }
+ 
+     return false;

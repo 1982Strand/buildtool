@@ -1,0 +1,15 @@
+*** drawables.xml.orig	Sun Jan  6 13:21:41 2013
+--- drawables.xml	Sun Jan  6 22:30:46 2013
+***************
+*** 3,7 ****
+      <item type="drawable" name="notification_number_text_color">#ffffffff</item>
+      <item type="drawable" name="ticker_background_color">#ff1d1d1d</item>
+!     <item type="drawable" name="status_bar_background">#ff1e1e1e</item>
+      <item type="drawable" name="tw_status_bar_quicksetting_button_background">#ff000000</item>
+      <item type="drawable" name="status_bar_recents_app_thumbnail_background">#88000000</item>
+--- 3,7 ----
+      <item type="drawable" name="notification_number_text_color">#ffffffff</item>
+      <item type="drawable" name="ticker_background_color">#ff1d1d1d</item>
+!     <item type="drawable" name="status_bar_background">#00000000</item>
+      <item type="drawable" name="tw_status_bar_quicksetting_button_background">#ff000000</item>
+      <item type="drawable" name="status_bar_recents_app_thumbnail_background">#88000000</item>

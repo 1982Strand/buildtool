@@ -1,0 +1,334 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+SHA1-Digest-Manifest: K8HQuUWNyzdeDsxRRBQyACCNl1g=
+
+Name: system/app/BackupRestoreConfirmation.apk
+SHA1-Digest: sCjBXeVgc53coJFkq/R8llQg9Mc=
+
+Name: system/app/ChromeBookmarksSyncAdapter.apk
+SHA1-Digest: ygeQcBSdE3VsnEfirrGGultEv0A=
+
+Name: system/app/PreloadInstaller.apk
+SHA1-Digest: XZKU8Oh6oQAktQKQzDogBQJKZdg=
+
+Name: system/app/DataHubProvider.apk
+SHA1-Digest: 0SjQm6gmZBfeewnWuDgAPUzKIIk=
+
+Name: system/app/GoogleContactsSyncAdapter.apk
+SHA1-Digest: gj6qKz4ccJw1K3XYD797iicUnzQ=
+
+Name: system/app/Personalization.apk
+SHA1-Digest: 6J3l3J5EA0EeZoZe16vpdLEBZm0=
+
+Name: system/app/BluetoothAvrcp.apk
+SHA1-Digest: aXyrmqJ9jRByCwPYbj1+3bKB1Nc=
+
+Name: system/app/GuardProvider.apk
+SHA1-Digest: 7IIKSQGzZmZCy6bNj121MAd9WpA=
+
+Name: system/app/SelfTestMode.apk
+SHA1-Digest: GtbNvAlAlbDrVbnuWUrY4aQP29E=
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: ZOMWaEe0qJ8Sxii3TERn+ddI/k4=
+
+Name: system/app/Contacts.apk
+SHA1-Digest: n+Xab2kvL94sZFbjuK/tHs9jU1Y=
+
+Name: system/app/CertInstaller.apk
+SHA1-Digest: +jYcrQcDVtq7QuBK3SQYlDNkVlE=
+
+Name: system/framework/framework-miui-res.apk
+SHA1-Digest: AprlYSmto5NNYlKAgmNSxRv1v0I=
+
+Name: system/app/Mms.apk
+SHA1-Digest: kdphxWLc9oVm+548qScFLaQlVpA=
+
+Name: system/app/DefaultContainerService.apk
+SHA1-Digest: K1Y7wszkw6AE6sAwG7C5UVtGg7w=
+
+Name: system/app/MiuiCompass.apk
+SHA1-Digest: Z2WTT9mv08Kg7mcItzakjO47Hck=
+
+Name: system/app/MusicFX.apk
+SHA1-Digest: mDxmaQiv8R4p54eCGO06/3lv1q8=
+
+Name: system/app/PickUpTutorial.apk
+SHA1-Digest: BFb25r9PdO0lDZHrJvOcASREUkM=
+
+Name: system/app/EdmVpnServices.apk
+SHA1-Digest: /M0DhyABq+t+rqDPwfhVF8TtlQY=
+
+Name: system/app/PopupuiReceiver.apk
+SHA1-Digest: LDAJA7OtA0/eyNvR+5NehTv2UC8=
+
+Name: system/app/AntiSpam.apk
+SHA1-Digest: POblriTwbI9814Rd9FzuheD164I=
+
+Name: system/app/Browser.apk
+SHA1-Digest: QxDsk7dAyBLIJYzPFb5q85lmIJA=
+
+Name: system/app/SettingsProvider.apk
+SHA1-Digest: cZm0KV63lTSuqbnPzaKYiBBMeYY=
+
+Name: system/app/LBESEC_MIUI.apk
+SHA1-Digest: rBiyNTRlMEpByZXrryy0sR5LA0A=
+
+Name: system/app/NetworkLocation.apk
+SHA1-Digest: 0cKSI/MapyaKkTuYxuvDu4DBfRs=
+
+Name: system/app/Email.apk
+SHA1-Digest: +H/emZoarghCJHS8m3M/2WfajmM=
+
+Name: system/app/BluetoothMap.apk
+SHA1-Digest: /cZgRmxW1OGbAJ9VGfCT413GkCg=
+
+Name: system/app/CalendarProvider.apk
+SHA1-Digest: wKHypv68C5Jf+h7vSvw/ecEKSkw=
+
+Name: system/app/Updater.apk
+SHA1-Digest: YI6HWbuFO2Tsgq/UGa2J6a4Uq7k=
+
+Name: system/app/ThemeManager.apk
+SHA1-Digest: UA8qQmS7xdmEH42KOxOoxS2pAls=
+
+Name: system/app/PanningTryActually.apk
+SHA1-Digest: JoQbdlElanKO+eRQQIMTqpZh15w=
+
+Name: system/app/MtpApplication.apk
+SHA1-Digest: hR9oeTMsGv39SpR7pbEdYKaBPbA=
+
+Name: system/app/Stk.apk
+SHA1-Digest: PHTf/TwUERMJe3eqSe9SY1KxdNo=
+
+Name: system/app/Calendar.apk
+SHA1-Digest: OG64Q7Ho943Z4vez2pc98XQwqng=
+
+Name: system/app/CSC.apk
+SHA1-Digest: ifR5nBzfdDHNsSB3fkZf3UPgAq4=
+
+Name: system/app/SecLiveWallpapersPicker.apk
+SHA1-Digest: D7iBRHLmJ9j0UBCA/5bTzT9FiwE=
+
+Name: system/app/GoogleCalendarSyncAdapter.apk
+SHA1-Digest: wRV6oqvH+TP0ypy2qT2IC58lu9o=
+
+Name: system/app/Music.apk
+SHA1-Digest: z9Y3Np7PjpOsk5nIX0OUrHs8zYM=
+
+Name: system/app/Calculator.apk
+SHA1-Digest: 7CXBoUDahHKcFe0Jd/69ouf6Y/w=
+
+Name: system/app/serviceModeApp.apk
+SHA1-Digest: QQEEPsMgLOFlAgWcnhUeq20wFoI=
+
+Name: system/app/FactoryTest.apk
+SHA1-Digest: o1m6JX1LqVhGxQtzN99RPVU2wcw=
+
+Name: system/app/LogsProvider.apk
+SHA1-Digest: +d4t/FYv9CtmJmS1VEM9MNE00tU=
+
+Name: system/app/TelephonyProvider.apk
+SHA1-Digest: ukX9W0JIt3dNT/66Kq1uxBhihbM=
+
+Name: system/framework/framework-res.apk
+SHA1-Digest: 64XvCC8H5P8DaEbuZ74vZsG1FiI=
+
+Name: system/app/BadgeProvider.apk
+SHA1-Digest: KQJJpVd8OabGqTxvIrdAGRbZGBg=
+
+Name: system/app/AirkanPhoneService.apk
+SHA1-Digest: S/wZWwAeuD3CuJuw04RwFTthmJM=
+
+Name: system/app/TelocationProvider.apk
+SHA1-Digest: Alh5coxdlhbS2ckAvqtY6hm1Zrc=
+
+Name: system/app/MiuiSystemUI.apk
+SHA1-Digest: rkpkqXyhc6RCYnfx8yJX1hfVidc=
+
+Name: system/app/SoundRecorder.apk
+SHA1-Digest: yY9iahtG8rQ0ZI7gjYuJaA4ScqU=
+
+Name: META-INF/com/android/metadata
+SHA1-Digest: 1VW+710QKHOm9h5Qr4GLAE/x1rc=
+
+Name: system/app/SecurityProvider.apk
+SHA1-Digest: X7iDZH2FCu9XWELvTvWxf85e9ag=
+
+Name: system/app/Divx.apk
+SHA1-Digest: WNk64gBEbHnrSF8Tn6ibj7VbVe8=
+
+Name: system/app/MiuiHome.apk
+SHA1-Digest: oS+YkIGJkoNEIonb6wkau8E4Nq0=
+
+Name: system/app/XiaomiServiceFramework.apk
+SHA1-Digest: QSac0o/tqOfpFsSiYzSnnsU4b1Q=
+
+Name: system/app/Notes.apk
+SHA1-Digest: 0JNUvU0j9vqIHHyaFafKNRJNlIU=
+
+Name: system/app/GoogleLoginService.apk
+SHA1-Digest: Di8LAvzbXeHHFgM6QaivJqCuRNc=
+
+Name: system/framework/twframework-res.apk
+SHA1-Digest: 2gOWvDUksF4+QwQsXjBe+mE/ROo=
+
+Name: system/app/WeatherProvider.apk
+SHA1-Digest: 2WPZVEpk2XE/37rCyOZp8CZwVcU=
+
+Name: system/app/FaceLock.apk
+SHA1-Digest: u+GuIQt5Jp83ufJxxmJAGFJoJMM=
+
+Name: system/app/SamsungTTS.apk
+SHA1-Digest: byFG9yOV35VAPzr0Ue0iTFGaoO4=
+
+Name: system/app/Exchange.apk
+SHA1-Digest: ruLQ7Z4gn2+8l/YCcI6+q26KajA=
+
+Name: system/app/Camera.apk
+SHA1-Digest: AjU4yC+EMRE2ILdCFe2jfTTPCJs=
+
+Name: system/app/CloudService.apk
+SHA1-Digest: MG7e8osT/ni5IkAFrKRLjaBx6aU=
+
+Name: system/app/FmRadio.apk
+SHA1-Digest: maagHKsRucZUsHKrLfrh1Cj6f3s=
+
+Name: system/app/AccuweatherDaemon.apk
+SHA1-Digest: 4IxLN/wp9Mw6NuKQz6bI7vKbgCM=
+
+Name: system/app/MediaUploader.apk
+SHA1-Digest: O5nMCfNkxmaTN5wXo2R3zu4I5VI=
+
+Name: system/app/Nfc.apk
+SHA1-Digest: 9aPkoXSlA+j8ar/E5je9AoEB2KA=
+
+Name: system/app/GooglePartnerSetup.apk
+SHA1-Digest: V4FXCAzPhFdqvzh7jMYRJohsJvs=
+
+Name: system/app/MiuiVideoPlayer.apk
+SHA1-Digest: 51pPkpLAfnnCnTtjCQfSXgSmNsM=
+
+Name: system/app/BugReport.apk
+SHA1-Digest: eUQVgSOg4G6QfHrBhP4Vw9ytSH4=
+
+Name: system/app/Backup.apk
+SHA1-Digest: vsv6ejDsW07j1KUO73GTFZXzaPs=
+
+Name: system/app/minimode-res.apk
+SHA1-Digest: FS6XgzH+IpLs/WcWZopKB1Elyqk=
+
+Name: system/app/ContactsProvider.apk
+SHA1-Digest: VL8kwTUksw4n8G7ok4PDbkKvy1s=
+
+Name: system/app/FileExplorer.apk
+SHA1-Digest: i9B30wN569DiiarvldRHp4CXcXQ=
+
+Name: system/app/OriginalSettings.apk
+SHA1-Digest: CyLP9wowGfqJh9xcpoZq9Oy1fn8=
+
+Name: system/app/ClipboardSaveService.apk
+SHA1-Digest: nwav1CozmX7iyUL8HdFVjOImKVk=
+
+Name: system/app/WlanTest.apk
+SHA1-Digest: WejkPRk0Q15iznbbIMRA/45sEDc=
+
+Name: system/app/GoogleBackupTransport.apk
+SHA1-Digest: eDBNH4JQSpHgju4RsP6DAGdw5CM=
+
+Name: system/app/VpnDialogs.apk
+SHA1-Digest: 3DttQCeOntJlhZqNmtQJ+uB40OA=
+
+Name: system/app/DeskClock.apk
+SHA1-Digest: UQhA8c/Ti8yGOxldlLWlisumEsA=
+
+Name: system/app/LatinImeGoogle.apk
+SHA1-Digest: Mxh5tsD3c75RK3Loq8SOpZzqU94=
+
+Name: system/app/PRUI.apk
+SHA1-Digest: CT/S+eHIRSVQlAOfXw8ukork9hs=
+
+Name: system/app/PackageInstaller.apk
+SHA1-Digest: t72iEq/DU/fsjvjUfAHk0EXXjhQ=
+
+Name: system/media/theme/default/lockscreen
+SHA1-Digest: hBaErOUn13ecfk5DPUoqKYM5Gp4=
+
+Name: system/app/NfcTest.apk
+SHA1-Digest: fN8BUI7msOkdjlyiwudrzJMHkOc=
+
+Name: system/app/BluetoothTest.apk
+SHA1-Digest: cx8beWWcoIN89zGYYCSPshKMHJ0=
+
+Name: system/app/wssyncmlnps.apk
+SHA1-Digest: 79aGq5wL68UHLKg6SXNr6tM4VtQ=
+
+Name: system/app/PCWClientS.apk
+SHA1-Digest: onbXmVGn3PSoAi/5w9DmKrLg/B8=
+
+Name: system/app/Preconfig.apk
+SHA1-Digest: dYsYRnT4LcZ4pZvwtK3AuNv5J+0=
+
+Name: system/app/DownloadProviderUi.apk
+SHA1-Digest: ov59Ttpl0hClwjuz1e3yXsrHAkM=
+
+Name: system/app/Phone.apk
+SHA1-Digest: 2nhF/4zvUcDn1aECjLWaXfJicbM=
+
+Name: system/app/SecMediaProvider.apk
+SHA1-Digest: O+ojVsNe5IKVBzwk65Y1jLX0oz8=
+
+Name: system/app/NetworkAssistant.apk
+SHA1-Digest: GFXdtQYrKPj0fukvSroMfLhKbIg=
+
+Name: system/app/Bluetooth.apk
+SHA1-Digest: lk2i4ML4pFASP7MAEPW+lIdyMD0=
+
+Name: system/app/KeyChain.apk
+SHA1-Digest: q7+JdMMvgRB2DycdEyI66Oowj/8=
+
+Name: system/app/DownloadProvider.apk
+SHA1-Digest: II8KQpq1RknqY0o9pqAIp/zofPY=
+
+Name: system/app/AccuweatherWidget.apk
+SHA1-Digest: 9zVAq4BqPd2sb3PKa39x2JwcbGE=
+
+Name: system/app/UserDictionaryProvider.apk
+SHA1-Digest: SAqlOSIPugIgYyd9C7jzuPWpCKo=
+
+Name: system/app/MiuiGallery.apk
+SHA1-Digest: a4Xdffi1/mr2nbLZferkPP6YtZY=
+
+Name: system/app/SecHTMLViewer.apk
+SHA1-Digest: XQ7TAi2Pi6CO4X0ZzBzuOWV7uXw=
+
+Name: system/app/VideoPlayer.apk
+SHA1-Digest: Jrc57cGMWTvRl4FS1bIOwQjwqH8=
+
+Name: system/app/ApplicationsProvider.apk
+SHA1-Digest: /Z8TuUDxJa6eqXkSDrVv66i0q7g=
+
+Name: system/app/GoogleServicesFramework.apk
+SHA1-Digest: J+Pf+dLxeN9Q+M43L3Nox2Ol46k=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: CQUOwbip/yz8Pk2kUbaIt35K0xw=
+
+Name: system/app/Provision.apk
+SHA1-Digest: G34qlBVmC9oDsBM3LQ/2Ooj8kb4=
+
+Name: system/app/PhoneErrService.apk
+SHA1-Digest: gfyB+mP+WdALcys7wHuv5eHv+JE=
+
+Name: system/app/WAPPushManager.apk
+SHA1-Digest: TVmVL+oe4FUkVe6JlKG+VTm4Gkg=
+
+Name: system/app/QuickSearchBox.apk
+SHA1-Digest: LnCD/OhlqeqrtH7QzbVioyGIfdM=
+
+Name: system/app/OmaCP.apk
+SHA1-Digest: 9E8ovP1IQXKxPNtjLJCGn5ck2ok=
+
+Name: system/app/Settings.apk
+SHA1-Digest: rwZHv6YX6NW3KdPMNu0uFCok3AQ=
+

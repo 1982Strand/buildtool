@@ -1,0 +1,11 @@
+--- apk_in/decompiled/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali	2013-02-14 17:19:04.445971947 +0100
++++ temp/apk_in_3.2.8/decompiled/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali	2013-02-08 16:25:57.042983100 +0100
+@@ -364,7 +364,7 @@
+ 
+     .line 154
+     .local v0, item:Lcom/android/browser/MiuiSuggestionsAdapter$MiuiSuggestItem;
+-    const-string v2, "baidu"
++    const-string v2, "google"
+ 
+     iput-object v2, v0, Lcom/android/browser/MiuiSuggestionsAdapter$MiuiSuggestItem;->extra:Ljava/lang/String;
+ 

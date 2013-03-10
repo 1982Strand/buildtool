@@ -1,0 +1,333 @@
+--- C:/Users/Jakub/AppData/Local/Temp/PhoneWindowManager.smali-revBASE.svn000.tmp.smali	út 7 24 08:54:46 2012
++++ C:/Repository/jakub/android/_smali/VolumeLongPress/Original/PhoneWindowManager.smali	po 7 16 20:41:20 2012
+@@ -54,6 +54,8 @@
+ 
+ .field private static final BTN_MOUSE:I = 0x110
+ 
++.field private static final LONG_PRESS_TIMEOUT:I = 0x190
++
+ .field static final DEBUG:Z = false
+ 
+ .field static final DEBUG_FALLBACK:Z = false
+@@ -233,6 +235,15 @@
+ 
+ .field final mAllowSystemUiDelay:Ljava/lang/Runnable;
+ 
++# New runnable variables
++.field mVolumeDownLongPress:Ljava/lang/Runnable;
++
++.field mVolumeUpLongPress:Ljava/lang/Runnable;
++
++.field mIsVolumeBlocking:Z
++
++.field mIsVolumeAction:Z
++
+ .field mBlockCollapseStatusBar:Z
+ 
+ .field mBootMsgDialog:Landroid/app/ProgressDialog;
+@@ -955,6 +966,19 @@
+ 
+     iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mScreenLockTimeout:Ljava/lang/Runnable;
+ 
++    # New runnables
++    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager$30;
++
++    invoke-direct {v0, p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$30;-><init>(Lcom/android/internal/policy/impl/PhoneWindowManager;)V
++
++    iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeUpLongPress:Ljava/lang/Runnable;
++
++    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager$31;
++
++    invoke-direct {v0, p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$31;-><init>(Lcom/android/internal/policy/impl/PhoneWindowManager;)V
++
++    iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeDownLongPress:Ljava/lang/Runnable;
++
+     return-void
+ .end method
+ 
+@@ -5629,6 +5653,16 @@
+ .method handleVolumeKey(II)V
+     .locals 5
+ 
++
++    # Skip volume action if in long press
++    move-object/from16 v0, p0
++
++    iget-boolean v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeBlocking:Z
++
++    if-nez v0, :goto_0
++
++
++
+     invoke-static {}, Lcom/android/internal/policy/impl/PhoneWindowManager;->getAudioService()Landroid/media/IAudioService;
+ 
+     move-result-object v0
+@@ -8771,6 +8805,7 @@
+     :goto_4
+     return v17
+ 
++    # v5 contains key action : 1 - key down, 0 - key up
+     :cond_2
+     const/4 v5, 0x0
+ 
+@@ -9359,8 +9394,38 @@
+     invoke-static {v0, v1, v6}, Landroid/util/safelog/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+ 
+     :cond_19
++
++
++    # Some volume key has been pressed so do our job here
++
++    # If screen on do nothing
+     move-object/from16 v0, p0
+ 
++    iget-boolean v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mScreenOnEarly:Z
++
++    if-nez v0, :vc_finish 
++
++
++    # If not music active jump away
++
++    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->isMusicActive()Z
++
++    move-result v20
++
++    if-eqz v20, :vc_finish  
++
++
++    # handleVolumeLongPress()
++
++    move-object/from16 v0, p0 # Self object
++
++    invoke-virtual {v0, v13}, Lcom/android/internal/policy/impl/PhoneWindowManager;->handleVolumeLongPress(I)V 
++
++    :vc_finish
++
++
++    move-object/from16 v0, p0
++
+     iget-object v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mSamsungVolumeControlThread:Lcom/android/internal/policy/impl/PhoneWindowManager$SamsungVolumeControlThread;
+ 
+     move-object/from16 v20, v0
+@@ -9406,8 +9471,50 @@
+     goto/16 :goto_4
+ 
+     :cond_1a
++
++
++    # Called when volume key pressed or released
++
++    # Check if key pressed and jump
++
++    if-nez v5, :vc_final
++
++
++    # Check if volume blocking so we will cancel
++
+     move-object/from16 v0, p0
+ 
++    iget-boolean v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeBlocking:Z
++
++    if-eqz v0, :vc_final
++
++    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->handleVolumeLongPressAbort()V 
++
++
++    :vc_continue
++
++    # Check if media action
++
++    move-object/from16 v0, p0
++
++    iget-boolean v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeAction:Z
++
++    if-nez v0, :vc_final # Volume action was not set so we need to handle volume below else we continue
++
++
++    # handleVolumeKey() here (the original action we delayed)
++
++    move-object/from16 v0, p0
++
++    const/4 v3, 0x0
++
++    invoke-virtual {v0, v3, v13}, Lcom/android/internal/policy/impl/PhoneWindowManager;->handleVolumeKey(II)V
++
++    :vc_final
++
++
++    move-object/from16 v0, p0
++
+     iget-object v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mSamsungVolumeControlThread:Lcom/android/internal/policy/impl/PhoneWindowManager$SamsungVolumeControlThread;
+ 
+     move-object/from16 v20, v0
+@@ -13331,6 +13438,170 @@
+     return-void
+ .end method
+ 
++.method handleVolumeLongPress(I)V
++    .registers 6
++    .parameter "keycode"
++
++    .prologue
++
++
++    # Set long press to true
++
++    const/4 v1, 0x1
++
++    move-object/from16 v0, p0
++
++    iput-boolean v1, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeBlocking:Z
++
++    const/4 v1, 0x0
++
++    iput-boolean v1, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeAction:Z
++
++
++    const/16 v1, 0x18
++
++    if-ne p1, v1, :cond_f
++
++    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeUpLongPress:Ljava/lang/Runnable;
++
++    .local v0, btnHandler:Ljava/lang/Runnable;
++    :goto_6
++    iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHandler:Landroid/os/Handler;
++
++    sget v2, Lcom/android/internal/policy/impl/PhoneWindowManager;->LONG_PRESS_TIMEOUT:I
++
++    int-to-long v2, v2
++
++    invoke-virtual {v1, v0, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
++
++    return-void
++
++    .end local v0           #btnHandler:Ljava/lang/Runnable;
++    :cond_f
++    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeDownLongPress:Ljava/lang/Runnable;
++
++    .restart local v0       #btnHandler:Ljava/lang/Runnable;
++    goto :goto_6
++.end method
++
++.method handleVolumeLongPressAbort()V
++    .registers 3
++
++    .prologue
++
++
++    # Set long press to false
++
++    const/4 v1, 0x0
++
++    move-object/from16 v0, p0
++
++    iput-boolean v1, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeBlocking:Z
++
++
++    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHandler:Landroid/os/Handler;
++
++    iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeUpLongPress:Ljava/lang/Runnable;
++
++    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
++
++    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHandler:Landroid/os/Handler;
++
++    iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mVolumeDownLongPress:Ljava/lang/Runnable;
++
++    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
++
++    return-void
++.end method
++ 
++
++.method protected sendMediaButtonEvent(I)V
++    .registers 15
++    .parameter "code"
++
++    .prologue
++    invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
++
++    move-result-wide v1
++
++    .local v1, eventtime:J
++    new-instance v11, Landroid/content/Intent;
++
++    const-string v4, "android.intent.action.MEDIA_BUTTON"
++
++    const/4 v5, 0x0
++
++    invoke-direct {v11, v4, v5}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
++
++    .local v11, downIntent:Landroid/content/Intent;
++    new-instance v0, Landroid/view/KeyEvent;
++
++    const/4 v5, 0x0
++
++    const/4 v7, 0x0
++
++    move-wide v3, v1
++
++    move v6, p1
++
++    invoke-direct/range {v0 .. v7}, Landroid/view/KeyEvent;-><init>(JJIII)V
++
++    .local v0, downEvent:Landroid/view/KeyEvent;
++    const-string v4, "android.intent.extra.KEY_EVENT"
++
++    invoke-virtual {v11, v4, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
++
++    iget-object v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
++
++    const/4 v5, 0x0
++
++    invoke-virtual {v4, v11, v5}, Landroid/content/Context;->sendOrderedBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
++
++    new-instance v12, Landroid/content/Intent;
++
++    const-string v4, "android.intent.action.MEDIA_BUTTON"
++
++    const/4 v5, 0x0
++
++    invoke-direct {v12, v4, v5}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
++
++    .local v12, upIntent:Landroid/content/Intent;
++    new-instance v3, Landroid/view/KeyEvent;
++
++    const/4 v8, 0x1
++
++    const/4 v10, 0x0
++
++    move-wide v4, v1
++
++    move-wide v6, v1
++
++    move v9, p1
++
++    invoke-direct/range {v3 .. v10}, Landroid/view/KeyEvent;-><init>(JJIII)V
++
++    .local v3, upEvent:Landroid/view/KeyEvent;
++    const-string v4, "android.intent.extra.KEY_EVENT"
++
++    invoke-virtual {v12, v4, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
++
++    iget-object v4, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
++
++    const/4 v5, 0x0
++
++    invoke-virtual {v4, v12, v5}, Landroid/content/Context;->sendOrderedBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
++
++    # Set long press to false
++
++    const/4 v8, 0x1
++
++    move-object/from16 v9, p0
++
++    iput-boolean v8, v9, Lcom/android/internal/policy/impl/PhoneWindowManager;->mIsVolumeAction:Z
++
++    return-void
++.end method 
++
+ .method setAttachedWindowFrames(Landroid/view/WindowManagerPolicy$WindowState;IILandroid/view/WindowManagerPolicy$WindowState;ZLandroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Rect;Landroid/graphics/Rect;)V
+     .locals 2
+ 

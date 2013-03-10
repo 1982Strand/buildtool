@@ -1,0 +1,99 @@
+#!/bin/bash
+
+home=~/buildtool
+clear
+
+while [ answer != "0" ] 
+do
+clear
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                       MIUI building script                     |"
+echo "|                                                 -By 1982Strand |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "| 1.  Install frameworks        ||                               |"
+echo "| 2.  Decompile all apks/jars   ||                               |"
+echo "| 3.  Add translations          ||                               |"
+echo "| 4.  Fix MIUI sources          || 13. Fix official sources      |"
+echo "| 5.  Add predefined Mods       || 14. Patch & Build off. ROM    |"
+echo "| 6.  Recompile apks/jars       ||                               |"
+echo "| 7.  Inject resources          ||                               |"
+echo "| 8.  Optimize pngs             ||                               |"
+echo "| 9.  Zipalign apks             ||                               |"
+echo "| 10. Build Flashable Zip       ||                               |"
+echo "| 11. Decompile single apk      ||                               |"
+echo "| 12. Recompile single apk      ||                               |"
+echo "|                               || e. Extract apks from zip      |"
+echo "|                               ||                               |"
+echo "|                               || c. Cleaning Options           |"
+echo "|----------------------------------------------------------------|"
+echo "|x - Exit                                                        |"
+echo "|----------------------------------------------------------------|"
+printf %s " Select an Option: "
+read -p " " answer
+    case $answer in
+       1) clear
+       . $home/1.install_frameworks.sh
+       ;;
+       2) clear
+       . $home/2.decompile_apks.sh
+       ;;
+       3) clear
+       . $home/3.add_translations.sh
+       ;;
+       4) clear
+       . $home/4.source_fix.sh
+       ;;
+       5) clear
+       . $home/5.mods.sh
+       ;;
+       6) clear
+       . $home/6.recompile_apks.sh
+       ;;
+       7) clear
+       . $home/7.inject_resources.sh
+       ;;
+       8) clear
+       . $home/8.opt_png.sh
+       ;;
+       9) clear
+       . $home/9.zipalign.sh
+       ;;
+       10) clear
+       . $home/10.build_langpack.sh
+       ;;
+       11) clear
+       . $home/11.decompile_single.sh
+       ;;
+       12) clear
+       . $home/12.recompile_single.sh
+       ;;
+       13) clear
+       . $home/13.source_fix_official.sh
+       ;;
+       14) clear
+       . $home/14.patch_miui.sh
+       ;;
+       e) clear
+       . $home/pull.sh
+       ;;
+       c) clear
+       . $home/clean_menu.sh
+       ;;
+       x) clear 
+       exit;;
+       *) break
+       . $home/build ;;
+   esac
+   echo ""
+   echo "" 
+   echo "[--- Press RETURN for menu ---]"
+   read key
+done
+exit 0
+

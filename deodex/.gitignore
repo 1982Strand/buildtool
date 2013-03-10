@@ -1,0 +1,7 @@
+*
+!.gitignore
+!smali.jar
+!smali
+!baksmali.jar
+!baksmali
+!deodex_rom.sh

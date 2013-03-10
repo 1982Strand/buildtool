@@ -1,0 +1,12 @@
+*** apktool.yml.orig	Sun Nov 25 22:14:06 2012
+--- apktool.yml	Sun Nov 25 22:13:27 2012
+***************
+*** 4,9 ****
+--- 4,10 ----
+  usesFramework:
+    ids:
+    - 1
++   - 6
+  sdkInfo:
+    minSdkVersion: '16'
+    targetSdkVersion: '16'
