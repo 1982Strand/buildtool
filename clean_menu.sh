@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home=~/buildtool
+source $HOME/functions.sh
 clear
 
 while [ answer != "0" ] 
@@ -28,16 +28,16 @@ printf %s " Select an Option: "
 read -p " " answer
     case $answer in
        1) clear
-       . $home/cleanup_all.sh
+       cleanup_all
        ;;
        2) clear
-       . $home/cleanup_not_apk_in.sh
+       . $HOME/cleanup_not_apk_in.sh
        ;;
        x) clear
-       . $home/build
+       . $HOME/build
        ;;
        *) break 
-       . $home/cleanup_all.sh
+       . $HOME/clean_menu.sh
        ;;
    esac
    echo ""

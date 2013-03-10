@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 rm -f -r ~/buildtool/apk_in/*
 rm -f -r ~/buildtool/apk_out/*
 

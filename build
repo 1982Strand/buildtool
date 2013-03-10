@@ -1,6 +1,18 @@
 #!/bin/bash
 
-home=~/buildtool
+HOME=~/buildtool
+IN=~/buildtool/apk_in
+OUT=~/buildtool/apk_out
+DEC=~/buildtool/apk_in/decompiled
+SRC=~/buildtool/source_roms
+FLSH=~/buildtool/flashable
+LOG=~/buildtool/log
+MODS=~/buildtool/mods
+MAIN=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/main
+DEVICE=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/device/m0
+
+source $HOME/functions.sh
+
 clear
 
 while [ answer != "0" ] 
@@ -38,57 +50,57 @@ printf %s " Select an Option: "
 read -p " " answer
     case $answer in
        1) clear
-       . $home/1.install_frameworks.sh
+       install_frameworks
        ;;
        2) clear
-       . $home/2.decompile_apks.sh
+       . $HOME/2.decompile_apks.sh
        ;;
        3) clear
-       . $home/3.add_translations.sh
+       . $HOME/3.add_translations.sh
        ;;
        4) clear
-       . $home/4.source_fix.sh
+       . $HOME/4.source_fix.sh
        ;;
        5) clear
-       . $home/5.mods.sh
+       . $HOME/5.mods.sh
        ;;
        6) clear
-       . $home/6.recompile_apks.sh
+       . $HOME/6.recompile_apks.sh
        ;;
        7) clear
-       . $home/7.inject_resources.sh
+       . $HOME/7.inject_resources.sh
        ;;
        8) clear
-       . $home/8.opt_png.sh
+       . $HOME/8.opt_png.sh
        ;;
        9) clear
-       . $home/9.zipalign.sh
+       . $HOME/9.zipalign.sh
        ;;
        10) clear
-       . $home/10.build_langpack.sh
+       . $HOME/10.build_langpack.sh
        ;;
        11) clear
-       . $home/11.decompile_single.sh
+       . $HOME/11.decompile_single.sh
        ;;
        12) clear
-       . $home/12.recompile_single.sh
+       . $HOME/12.recompile_single.sh
        ;;
        13) clear
-       . $home/13.source_fix_official.sh
+       . $HOME/13.source_fix_official.sh
        ;;
        14) clear
-       . $home/14.patch_miui.sh
+       . $HOME/14.patch_miui.sh
        ;;
        e) clear
-       . $home/pull.sh
+       . $HOME/pull.sh
        ;;
        c) clear
-       . $home/clean_menu.sh
+       . $HOME/clean_menu.sh
        ;;
        x) clear 
        exit;;
        *) break
-       . $home/build ;;
+       . $HOME/build ;;
    esac
    echo ""
    echo "" 
