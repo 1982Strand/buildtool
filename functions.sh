@@ -426,11 +426,21 @@ cleanup_all () {
    
 rm -f -r $IN/*
 rm -f -r $OUT/*
+rm -f -r $FLASH/*_DA.zip
 
 cd $IN
 mkdir decompiled
 
 rm -f -r $MODS/out/*
+ 
+}
+
+cleanup_not_apk () {
+   
+rm -f -r $DEC/*
+rm -f -r $OUT/*
+rm -f -r $MODS/out/*
+rm -f -r $FLASH/*_DA.zip
  
 }
 

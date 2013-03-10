@@ -18,8 +18,9 @@ echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                                                                |"
-echo "| 1.  Clean all folders (in - decompiled - out - mods)           |"
-echo "| 2.  Clean all but apk_in folder                                |"
+echo "| 1.  Clean all folders                                          |"
+echo "| 2.  Clean all but apks in apk_in folder                        |"
+echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Return to main menu                                         |"
@@ -31,7 +32,7 @@ read -p " " answer
        cleanup_all
        ;;
        2) clear
-       . $HOME/cleanup_not_apk_in.sh
+       cleanup_not_apk
        ;;
        x) clear
        . $HOME/build
