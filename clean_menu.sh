@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/functions.sh
+source functions.sh
 clear
 
 while [ answer != "0" ] 
