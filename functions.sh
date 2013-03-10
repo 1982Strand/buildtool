@@ -117,15 +117,23 @@ sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
  
 }
 
-###  5. Add prnedefined Mods  ###
+###  5. Add predefined Mods  ###
 
-
-3way () {
+center_clock () {
    
 
-#src=~/buildtool/source_roms
-#dst=~/buildtool/mods/3way
-#out=~/buildtool/mods/out
+echo ""
+echo "Adding Center Clock to MiuiSystemUI.apk"
+echo ""
+
+patch -i $MODS/centerclock/status_bar.diff $DEC/MiuiSystemUI.apk/res/layout/status_bar.xml
+
+
+}
+
+
+crt_off () {
+   
 
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
@@ -133,8 +141,10 @@ read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
 
 echo ""
-echo "[--- Creating 3-way Reboot ---]"
+echo "[--- Creating CRT-Off effect ---]"
 echo ""
+
+
 
 cd $MODS/out
 if [ -d ${ver} ]
@@ -142,23 +152,26 @@ then
 	cd $ver
 	if [ -f android.policy.jar ]
 	then
-	cp -f android.policy.jar $MODS/3way
-	else unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/3way"
+	cp -f android.policy.jar $MODS/crt-off
+	else unzip -u -j $MODS/3way/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
 	fi
+		if [ -f services.jar ]
+		then
+		cp -f services.jar $MODS/crt-off
+		else
+		unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
+		fi
 else
-	unzip -u -j $src/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$dst"
+	unzip -u -j $MODS/3way/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
+	unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
 fi
-apktool d -f $dst/android.policy.jar $dst/android.policy.jar.out
-cd $src
-
-#unzip -u -j $src/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$dst"
-#apktool d -f $dst/android.policy.jar $dst/android.policy.jar.out
-
+apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
+apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
 
 # Now for the rmline script
 
 
-cd $dst/android.policy.jar.out/smali
+cd $MODS/crt-off
 
 who=`whoami`
 tmp_loc=/tmp/rmline_$who
@@ -206,19 +219,25 @@ do
 done
 
 # And then we continue..
-cd $dst
-patch -i $dst/MiuiGlobalActions_no_line.diff $dst/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
-patch -i $dst/MiuiGlobalActions\$SinglePressAction_no_line.diff $dst/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
-cp -r -f $dst/*.smali $dst/android.policy.jar.out/smali/com/android/internal/policy/impl/
-apktool b -f $dst/android.policy.jar.out
-
-cd $out
+cd $MODS/crt-off
 mkdir -p ${ver}
-cp -r -f $dst/android.policy.jar.out/dist/android.policy.jar $out/${ver}
-rm -r $dst/android.policy.jar.out
-rm -r $dst/android.policy.jar
+patch -i $MODS/crt-off/PhoneWindowManager.diff $MODS/crt-off/android.policy.jar.out/smali/com/android/internal/policy/impl/PhoneWindowManager.smali
+patch -i $MODS/crt-off/PowerManagerService\$ScreenBrightnessAnimator.diff $MODS/crt-off/services.jar.out/smali/com/android/server/PowerManagerService\$ScreenBrightnessAnimator.smali
+apktool b -f $MODS/crt-off/android.policy.jar.out
+apktool b -f $MODS/crt-off/services.jar.out
 
-cd $dst
+cd $OUT
+mkdir -p ${ver}
+ 
+cp -r -f $MODS/crt-off/android.policy.jar.out/dist/android.policy.jar $OUT/${ver}
+cp -r -f $MODS/crt-off/services.jar.out/dist/services.jar $OUT/${ver}
+
+rm -r $MODS/crt-off/android.policy.jar.out
+rm -r $MODS/crt-off/android.policy.jar
+rm -r $MODS/crt-off/services.jar.out
+rm -r $MODS/crt-off/services.jar
+
+cd $MODS/crt-off
  
 }
 
@@ -337,9 +356,6 @@ cd $HOME
 
 for apk in $(<$HOME/translation_list.txt); do cp -r -f "$OUT/$apk" $FLASH/system/app; done
 
-#cp -f $home/mods/3way/${ver}/android.policy.jar $parent/system/framework
-#cp -f $home/mods/crt-off/${ver}/android.policy.jar $parent/system/framework
-#cp -f $home/mods/crt-off/${ver}/services.jar $parent/system/framework
 cp -f $MODS/out/${ver}/*.jar $FLASH/system/framework
 mv -f $FLASH/system/app/framework-miui-res.apk $FLASH/system/framework
 cp -f $FLASH/template.zip $FLASH/flashable.zip
