@@ -1,4 +1,4 @@
-MIUI Build Tool for the Galaxy S3
+MIUI Build Tool
 
 Created by Dan Strand 2012
 
