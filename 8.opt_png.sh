@@ -235,7 +235,7 @@ case $num in
  2) png_crush;;
  3) opti_png;;
  4) adv_png;;
- q) clear; . ~/buildtool/build;;
+ q) clear; . $HOME/build;;
  *) echo; echo "$num is not a valid option"; enter;
 esac
 }

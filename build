@@ -84,16 +84,16 @@ read -p " " answer
        flashable
        ;;
        11) clear
-       . $HOME/11.decompile_single.sh
+       decompile_single
        ;;
        12) clear
-       . $HOME/12.recompile_single.sh
+       recompile_single
        ;;
        13) clear
-       . $HOME/13.source_fix_official.sh
+       source_fix_official
        ;;
        14) clear
-       . $HOME/14.patch_miui.sh
+       patch_miui
        ;;
        e) clear
        pull

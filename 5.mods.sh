@@ -1,7 +1,6 @@
 #!/bin/bash
 
-hme=~/buildtool
-mods=~/buildtool/mods
+source functions.sh
 clear
 
 while [ answer != "0" ] 
@@ -28,38 +27,38 @@ echo "| 7.  MIUI 3-Way Reboot (Official ROM)                           |"
 echo "| 8.  MIUI CRT-OFF (Official ROM)                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
-echo "|x - Back to Menu                                                |"
+echo "|x - Back to Main  Menu                                          |"
 echo "|----------------------------------------------------------------|"
 printf %s " Select an Option: "
 read -p " " answer
     case $answer in
        0) break ;;
        1) clear
-       . $mods/center_clock.sh
+       center_clock
        ;;
        2) clear
-       . $mods/mms.sh
+       mms
        ;;
        3) clear
-       . $mods/3way.sh
+       3way
        ;;
        4) clear
-       . $mods/crt-off.sh
+       crt_off
        ;;
        5) clear
-       . $mods/stock_centerclock.sh
+       stock_centerclock
        ;;
        6) clear
-       . $mods/stock_transparent_statusbar.sh
+       stock_transparent_statusbar
        ;;
        7) clear
-       . $mods/3way_official.sh
+       3way_official
        ;;
        8) clear
-       . $mods/crt-off_official.sh
+       crt-off_official
        ;;
        x) clear
-       . $hme/build
+       . $HOME/build
        ;;
        *) break ;;
    esac
