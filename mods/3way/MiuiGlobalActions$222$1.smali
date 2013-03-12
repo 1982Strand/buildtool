@@ -27,7 +27,6 @@
     .parameter
 
     .prologue
-    .line 281
     iput-object p1, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions$222$1;->this$1:Lcom/android/internal/policy/impl/MiuiGlobalActions$222;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,17 +44,14 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 282
     sget v0, Lcom/android/internal/policy/impl/MiuiGlobalActions$SinglePressAction;->rebootMode:I
 
     const/4 v1, -0x1
 
     if-le v0, v1, :cond_18
 
-    .line 283
     sget v0, Lcom/android/internal/policy/impl/MiuiGlobalActions$SinglePressAction;->rebootMode:I
 
-    .line 284
     iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions$222$1;->this$1:Lcom/android/internal/policy/impl/MiuiGlobalActions$222;
 
     iget-object v0, v0, Lcom/android/internal/policy/impl/MiuiGlobalActions$222;->this$0:Lcom/android/internal/policy/impl/MiuiGlobalActions;
@@ -74,11 +70,9 @@
     :goto_15
     invoke-static {v0, v1, v2}, Lcom/android/server/pm/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V
 
-    .line 291
     :cond_18
     return-void
 
-    .line 284
     :cond_19
     sget-object v1, Lcom/android/internal/policy/impl/MiuiGlobalActions$SinglePressAction;->rebootOptions:[Ljava/lang/String;
 

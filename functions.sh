@@ -187,6 +187,7 @@ else
 fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 
+cd $MODS/3way/android.policy.jar.out
 remove_line
 
 patch -i $MODS/3way/MiuiGlobalActions_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
@@ -197,7 +198,7 @@ apktool b -f $MODS/3way/android.policy.jar.out
 cd $MODS/out
 mkdir -p ${ver}
 cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/${ver}
-#rm -r $MODS/3way/android.policy.jar.out
+rm -r $MODS/3way/android.policy.jar.out
 rm -r $MODS/3way/android.policy.jar
  
 }
@@ -238,6 +239,9 @@ fi
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
 apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
 
+cd $MODS/crt-off/android.policy.jar.out
+remove_line
+cd $MODS/crt-off/services.jar.out
 remove_line
 
 patch -i $MODS/crt-off/PhoneWindowManager.diff $MODS/crt-off/android.policy.jar.out/smali/com/android/internal/policy/impl/PhoneWindowManager.smali
@@ -313,9 +317,8 @@ fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 cd $SRC
 
-cp -f $MODS/rmline.sh $MODS/3way
-. $MODS/3way/rmline.sh
-rm -r $MODS/3way/rmline.sh
+cd $MODS/3way/android.policy.jar.out
+remove_line
 
 cd $MODS/3way
 patch -i $MODS/3way/MiuiGlobalActions_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
@@ -368,9 +371,10 @@ fi
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
 apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
 
-cp -f $MODS/rmline.sh $MODS/crt-off
-. $MODS/crt-off/rmline.sh
-rm -r $MODS/crt-off/rmline.sh
+cd $MODS/crt-off/android.policy.jar.out
+remove_line
+cd $MODS/crt-off/services.jar.out
+remove_line
 
 cd $MODS/crt-off
 mkdir -p ${ver}
@@ -722,7 +726,7 @@ who=`whoami`
 tmp_loc=/tmp/rmline_$who
 
 # $2 is the file name with the full absolute path
-function rm_line() {
+    function rm_line() {
     local action=$1
     local file=$2
     local diff_file=$tmp_loc$file.line
@@ -743,7 +747,7 @@ function rm_line() {
             echo "Warning: line info file ($diff_file) does not exist" >&2
         fi
     fi
-}
+    }
 
 action=remove
 if [ "$1" == "-r" ]; then
