@@ -187,7 +187,7 @@ else
 fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 
-. $MODS/3way/rmline.sh
+remove_line
 
 patch -i $MODS/3way/MiuiGlobalActions_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
 patch -i $MODS/3way/MiuiGlobalActions\$SinglePressAction_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
@@ -197,7 +197,7 @@ apktool b -f $MODS/3way/android.policy.jar.out
 cd $MODS/out
 mkdir -p ${ver}
 cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/${ver}
-rm -r $MODS/3way/android.policy.jar.out
+#rm -r $MODS/3way/android.policy.jar.out
 rm -r $MODS/3way/android.policy.jar
  
 }
@@ -238,7 +238,7 @@ fi
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
 apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
 
-. $MODS/crt-off/rmline.sh
+remove_line
 
 patch -i $MODS/crt-off/PhoneWindowManager.diff $MODS/crt-off/android.policy.jar.out/smali/com/android/internal/policy/impl/PhoneWindowManager.smali
 patch -i $MODS/crt-off/PowerManagerService\$ScreenBrightnessAnimator.diff $MODS/crt-off/services.jar.out/smali/com/android/server/PowerManagerService\$ScreenBrightnessAnimator.smali
