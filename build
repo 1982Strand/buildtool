@@ -66,7 +66,7 @@ read -p " " answer
        source_fix
        ;;
        5) clear
-       . $HOME/5.mods.sh
+       mods
        ;;
        6) clear
        recompile_apks
@@ -99,7 +99,7 @@ read -p " " answer
        pull
        ;;
        c) clear
-       . $HOME/clean_menu.sh
+       clean_menu
        ;;
        x) clear 
        exit;;

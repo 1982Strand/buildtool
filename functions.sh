@@ -131,6 +131,78 @@ sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
 
 ###  5. Add predefined Mods  ###
 
+mods () {
+   
+clear
+
+while [ answer != "0" ] 
+do
+clear
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                       MIUI building script                     |"
+echo "|                                                 -By 1982Strand |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                        MODS SECTION                            |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "| 1.  MIUI Center Clock                                          |"
+echo "| 2.  MIUI Emoji  tabs       - ..But still no emoji :(           |"
+echo "| 3.  MIUI 3-Way Reboot                                          |"
+echo "| 4.  MIUI CRT-OFF                                               |"
+echo "| 5.  Stock Center Clock (From XXELLA)                           |"
+echo "| 6.  Stock Transparent Statusbar                                |"
+echo "| 7.  MIUI 3-Way Reboot (Official ROM)                           |"
+echo "| 8.  MIUI CRT-OFF (Official ROM)                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|x - Back to Main  Menu                                          |"
+echo "|----------------------------------------------------------------|"
+printf %s " Select an Option: "
+read -p " " answer
+    case $answer in
+       0) break ;;
+       1) clear
+       center_clock
+       ;;
+       2) clear
+       mms
+       ;;
+       3) clear
+       3way
+       ;;
+       4) clear
+       crt_off
+       ;;
+       5) clear
+       stock_centerclock
+       ;;
+       6) clear
+       stock_transparent_statusbar
+       ;;
+       7) clear
+       3way_official
+       ;;
+       8) clear
+       crt-off_official
+       ;;
+       x) clear
+       . $HOME/build
+       ;;
+       *) break ;;
+   esac
+   echo ""
+   echo "" 
+   echo "[--- Press RETURN for menu ---]"
+   read key
+done
+exit 0
+ 
+}
+
 
 ###  Add center clock  ###
 
@@ -691,6 +763,58 @@ done
  
 }
 
+###  Cleaning Menu ###
+
+clean_menu () {
+   
+clear
+
+while [ answer != "0" ] 
+do
+clear
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                       MIUI building script                     |"
+echo "|                                                 -By 1982Strand |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                        Cleaning Options                        |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "| 1.  Clean all folders                                          |"
+echo "| 2.  Clean all but apks in apk_in folder                        |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|x - Return to main menu                                         |"
+echo "|----------------------------------------------------------------|"
+printf %s " Select an Option: "
+read -p " " answer
+    case $answer in
+       1) clear
+       cleanup_all
+       ;;
+       2) clear
+       cleanup_not_apk
+       ;;
+       x) clear
+       . $HOME/build
+       ;;
+       *) break 
+       clean_menu
+       ;;
+   esac
+   echo ""
+   echo "" 
+   echo "[--- Press RETURN for menu ---]"
+   read key
+done
+exit 0
+ 
+}
 
 ###  c. Cleaning Options  ####
 
@@ -769,3 +893,11 @@ done
  
 }
 
+#######
+
+### FUTURE ADDITIONS ####
+
+
+### Deodex (full rom + single jar/apk)
+
+### Sign (Sign rom zip, sign single apk, sign multiple apks)
