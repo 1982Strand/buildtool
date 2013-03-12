@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 HOME=~/buildtool
 IN=~/apk_in
 OUT=~/apk_out
