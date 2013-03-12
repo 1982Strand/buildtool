@@ -182,7 +182,6 @@ echo "|----------------------------------------------------------------|"
 printf %s " Select an Option: "
 read -p " " answer
     case $answer in
-       0) break ;;
        1) clear
        center_clock
        ;;
@@ -208,9 +207,11 @@ read -p " " answer
        crt-off_official
        ;;
        x) clear
-       . $HOME/build
+       . build
        ;;
-       *) break ;;
+       *) echo ""
+          echo "invalid choice"
+       ;;
    esac
    echo ""
    echo "" 
@@ -256,6 +257,9 @@ patch -i $MODS/Mms/bools.diff $DEC/Mms.apk/res/values/bools.xml
    
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
 
@@ -299,6 +303,9 @@ crt_off () {
 
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
 
@@ -385,6 +392,9 @@ patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/
    
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
 
@@ -431,6 +441,9 @@ crt_off_official () {
 
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
 
@@ -586,6 +599,9 @@ echo ""
 
 
 echo -n "Enter version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Output filename is ${ver}_DA.zip" || echo "Invalid"
 
@@ -635,7 +651,9 @@ decompile_single () {
   
 shopt -s failglob
 echo "[--- Choose apk number, or x to exit ---]"
-echo
+echo ""
+echo ""
+
 cd $IN
 select file in *.apk
 do
@@ -664,7 +682,10 @@ recompile_single () {
    
 shopt -s failglob
 echo "[--- Choose apk number, or x to exit ---]"
-echo
+echo ""
+echo ""
+
+
 cd $DEC
 select file in *.apk
 do
@@ -730,6 +751,9 @@ patch_miui () {
 
 clear
 echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+echo ""
+echo ""
+
 read ver
 [[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
 
@@ -791,9 +815,10 @@ pull () {
    
 shopt -s failglob
 echo "[--- Choose rom zip to extract from, or x to exit ---]"
-echo
-cd $SRC
-select zip in *.zip
+echo ""
+echo ""
+
+select zip in $SRC/*.zip
 do
     [[ $REPLY == x ]] && . $HOME/build
     [[ -z $zip ]] && echo "Invalid choice" && continue
@@ -850,10 +875,10 @@ read -p " " answer
        cleanup_not_apk
        ;;
        x) clear
-       . $HOME/build
+       . build
        ;;
-       *) break 
-       clean_menu
+       *) echo ""
+          echo "invalid choice"
        ;;
    esac
    echo ""

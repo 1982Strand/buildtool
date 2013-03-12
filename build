@@ -1,19 +1,19 @@
 #!/bin/bash
 
-HOME=~/buildtool
-IN=~/apk_in
-OUT=~/apk_out
-DEC=~/apk_in/decompiled
-SRC=~/source_roms
-FIX=~/src_fix
-FLASH=~/flashable
-LOG=~/log
-MODS=~/mods
-MAIN=~/translations/XML_MIUI-v5_Danish/Danish/main
-DEVICE=~/translations/XML_MIUI-v5_Danish/Danish/device/m0
-tlock=~/flashable/template/system/media/theme/default
-dst=~/flashable/system/media/theme/default
-src=~/translations/XML_MIUI-v5_Danish/Danish/extras/lockscreen
+HOME=/home/dan/buildtool
+IN=/home/dan/buildtool/apk_in
+OUT=/home/dan/buildtool/apk_out
+DEC=/home/dan/buildtool/apk_in/decompiled
+SRC=/home/dan/buildtool/source_roms
+FIX=/home/dan/buildtool/src_fix
+FLASH=/home/dan/buildtool/flashable
+LOG=/home/dan/buildtool/log
+MODS=/home/dan/buildtool/mods
+MAIN=/home/dan/buildtool/translations/XML_MIUI-v5_Danish/Danish/main
+DEVICE=/home/dan/buildtool/translations/XML_MIUI-v5_Danish/Danish/device/m0
+tlock=/home/dan/buildtool/flashable/template/system/media/theme/default
+dst=/home/dan/buildtool/flashable/system/media/theme/default
+src=/home/dan/buildtool/translations/XML_MIUI-v5_Danish/Danish/extras/lockscreen
 
 source $HOME/functions.sh
 
@@ -103,13 +103,13 @@ read -p " " answer
        ;;
        x) clear 
        exit;;
-       *) break
-       . $HOME/build ;;
+       *) echo ""
+          echo "invalid choice"
+       ;;
    esac
    echo ""
    echo "" 
    echo "[--- Press RETURN for menu ---]"
    read key
 done
-exit 0
 
