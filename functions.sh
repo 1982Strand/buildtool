@@ -26,10 +26,10 @@ echo "[--- Installing frameworks ---]"
 echo ""
 
 apktool if $IN/framework-res.apk
-apktool if $HOME/if_frameworks/2.apk
-apktool if $HOME/if_frameworks/3.apk
-apktool if $HOME/if_frameworks/4.apk
-apktool if $HOME/if_frameworks/5.apk
+apktool if $HJEM/if_frameworks/2.apk
+apktool if $HJEM/if_frameworks/3.apk
+apktool if $HJEM/if_frameworks/4.apk
+apktool if $HJEM/if_frameworks/5.apk
 apktool if $IN/framework-miui-res.apk
  
 }
@@ -49,17 +49,16 @@ echo ""
 
 cat /dev/null > $LOG/decompile_log.txt
 
-cd $HOME/apk_in
-for file in *.apk *.jar; do
+cd $IN
+for file in *.apk *jar; do
 echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
 apktool -q d -f $file $DEC/$file
 done
-cp -f $HOME/sort.py $DEC
+cp -f $HJEM/sort.py $DEC
 cd $DEC
 python sort.py
 rm -r sort.py
 
-cd $HOME
  
 }
 
@@ -78,7 +77,7 @@ echo ""
 
 cd $MAIN
 
-for apk in $(<$HOME/translation_list.txt); do
+for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
                 cp -r -f "$apk" $DEC;
 fi
@@ -86,7 +85,7 @@ done
 
 cd $DEVICE
 
-for apk in $(<$HOME/translation_list.txt); do
+for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
                 cp -r -f "$apk" $DEC;
 fi
@@ -96,7 +95,7 @@ cd $DEC
 if [ -d ControlPanel.apk ]
 then cp -r -f $MAIN/ControlPanel.apk $DEC
 fi
-cd $HOME
+cd $HJEM
 
  
 }
@@ -209,8 +208,9 @@ read -p " " answer
        x) clear
        . build
        ;;
-       *) echo ""
-          echo "invalid choice"
+       *) break
+          echo ""
+          echo "invalid choice of mods"
        ;;
    esac
    echo ""
@@ -620,10 +620,10 @@ cd $FLASH/system/media/audio
 mkdir ringtones
 mkdir alarms
 mkdir notifications
-cd $HOME
+cd $HJEM
 
 
-for apk in $(<$HOME/translation_list.txt); do cp -r -f "$OUT/$apk" $FLASH/system/app; done
+for apk in $(<$HJEM/translation_list.txt); do cp -r -f "$OUT/$apk" $FLASH/system/app; done
 
 cp -f $MODS/out/${ver}/*.jar $FLASH/system/framework
 mv -f $FLASH/system/app/framework-miui-res.apk $FLASH/system/framework
@@ -658,12 +658,12 @@ cd $IN
 select file in *.apk
 do
     cat /dev/null > $LOG/decompile_log.txt
-    [[ $REPLY == x ]] && . $HOME/build
+    [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $file ]] && echo "Invalid choice" && continue
     echo
     echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
     apktool d -f "$file" $DEC/$file
-    cp -f $HOME/sort.py $DEC/$file
+    cp -f $HJEM/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
 done
@@ -690,7 +690,7 @@ cd $DEC
 select file in *.apk
 do
     cat /dev/null > $LOG/recompile_log.txt
-    [[ $REPLY == x ]] && . $HOME/build
+    [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $file ]] && echo "Invalid choice" && continue
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
@@ -768,7 +768,7 @@ echo ""
 cd $FLASH/original/in
 find $FLASH/original/in -name *.mrm -type f|xargs sed -i 's/默认/Standard/g'
 
-cd $HOME
+cd $HJEM
 
 echo ""
 echo "[--- Patch Build.prop ---]"
@@ -777,17 +777,17 @@ echo ""
 cd $FLASH/original/in
 find $FLASH/original/in/system/build.prop -type f|xargs sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g'
 find $FLASH/original/in/system/build.prop -type f|xargs sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g'
-cd $HOME
+cd $HJEM
 
 cp -f $SRC/miui_i9300_${ver}.zip $FLASH/original/out
-cd $HOME
-cp -f $HOME/apk_out/*.apk $FLASH/original/in/system/app
-cp -f $HOME/apk_out/framework-miui-res.apk $FLASH/original/in/system/framework
+cd $HJEM
+cp -f $HJEM/apk_out/*.apk $FLASH/original/in/system/app
+cp -f $HJEM/apk_out/framework-miui-res.apk $FLASH/original/in/system/framework
 rm -r $FLASH/original/in/system/app/framework-miui-res.apk
 rm -r $FLASH/original/in/system/app/framework-res.apk
 rm -r $FLASH/original/in/system/media/theme/.directory
-cp -f $HOME/flashable/template/system/media/theme/default/lockscreen $FLASH/original/in/system/media/theme/default/lockscreen
-cp -f $HOME/mods/out/${ver}/*.jar $FLASH/original/in/system/framework
+cp -f $HJEM/flashable/template/system/media/theme/default/lockscreen $FLASH/original/in/system/media/theme/default/lockscreen
+cp -f $HJEM/mods/out/${ver}/*.jar $FLASH/original/in/system/framework
 
 7za u -tzip $FLASH/original/out/miui_i9300_${ver}.zip $IN/system
 mv -f $FLASH/original/out/miui_i9300_${ver}.zip $FLASH/original/out/miui_i9300_${ver}_DA.zip
@@ -820,10 +820,10 @@ echo ""
 
 select zip in $SRC/*.zip
 do
-    [[ $REPLY == x ]] && . $HOME/build
+    [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $zip ]] && echo "Invalid choice" && continue
     echo
-	for apk in $(<$HOME/translation_list.txt); do 
+	for apk in $(<$HJEM/translation_list.txt); do 
 unzip -j -o -q $zip system/app/$apk -d $IN 2&>1 > /dev/null;
 	done
 unzip -j -o -q $zip system/framework/framework-res.apk -d $IN 2&>1 > /dev/null;
@@ -877,8 +877,9 @@ read -p " " answer
        x) clear
        . build
        ;;
-       *) echo ""
-          echo "invalid choice"
+       *) break
+	  echo ""
+          echo "invalid choice of cleaning"
        ;;
    esac
    echo ""
