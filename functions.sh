@@ -206,7 +206,7 @@ read -p " " answer
        crt-off_official
        ;;
        x) clear
-       . build
+       . $HJEM/build
        ;;
        *) break
           echo ""
@@ -875,7 +875,7 @@ read -p " " answer
        cleanup_not_apk
        ;;
        x) clear
-       . build
+       . $HJEM/build
        ;;
        *) break
 	  echo ""
