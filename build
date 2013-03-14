@@ -75,7 +75,7 @@ read -p " " answer
        inject_res
        ;;
        8) clear
-       . $HJEM/8.opt_png.sh
+       opt_png
        ;;
        9) clear
        zipalign
