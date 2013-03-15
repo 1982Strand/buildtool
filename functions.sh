@@ -131,6 +131,7 @@ echo ""
 
 patch -i $FIX/framework-miui-res/apktool.diff $DEC/framework-miui-res.apk/apktool.yml
 cd $DEC/framework-miui-res.apk/ 
+
 rm -f -r *.rej
 rm -f -r *.orig
 
@@ -1074,7 +1075,7 @@ echo ""
 select zip in $SRC/*.zip
 do
     [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $zip ]] && echo "Invalid choice" && break
+    [[ -z $zip ]] && echo "Invalid choice" && continue
     echo
 	for apk in $(<$HJEM/translation_list.txt); do 
 unzip -j -o -q $zip system/app/$apk -d $IN 2&>1 > /dev/null;
