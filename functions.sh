@@ -50,7 +50,8 @@ echo ""
 cat /dev/null > $LOG/decompile_log.txt
 
 cd $IN
-for file in *.apk *jar; do
+if [ -f *.apk ]; then
+for file in *.apk; do
 echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
 apktool -q d -f $file $DEC/$file
 done
@@ -58,6 +59,14 @@ cp -f $HJEM/sort.py $DEC
 cd $DEC
 python sort.py
 rm -r sort.py
+fi
+
+if [ -f *.jar ]; then
+    for file in *jar; do
+echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+apktool -q d -f $file $DEC/$file
+done
+fi
 
  
 }
