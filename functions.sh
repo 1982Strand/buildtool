@@ -41,6 +41,8 @@ apktool if $IN/framework-miui-res.apk
 ###                                      ###
 ############################################
 
+## Thanks to Soupmagnet (xdadevelopers.com) for the improved code!
+
 decompile_apks () {
    
 echo ""
@@ -50,22 +52,22 @@ echo ""
 cat /dev/null > $LOG/decompile_log.txt
 
 cd $IN
-if [ -f *.apk ]; then
-for file in *.apk; do
-echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
-apktool -q d -f $file $DEC/$file
-done
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
+    for file in *.apk ; do
+        echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+        apktool -q d -f $file $DEC/$file
+    done
 cp -f $HJEM/sort.py $DEC
 cd $DEC
 python sort.py
 rm -r sort.py
 fi
 
-if [ -f *.jar ]; then
+if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *jar...
     for file in *jar; do
-echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
-apktool -q d -f $file $DEC/$file
-done
+        echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+        apktool -q d -f $file $DEC/$file
+    done
 fi
 
  
@@ -910,7 +912,7 @@ select file in *.apk
 do
     cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $file ]] && echo "Invalid choice" && continue
+    [[ -z $file ]] && echo "Invalid choice for single decompiling" && continue
     echo
     echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
     apktool d -f "$file" $DEC/$file
@@ -942,7 +944,7 @@ select file in *.apk
 do
     cat /dev/null > $LOG/recompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $file ]] && echo "Invalid choice" && continue
+    [[ -z $file ]] && echo "Invalid choice for single recompiling" && continue
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
@@ -1072,7 +1074,7 @@ echo ""
 select zip in $SRC/*.zip
 do
     [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $zip ]] && echo "Invalid choice" && continue
+    [[ -z $zip ]] && echo "Invalid choice" && break
     echo
 	for apk in $(<$HJEM/translation_list.txt); do 
 unzip -j -o -q $zip system/app/$apk -d $IN 2&>1 > /dev/null;
