@@ -217,8 +217,7 @@ read -p " " answer
        x) clear
        . $HJEM/build
        ;;
-       *) break
-          echo ""
+       *) echo ""
           echo "invalid choice of mods"
        ;;
    esac
@@ -1129,8 +1128,7 @@ read -p " " answer
        x) clear
        . $HJEM/build
        ;;
-       *) break
-	  echo ""
+       *) echo ""
           echo "invalid choice of cleaning"
        ;;
    esac
