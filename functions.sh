@@ -128,11 +128,11 @@ echo ""
 echo "...Fixing framework-miui-res.apk"
 echo ""
 
-sed -i '/ - 1/a \
- - 2\
- - 3\
- - 4\
- - 5
+sed -i '/  - 1/a \
+  - 2\
+  - 3\
+  - 4\
+  - 5
 ' $DEC/framework-miui-res.apk/apktool.yml
 
 
@@ -1096,6 +1096,7 @@ unzip -j -o -q $zip system/framework/framework-res.apk -d $IN 2&>1 > /dev/null;
 unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN 2&>1 > /dev/null;
 done
 
+zip=dummy
  
 }
 
