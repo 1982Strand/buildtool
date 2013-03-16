@@ -1,4 +1,4 @@
-#!/bin/bash -vx
+#!/bin/bash
 
 HJEM=$HOME/buildtool
 IN=~/buildtool/apk_in
@@ -46,7 +46,7 @@ echo "| 11. Decompile single apk      ||                               |"
 echo "| 12. Recompile single apk      ||                               |"
 echo "|                               || e. Extract apks from zip      |"
 echo "|                               ||                               |"
-echo "|  t. test                      || c. Cleaning Options           |"
+echo "|                               || c. Cleaning Options           |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Exit                                                        |"
 echo "|----------------------------------------------------------------|"
@@ -100,9 +100,6 @@ read -p " " answer
        ;;
        c) clear
        clean_menu
-       ;;
-       t) clear
-       lav_mappe
        ;;
        x) clear 
        exit;;

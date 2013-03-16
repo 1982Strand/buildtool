@@ -175,7 +175,7 @@ echo "| 3.  MIUI 3-Way Reboot                                          |"
 echo "| 4.  MIUI CRT-OFF                                               |"
 echo "| 5.  Stock Center Clock (From XXELLA)                           |"
 echo "| 6.  Stock Transparent Statusbar                                |"
-echo "| 7.  MIUI 3-Way Reboot (Official ROM)                           |"
+echo "|                                                                |"
 echo "| 8.  MIUI CRT-OFF (Official ROM)                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
@@ -201,9 +201,6 @@ read -p " " answer
        ;;
        6) clear
        stock_transparent_statusbar
-       ;;
-       7) clear
-       3way_official
        ;;
        8) clear
        crt-off_official
@@ -256,48 +253,100 @@ patch -i $MODS/Mms/bools.diff $DEC/Mms.apk/res/values/bools.xml
 ###  Add 3way reboot option  ###
 
 3way () {
-   
-clear
-echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
 echo ""
 
-read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
+select zip in $SRC/*.zip
+do 
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $zip ]] && echo "Invalid choice for 3way mod" && continue
+    echo
+    ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
-echo ""
-echo "[--- Creating 3-way Reboot ---]"
-echo ""
-
-cd $MODS/out
-if [ -d ${ver} ]
+if [ -d $MODS/out/$ver ]
 then
-	cd $ver
+	cd $MODS/out/$ver
 	if [ -f android.policy.jar ]
 	then
-	cp -f android.policy.jar $MODS/3way
-	else unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/3way"
+	cp -f $MODS/out/$ver/android.policy.jar $MODS/3way
+	else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
 	fi
 else
-	unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/3way"
+        mkdir -p "$MODS/out/$ver"
+	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
 fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
+cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
 
-cd $MODS/3way/android.policy.jar.out
-remove_line
+    tmp=`grep -l 'invoke-static {v0, v1, v2}, Lcom/android/internal/app/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V' *.smali`;
+    tmp=`echo $tmp | sed 's/MiuiGlobalActions$\(.*\)*.smali/\1/g'`;
+    tmp=`echo $tmp | sed 's/[^ ]* //'`;
+    sed -i "s/MiuiGlobalActions\$$tmp/MiuiGlobalActions\$222/g" "$MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali"
+    
+    cp -arf $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
+		        
+sed -i '/# instance fields/i \
+# static fields\
+.field protected static rebootMode:I\
+\
+.field protected static final rebootOptions:[Ljava/lang/String;\
+' $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali;
 
-patch -i $MODS/3way/MiuiGlobalActions_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
-patch -i $MODS/3way/MiuiGlobalActions\$SinglePressAction_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
-cp -r -f $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/
-apktool b -f $MODS/3way/android.policy.jar.out
+sed -i '/.method protected constructor <init>(II)V/i\
+.method static constructor <clinit>()V\
+    .registers 3\
+\
+    const/4 v0, 0x3\
+\
+    new-array v0, v0, [Ljava/lang/String;\
+\
+    const/4 v1, 0x0\
+\
+    const-string v2, "Normal"\
+\
+    aput-object v2, v0, v1\
+\
+    const/4 v1, 0x1\
+\
+    const-string v2, "Recovery"\
+\
+    aput-object v2, v0, v1\
+\
+    const/4 v1, 0x2\
+\
+    const-string v2, "Bootloader"\
+\
+    aput-object v2, v0, v1\
+\
+    sput-object v0, Lcom/android/internal/policy/impl/MiuiGlobalActions$SinglePressAction;->rebootOptions:[Ljava/lang/String;\
+\
+    return-void \
+.end method\
+' $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali;
 
-cd $MODS/out
-mkdir -p ${ver}
-cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/${ver}
+cd $MODS/3way;
+apktool b android.policy.jar.out
+   
+   if [ -f "$MODS/3way/android.policy.jar.out/build/apk/classes.dex" ]; then
+   
+      cd $MODS/3way/android.policy.jar.out/build/apk/
+      
+      7za u -mx0 -tzip -r "$MODS/3way/android.policy.jar" "classes.dex"  > /dev/null
+      cp -rf $MODS/3way/android.policy.jar $MODS/out/$ver
+      echo "3way Reboot Mod Succesful."
+   else
+   
+      echo "3way Reboot Mod Failed.";
+   fi
+done   
 rm -r $MODS/3way/android.policy.jar.out
-rm -r $MODS/3way/android.policy.jar
+rm -rf $MODS/3way/android.policy.jar
  
 }
+
 
 ###  ADD crt-off effect  ###
 
@@ -385,54 +434,6 @@ echo ""
 
 patch -i $MODS/stock_transparent_statusbar/tw_super_status_bar.diff $DEC/SystemUI.apk/res/layout/tw_super_status_bar.xml
 patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/values/drawables.xml
- 
-}
-
-###  3way official  ###
-
-3way_official () {
-   
-clear
-echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
-echo ""
-echo ""
-
-read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
-
-echo ""
-echo "[--- Creating 3-way Reboot ---]"
-echo ""
-
-cd $MODS/out
-if [ -d ${ver} ]
-then
-	cd $ver
-	if [ -f android.policy.jar ]
-	then
-	cp -f android.policy.jar $MODS/3way
-	else unzip -u -j $SRC/miui_i9300_${ver}.zip system/framework/android.policy.jar -d "$MODS/3way"
-	fi
-else
-	unzip -u -j $SRC/miui_i9300_${ver}.zip system/framework/android.policy.jar -d "$MODS/3way"
-fi
-apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
-cd $SRC
-
-cd $MODS/3way/android.policy.jar.out
-remove_line
-
-cd $MODS/3way
-patch -i $MODS/3way/MiuiGlobalActions_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
-patch -i $MODS/3way/MiuiGlobalActions\$SinglePressAction_no_line.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
-cp -r -f $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/
-apktool b -f $MODS/3way/android.policy.jar.out
-
-cd $MODS/out
-mkdir -p ${ver}
-cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/${ver}
-rm -r $MODS/3way/android.policy.jar.out
-rm -r $MODS/3way/android.policy.jar
  
 }
 
@@ -1241,24 +1242,6 @@ do
 done
  
 }
-
-lav_mappe () {
-
-shopt -s failglob
-echo "[--- Choose rom zip to extract from, or x to exit ---]"
-echo ""
-echo ""
-
-select zip in $SRC/*.zip
-do 
-    [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $zip ]] && echo "Invalid choice for 3way mod" && continue
-    echo
-        ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/')
-	mkdir -p "$MODS/out/$ver"
-done
-}
-
 
 ############################################
 ############################################
