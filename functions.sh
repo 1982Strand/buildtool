@@ -354,40 +354,43 @@ done
 
 crt_off () {
 
-clear
-echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
 echo ""
 
-read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
+select zip in $SRC/*.zip
+do 
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $zip ]] && echo "Invalid choice for CRT-off mod" && continue
+    echo
+    ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
-echo ""
-echo "[--- Creating CRT-Off effect ---]"
-echo ""
-
-
-cd $MODS/out
-if [ -d ${ver} ]
+if [ -d $MODS/out/$ver ]
 then
-	cd $ver
+	cd $MODS/out/$ver
 	if [ -f android.policy.jar ]
 	then
-	cp -f android.policy.jar $MODS/crt-off
-	else unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
+	cp -f $MODS/out/$ver/android.policy.jar $MODS/crt-off
+	else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
 	fi
 		if [ -f services.jar ]
 		then
-		cp -f services.jar $MODS/crt-off
-		else
-		unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
-		fi
+	        cp -f $MODS/out/$ver/services.jar $MODS/crt-off
+	        else unzip -u -j $zip system/framework/services.jar -d "$MODS/crt-off"
+	        fi
+
 else
-	unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
-	unzip -u -j $SRC/miuiandroid_m0_jb-${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
+        mkdir -p "$MODS/out/$ver"
+	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
+	unzip -u -j $zip system/services.jar -d "$MODS/crt-off"
 fi
+
+
+
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
 apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
+
 
 cd $MODS/crt-off/android.policy.jar.out
 remove_line
@@ -399,19 +402,45 @@ patch -i $MODS/crt-off/PowerManagerService\$ScreenBrightnessAnimator.diff $MODS/
 apktool b -f $MODS/crt-off/android.policy.jar.out
 apktool b -f $MODS/crt-off/services.jar.out
 
-cd $MODS/out
-mkdir -p ${ver}
-cp -r -f $MODS/crt-off/android.policy.jar.out/dist/android.policy.jar $MODS/out/${ver}
-cp -r -f $MODS/crt-off/services.jar.out/dist/services.jar $MODS/out/${ver}
+cd $MODS/crt-off;
+   
+   if [ -f "$MODS/crt-off/android.policy.jar.out/build/apk/classes.dex" ]; then
+   
+      cd $MODS/crt-off/android.policy.jar.out/build/apk/
+      
+      7za u -mx0 -tzip -r "$MODS/crt-off/android.policy.jar" "classes.dex"  > /dev/null
+      cp -rf $MODS/crt-off/android.policy.jar $MODS/out/$ver
+      echo ""
+      echo "[--- patching android.policy.jar completed! ---]"
+   else
+      echo ""
+      echo "[--- patching android.policy.jar failed! ---]";
+   fi
+	    if [ -f "$MODS/crt-off/services.jar.out/build/apk/classes.dex" ]; then
+   
+	    cd $MODS/crt-off/services.jar.out/build/apk/
+      
+	    7za u -mx0 -tzip -r "$MODS/crt-off/services.jar" "classes.dex"  > /dev/null
+	    cp -rf $MODS/crt-off/services.jar $MODS/out/$ver
+	    echo ""
+	    echo "[--- patching services.jar completed! ---]"
+	    else
+	    echo ""
+	    echo "[--- patching services.jar failed! ---]";
+	    fi
+      
 
-rm -r $MODS/crt-off/android.policy.jar.out
-rm -r $MODS/crt-off/android.policy.jar
-rm -r $MODS/crt-off/services.jar.out
-rm -r $MODS/crt-off/services.jar
+rm -rf $MODS/crt-off/android.policy.jar.out
+rm -rf $MODS/crt-off/android.policy.jar
+rm -rf $MODS/crt-off/services.jar.out
+rm -rf $MODS/crt-off/services.jar
 
-cd $MODS/crt-off
+break
+done   
  
 }
+
+
 
 ### Add center clock to stock rom ###
 
