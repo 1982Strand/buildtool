@@ -128,23 +128,14 @@ echo ""
 echo "...Fixing framework-miui-res.apk"
 echo ""
 
-
-patch -i $FIX/framework-miui-res/apktool.diff $DEC/framework-miui-res.apk/apktool.yml
-cd $DEC/framework-miui-res.apk/ 
-
-rm -f -r *.rej
-rm -f -r *.orig
-
-
-echo ""
-echo "...Fixing MiuiCompass.apk"
-echo ""
+sed -i '/ - 1/a \
+ - 2\
+ - 3\
+ - 4\
+ - 5
+' $DEC/framework-miui-res.apk/apktool.yml
 
 
-patch -i $FIX/MiuiCompass/apktool.diff $DEC/MiuiCompass.apk/apktool.yml
-cd $DEC/MiuiCompass.apk/
-rm -f -r *.rej
-rm -f -r *.orig
 
 echo ""
 echo "...Fixing Browser.apk (arrays.xml)"
