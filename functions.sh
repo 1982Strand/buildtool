@@ -964,14 +964,35 @@ echo ""
 
 grep -q -e '<item>da_DK</item>' $DEC/framework-miui-res.apk/res/values/arrays.xml || sed -i 's|<item>zh_TW</item>|<item>da_DK</item>|' $DEC/framework-miui-res.apk/res/values/arrays.xml
 
+sed -i '/ - 1/a \
+ - 2\
+ - 3\
+ - 4\
+ - 5
+' $DEC/framework-miui-res.apk/apktool.yml
+
+if [[ -f $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali ]]
+then
+
 echo ""
 echo "...Fixing Browser.apk (smali)"
 echo ""
 
-patch -i $FIX/Browser/MiuiSuggestionsAdapter.diff $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
-cd $DEC/Browser.apk/smali/com/android/browser/ 
-rm -f -r *.rej
-rm -f -r *.orig
+sed -i '/const-string v2, "baidu"/c \
+const-string v2, "google"' $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
+
+fi
+
+#patch -i $FIX/Browser/MiuiSuggestionsAdapter.diff $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
+#cd $DEC/Browser.apk/smali/com/android/browser/ 
+#rm -f -r *.rej
+#rm -f -r *.orig
+
+echo ""
+echo "...Fixing Browser.apk (arrays.xml)"
+echo ""
+
+sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
  
 }
 
