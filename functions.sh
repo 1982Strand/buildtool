@@ -336,14 +336,16 @@ apktool b android.policy.jar.out
       
       7za u -mx0 -tzip -r "$MODS/3way/android.policy.jar" "classes.dex"  > /dev/null
       cp -rf $MODS/3way/android.policy.jar $MODS/out/$ver
-      echo "3way Reboot Mod Succesful."
+      echo ""
+      echo "[--- 3way Reboot Mod Succesful! ---]"
    else
-   
-      echo "3way Reboot Mod Failed.";
+      echo ""
+      echo "[--- 3way Reboot Mod Failed! ---]";
    fi
-done   
-rm -r $MODS/3way/android.policy.jar.out
+rm -rf $MODS/3way/android.policy.jar.out
 rm -rf $MODS/3way/android.policy.jar
+break
+done   
  
 }
 
@@ -901,6 +903,12 @@ echo ""
 echo ""
 
 cd $IN
+if [ "$(ls -A $IN)" ]; then
+    echo ""
+    echo "No files found.."
+    echo ""
+else
+
 select file in *.apk
 do
     cat /dev/null > $LOG/decompile_log.txt
@@ -912,8 +920,9 @@ do
     cp -f $HJEM/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
+break
 done
- 
+fi 
 }
 
 
@@ -933,6 +942,13 @@ echo ""
 
 
 cd $DEC
+
+if [ "$(ls -d $DEC)" ]; then
+    echo ""
+    echo "No files found.."
+    echo ""
+else
+
 select file in *.apk
 do
     cat /dev/null > $LOG/recompile_log.txt
@@ -941,8 +957,9 @@ do
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
+break
 done
- 
+fi 
 }
 
 
