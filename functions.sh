@@ -1254,10 +1254,8 @@ do
     [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $zip ]] && echo "Invalid choice for 3way mod" && continue
     echo
-        grep ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ $zip; mkdir -p $MODS/out/${ver}
-	#for ver in $zip; do
-        #grep "^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$" $zip; mkdir -p $MODS/out/${ver}
-        #done
+        ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/')
+	mkdir -p "$MODS/out/$ver"
 done
 }
 
