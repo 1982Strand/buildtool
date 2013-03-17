@@ -1,14 +1,14 @@
 #!/bin/bash
 
 echo ""
-echo "[--- Re-sign apks ---]"
+echo "[--- Re-sign apks (Test Keys) ---]"
 echo ""
-    for apk in `find apk_in/decompiled/*.apk/dist/ -name "*.apk"`
+    for apk in `find $DEC/*.apk/dist/ -name "*.apk"`
     do
         echo "Signing $apk..."
-        java -jar ~/buildtool/signing/signapk.jar ~/buildtool/signing/testkey.x509.pem ~/buildtool/signing/testkey.pk8 $apk $apk.signed
+        java -jar $SIGN/signapk.jar $SIGN/testkey.x509.pem $SIGN/testkey.pk8 $apk $apk.signed
         zipalign 4 $apk.signed $apk.signed.aligned
         mv $apk.signed.aligned $apk
         rm $apk.signed
     done
-cp -f ~/buildtool/apk_in/decompiled/*apk/dist/*apk ~/buildtool/apk_out/
+cp -f $DEC/*apk/dist/*apk $OUT

@@ -773,7 +773,7 @@ done
 ############################################
 
 
-zipalign () {
+zip_align () {
    
 echo ""
 echo "[--- Zipaligning apks ---]"
@@ -793,9 +793,132 @@ cd $OUT
 }
 
 
+
 ############################################
 ###                                      ###
-###      10. Build flashable zip         ###
+###      10. Signing options             ###
+###                                      ###
+############################################
+
+sign_menu () {
+   
+clear
+
+while [ answer != "0" ] 
+do
+clear
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                       MIUI building script                     |"
+echo "|                                                 -By 1982Strand |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                        Signing Options                         |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "| 1.  Sign all apks (in apk_out)                                 |"
+echo "| 2.  Sign single apk                                            |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|x - Return to main menu                                         |"
+echo "|----------------------------------------------------------------|"
+printf %s " Select an Option: "
+read -p " " answer
+    case $answer in
+       1) clear
+       sign_all
+       ;;
+       2) clear
+       sign_single
+       ;;
+       3) clear
+       sign_zip
+       ;;
+       x) clear
+       . $HJEM/build
+       ;;
+       *) echo ""
+          echo "invalid choice of cleaning"
+       ;;       
+    esac
+    break
+done
+
+}
+
+### Sign all apks
+
+sign_all () {
+
+
+echo ""
+echo "[--- Sign all apks (Test Keys) ---]"
+echo ""
+    
+cd $OUT
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+    
+    for apk in *.apk
+    do
+        echo "Signing $apk..." 2>&1 | tee -a $LOG/signing_log.txt
+        java -jar $SIGN/signapk.jar $SIGN/testkey.x509.pem $SIGN/testkey.pk8 $apk $apk.signed
+        zipalign 4 $apk.signed $apk.signed.aligned
+        mv $apk.signed.aligned $apk
+        rm $apk.signed
+    done
+else
+    echo ""
+    echo "No files found.."
+    echo ""
+
+fi
+}
+
+
+### Sign single apk
+
+sign_single () {
+
+shopt -s failglob
+echo "[--- Choose apk number, or x to exit ---]"
+echo ""
+echo ""
+
+
+cd $OUT
+
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+
+    select apk in *.apk
+    do
+    cat /dev/null > $LOG/signing_log.txt
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $apk ]] && echo "Invalid choice for single signing" && continue
+    echo
+    echo "Signing $apk" 2>&1 | tee -a $LOG/signing_log.txt
+    java -jar $SIGN/signapk.jar $SIGN/testkey.x509.pem $SIGN/testkey.pk8 $apk $apk.signed
+    zipalign 4 $apk.signed $apk.signed.aligned
+    mv $apk.signed.aligned $apk
+    rm $apk.signed
+    break
+    done
+else
+    echo ""
+    echo "No files found.."
+    echo ""
+
+fi 
+
+}
+
+
+############################################
+###                                      ###
+###      11. Build flashable zip         ###
 ###                                      ###
 ############################################
 
@@ -887,7 +1010,7 @@ done
 
 ############################################
 ###                                      ###
-###      11. decompile singke apk/jar    ###
+###      12. decompile singke apk/jar    ###
 ###                                      ###
 ############################################
 
@@ -926,7 +1049,7 @@ fi
 
 ############################################
 ###                                      ###
-###      12. recompile singke apk/jar    ###
+###      13. recompile singke apk/jar    ###
 ###                                      ###
 ############################################
 
@@ -964,7 +1087,7 @@ fi
 
 ############################################
 ###                                      ###
-###      13. fix official sources        ###
+###      14. fix official sources        ###
 ###                                      ###
 ############################################
 
@@ -1016,7 +1139,7 @@ sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
 
 ############################################
 ###                                      ###
-###      14. patch/build official rom    ###
+###      15. patch/build official rom    ###
 ###                                      ###
 ############################################
 
@@ -1256,6 +1379,9 @@ done
  
 }
 
+
+
+
 ############################################
 ############################################
 
@@ -1263,5 +1389,3 @@ done
 
 
 ### Deodex (full rom + single jar/apk)
-
-### Sign (Sign rom zip, sign single apk, sign multiple apks)

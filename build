@@ -6,6 +6,7 @@ OUT=~/buildtool/apk_out
 DEC=~/buildtool/apk_in/decompiled
 SRC=~/buildtool/source_roms
 FIX=~/buildtool/src_fix
+SIGN=~/buildtool/signing
 FLASH=~/buildtool/flashable
 LOG=~/buildtool/log
 MODS=~/buildtool/mods
@@ -33,16 +34,16 @@ echo "|----------------------------------------------------------------|"
 echo "| 1.  Install frameworks        ||                               |"
 echo "| 2.  Decompile all apks/jars   ||                               |"
 echo "| 3.  Add translations          ||                               |"
-echo "| 4.  Fix MIUI sources          || 13. Fix official sources      |"
-echo "| 5.  Add predefined Mods       || 14. Patch & Build off. ROM    |"
+echo "| 4.  Fix MIUI sources          || 14. Fix official sources      |"
+echo "| 5.  Add predefined Mods       || 15. Patch & Build off. ROM    |"
 echo "| 6.  Recompile apks/jars       ||                               |"
 echo "| 7.  Inject resources          ||                               |"
 echo "| 8.  Optimize pngs             ||                               |"
 echo "| 9.  Zipalign apks             ||                               |"
-echo "| 10. Build Flashable Zip       ||                               |"
-echo "| 11. Decompile single apk      ||                               |"
-echo "| 12. Recompile single apk      ||                               |"
-echo "|                               || e. Extract apks from zip      |"
+echo "| 10. Signing Options           ||                               |"
+echo "| 11. Build Flashable Zip       ||                               |"
+echo "| 12. Decompile single apk      ||                               |"
+echo "| 13. Recompile single apk      || e. Extract apks from zip      |"
 echo "|                               ||                               |"
 echo "|                               || c. Cleaning Options           |"
 echo "|----------------------------------------------------------------|"
@@ -76,21 +77,24 @@ read -p " " answer
        opt_png
        ;;
        9) clear
-       zipalign
+       zip_align
        ;;
        10) clear
-       flashable
+       sign_menu
        ;;
        11) clear
-       decompile_single
+       flashable
        ;;
        12) clear
-       recompile_single
+       decompile_single
        ;;
        13) clear
-       source_fix_official
+       recompile_single
        ;;
        14) clear
+       source_fix_official
+       ;;
+       15) clear
        patch_miui
        ;;
        e) clear
