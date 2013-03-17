@@ -11,9 +11,7 @@ LOG=~/buildtool/log
 MODS=~/buildtool/mods
 MAIN=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/main
 DEVICE=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/device/m0
-tlock=~/buildtool/flashable/template/system/media/theme/default
-dst=~/buildtool/flashable/system/media/theme/default
-src=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/extras/lockscreen
+XTRA=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/extras
 
 source $HJEM/functions.sh
 

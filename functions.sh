@@ -98,7 +98,7 @@ cd $DEVICE
 
 for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
-                cp -r -f "$apk" $DEC;
+                cp -r -f "$apk" $DEC; > /dev/null 2>&1
 fi
 done
 
@@ -176,7 +176,7 @@ echo "| 4.  MIUI CRT-OFF                                               |"
 echo "| 5.  Stock Center Clock (From XXELLA)                           |"
 echo "| 6.  Stock Transparent Statusbar                                |"
 echo "|                                                                |"
-echo "| 8.  MIUI CRT-OFF (Official ROM)                                |"
+echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Back to Main  Menu                                          |"
@@ -465,73 +465,6 @@ echo ""
 
 patch -i $MODS/stock_transparent_statusbar/tw_super_status_bar.diff $DEC/SystemUI.apk/res/layout/tw_super_status_bar.xml
 patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/values/drawables.xml
- 
-}
-
-### crt-off effect for official miui rom  ###
-
-crt_off_official () {
-   
-
-clear
-echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
-echo ""
-echo ""
-
-read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miuiandroid_m0_jb-${ver}.zip" || echo "Invalid"
-
-echo ""
-echo "[--- Creating CRT-Off effect ---]"
-echo ""
-
-
-cd $MODS/out
-if [ -d ${ver} ]
-then
-	cd $ver
-	if [ -f android.policy.jar ]
-	then
-	cp -f android.policy.jar $MODS/crt-off
-	else unzip -u -j $MODS/3way/miui_i9300_${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
-	fi
-		if [ -f services.jar ]
-		then
-		cp -f services.jar $MODS/crt-off
-		else
-		unzip -u -j $SRC/miui_i9300_${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
-		fi
-else
-	unzip -u -j $MODS/3way/miui_i9300_${ver}.zip system/framework/android.policy.jar -d "$MODS/crt-off"
-	unzip -u -j $SRC/miui_i9300_${ver}.zip system/framework/services.jar -d "$MODS/crt-off"
-fi
-apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
-apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
-
-cd $MODS/crt-off/android.policy.jar.out
-remove_line
-cd $MODS/crt-off/services.jar.out
-remove_line
-
-cd $MODS/crt-off
-mkdir -p ${ver}
-patch -i $MODS/crt-off/PhoneWindowManager.diff $MODS/crt-off/android.policy.jar.out/smali/com/android/internal/policy/impl/PhoneWindowManager.smali
-patch -i $MODS/crt-off/PowerManagerService\$ScreenBrightnessAnimator.diff $MODS/crt-off/services.jar.out/smali/com/android/server/PowerManagerService\$ScreenBrightnessAnimator.smali
-apktool b -f $MODS/crt-off/android.policy.jar.out
-apktool b -f $MODS/crt-off/services.jar.out
-
-cd $OUT
-mkdir -p ${ver}
- 
-cp -r -f $MODS/crt-off/android.policy.jar.out/dist/android.policy.jar $OUT/${ver}
-cp -r -f $MODS/crt-off/services.jar.out/dist/services.jar $OUT/${ver}
-
-rm -r $MODS/crt-off/android.policy.jar.out
-rm -r $MODS/crt-off/android.policy.jar
-rm -r $MODS/crt-off/services.jar.out
-rm -r $MODS/crt-off/services.jar
-
-cd $MODS/crt-off
  
 }
 
@@ -867,6 +800,11 @@ cd $OUT
 ############################################
 
 
+
+# Vælg rom zip at arbejde med
+# Brug template som skabelon til flashable, ting skal heri hvis de skal med i pakken
+# Udpak låseskærm fra rom zip til template, indsæt oversættelse, pak igen
+
 flashable () {
    
 
@@ -875,47 +813,76 @@ echo "[--- Creating flashable zip ---]"
 echo ""
 
 
-echo -n "Enter version (x.xx.xx) and press [ENTER]: "
+shopt -s failglob
+echo "[--- Choose rom zip to make flashable for, or x to exit ---]"
 echo ""
 echo ""
 
-read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Output filename is ${ver}_DA.zip" || echo "Invalid"
+select zip in $SRC/*.zip
+do 
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $zip ]] && echo "Invalid choice for flashable zip" && continue
+    echo
+    ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
 cd $FLASH
-mkdir system
-cd system
-mkdir app
-mkdir framework
-mkdir media
-cd media
-mkdir theme
-mkdir audio
-cd theme
-mkdir default
-cd $FLASH/system/media/audio
-mkdir ringtones
-mkdir alarms
-mkdir notifications
-cd $HJEM
+
+# Tilføj oversættelse til låseskærm
+
+    unzip -u -j $zip system/media/theme/default/lockscreen -d "$FLASH/template/system/media/theme/default" > /dev/null
+
+    cd $FLASH/template/system/media/theme/default
+    mv -f lockscreen lockscreen.zip
+
+    7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance"  > /dev/null
+    mv -f lockscreen.zip lockscreen
+
+# Tilføj apk'er fra apk_out
+
+    for apk in $(<$HJEM/translation_list.txt); do
+    cp -r -f "$OUT/$apk" $FLASH/template/system/app;
+    done
+    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework
+
+# Kopier eventuelle mods over
+    echo ""
+    echo "[--- Checking if MODS exist ---]"
+    echo ""
+    if [ -d $MODS/out/$ver ]
+    then
+	    cd $MODS/out/$ver
+	    if [ -f android.policy.jar ]
+	    then
+	    cp -f android.policy.jar $FLASH/template/system/framework
+	    else echo ""
+		 echo "[--- No android.policy.jar found, aborting copy.. ---]"; break
+	    fi
+		    if [ -f services.jar ]
+		    then
+		    cp -f services.jar $FLASH/template/system/framework
+		    else echo ""
+			 echo "[--- No services.jar found, aborting copy.. ---]"; break		
+		    fi
+
+    else
+	    echo ""
+	    echo "[--- No modded jars found ---]"
+    fi
+    
+    
+# Pak filerne og navngiv efter version, ryd op, løkke afsluttet
+done
+    cp -f $FLASH/template.zip $FLASH/flashable.zip
+    7za a -tzip $FLASH/flashable.zip $FLASH/template/system -mx3 > /dev/null
+    mv -f $FLASH/flashable.zip $FLASH/"$ver"_DA.zip
+    echo ""
+    echo "[--- Done! Your zip is named: "$ver"_DA.zip"
+    rm -rf $FLASH/template/system/app/*
+    rm -rf $FLASH/template/system/framework/*
 
 
-for apk in $(<$HJEM/translation_list.txt); do cp -r -f "$OUT/$apk" $FLASH/system/app; done
-
-cp -f $MODS/out/${ver}/*.jar $FLASH/system/framework
-mv -f $FLASH/system/app/framework-miui-res.apk $FLASH/system/framework
-cp -f $FLASH/template.zip $FLASH/flashable.zip
-cp -f -r $FLASH/template/system/media/audio $FLASH/system/media
-
-7za u -tzip $tlock/lockscreen.zip $src/advance
-cp -f $tlock/lockscreen.zip $tlock/lockscreen
-cp -f $tlock/lockscreen $dst
-7za a -tzip $FLASH/flashable.zip $FLASH/system -mx3
-mv -f $FLASH/flashable.zip $FLASH/${ver}_DA.zip
-rm -r $FLASH/system
-cd ~/buildtool
- 
 }
+
 
 
 ############################################
@@ -933,25 +900,25 @@ echo ""
 
 cd $IN
 if [ "$(ls -A $IN)" ]; then
-    echo ""
+echo ""
     echo "No files found.."
     echo ""
 else
 
 select file in *.apk
 do
-    cat /dev/null > $LOG/decompile_log.txt
+cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $file ]] && echo "Invalid choice for single decompiling" && continue
-    echo
-    echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+echo
+echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
     apktool d -f "$file" $DEC/$file
     cp -f $HJEM/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
 break
 done
-fi 
+fi
 }
 
 
@@ -972,7 +939,7 @@ echo ""
 
 cd $DEC
 
-if [ "$(ls -d $DEC)" ]; then
+if [ ! -d "$(ls -d $DEC)" ]; then
     echo ""
     echo "No files found.."
     echo ""
@@ -1141,6 +1108,7 @@ unzip -j -o -q $zip system/app/$apk -d $IN 2&>1 > /dev/null;
 	done
 unzip -j -o -q $zip system/framework/framework-res.apk -d $IN 2&>1 > /dev/null;
 unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN 2&>1 > /dev/null;
+break
 done
 
 zip=dummy
@@ -1193,14 +1161,10 @@ read -p " " answer
        ;;
        *) echo ""
           echo "invalid choice of cleaning"
-       ;;
-   esac
-   echo ""
-   echo "" 
-   echo "[--- Press RETURN for menu ---]"
-   read key
+       ;;       
+    esac
+    break
 done
-exit 0
  
 }
 
@@ -1217,7 +1181,7 @@ cd $IN
 mkdir decompiled
 
 rm -f -r $MODS/out/*
- 
+
 }
 
 
@@ -1230,7 +1194,7 @@ rm -f -r $DEC/*
 rm -f -r $OUT/*
 rm -f -r $MODS/out/*
 rm -f -r $FLASH/*_DA.zip
- 
+
 }
 
 ############################################
