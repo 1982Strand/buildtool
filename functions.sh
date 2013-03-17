@@ -484,17 +484,31 @@ echo ""
 cat /dev/null > $LOG/recompile_log.txt
 
 cd $DEC
-for b in `find * -maxdepth 0 -type d`; do
-echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
-apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
-done
-for jar in `find *.jar -maxdepth 0 -type d`; do
-cp $jar/dist/*.jar $OUT
-done
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
+for b in *.apk; do
+    echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
+    apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
+    done
+else
+    echo ""
+    echo "No apks found"
+    echo ""
+fi
+
+if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
+
+for jar in *.jar; do
+    echo "Recompiling $jar" 2>&1 | tee -a $LOG/recompile_log.txt
+    apktool -q b -f $jar 2>&1 | tee -a $LOG/recompile_log.txt
+    done
+else
+    echo ""
+    echo "No jars found"
+    echo ""
+fi
  
 }
-
 
 ############################################
 ###                                      ###
@@ -503,7 +517,7 @@ done
 ############################################
 
 
-function inject_res () {
+inject_res () {
    
 echo ""
 echo "[--- Injecting Modified Resources ---]"
@@ -513,7 +527,7 @@ cat /dev/null > $LOG/inject_log.txt
 cd $IN
 for apk in *.apk; do
 cp -f -r $apk $OUT
-echo "Injecting res, resources.arsc and classes.dex for $apk "
+echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
 7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
 7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
 7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
@@ -1298,15 +1312,15 @@ done
 
 cleanup_all () {
    
-rm -f -r $IN/*
-rm -f -r $OUT/*
-rm -f -r $MODS/out/*
-rm -f -r $FLASH/*_DA.zip
+rm -rf $IN/* 2&>1 > /dev/null
+rm -rf $OUT/* 2&>1 > /dev/null
+rm -rf $MODS/out/* 2&>1 > /dev/null
+rm -rf $FLASH/*_DA.zip 2&>1 > /dev/null
 
 cd $IN
 mkdir decompiled
 
-rm -f -r $MODS/out/*
+rm -rf $MODS/out/* 2&>1 > /dev/null
 
 }
 

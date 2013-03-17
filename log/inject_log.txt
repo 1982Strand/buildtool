@@ -1,3 +1,4 @@
+Injecting res, resources.arsc and classes.dex for AntiSpam.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -63,6 +64,7 @@ Compressing  res/xml/fw_rule_settings.xml
 Compressing  res/xml/fw_time_settings.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for ApplicationsProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -97,6 +99,7 @@ Compressing  res/layout/application_list_item.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Backup.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -184,6 +187,7 @@ Compressing  res/xml/local_auto_backup.xml
 Compressing  res/xml/local_auto_backup_choose.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for BackupRestoreConfirmation.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -218,6 +222,7 @@ Compressing  res/layout/confirm_backup.xml
 Compressing  res/layout/confirm_restore.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Bluetooth.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -270,6 +275,7 @@ Compressing  res/menu/transferhistorycontextfinished.xml
 Compressing  res/xml/printing_pref.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Browser.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1036,6 +1042,7 @@ Compressing  res/xml/privacy_security_preferences.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for BugReport.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1092,6 +1099,7 @@ Compressing  res/menu/menu_fc_preview.xml
 Compressing  res/menu/menu_main.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for CABLService.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1126,6 +1134,7 @@ Compressing  res/drawable/qcom.png
 Compressing  res/xml/preferences.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Calculator.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1199,6 +1208,7 @@ Compressing  res/mipmap-mdpi/ic_launcher_calculator.png
 Compressing  res/mipmap-xhdpi/ic_launcher_calculator.png
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Calendar.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1537,6 +1547,7 @@ Compressing  res/xml/other_preferences.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for CalendarProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1572,6 +1583,7 @@ Compressing  res/layout/dialog_activity.xml
 Compressing  res/xml/syncadapter.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Camera.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -1991,6 +2003,7 @@ Compressing  res/xml/video_preferences.xml
 Compressing  res/xml/video_preferences_simple.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for CertInstaller.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2026,6 +2039,7 @@ Compressing  res/layout/password_dialog.xml
 Compressing  res/xml/pick_file_pref.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for CloudService.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2069,6 +2083,7 @@ Compressing  res/xml/syncadapter_notes.xml
 Compressing  res/xml/syncadapter_wifi.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Contacts.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2077,6 +2092,7 @@ Scanning
 
 Updating archive /home/dan/buildtool/apk_out/Contacts.apk
 
+Compressing  resources.arsc
 
 Everything is Ok
 
@@ -2098,8 +2114,790 @@ Scanning
 
 Updating archive /home/dan/buildtool/apk_out/Contacts.apk
 
+Compressing  res/color/dialer_button_text.xml
+Compressing  res/color/picker_group_text_color.xml
+Compressing  res/color/primary_text_color.xml
+Compressing  res/color/primaryt_text_highlight_color.xml
+Compressing  res/color/qcb_tab_text_color.xml
+Compressing  res/color/secondary_text_color.xml
+Compressing  res/drawable-hdpi/call_note_icon_in_contact_detail_calllog_list_item.png
+Compressing  res/drawable-hdpi/call_record_icon_in_contact_detail_calllog_list_item.png
+Compressing  res/drawable-hdpi/circle_photo_bg.9.png
+Compressing  res/drawable-hdpi/company_group.png
+Compressing  res/drawable-hdpi/contact_detail_call_dot_line_list_item_n.png
+Compressing  res/drawable-hdpi/contact_detail_call_list_item_n.9.png
+Compressing  res/drawable-hdpi/contact_detail_call_list_item_p.9.png
+Compressing  res/drawable-hdpi/contact_detail_detail_dot_line_list_item_n.png
+Compressing  res/drawable-hdpi/contact_detail_detail_list_item_divider.9.png
+Compressing  res/drawable-hdpi/contact_detail_detail_list_item_n.9.png
+Compressing  res/drawable-hdpi/contact_detail_detail_list_item_p.9.png
+Compressing  res/drawable-hdpi/contact_detail_pager_bg.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_container_bg.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_indicator.png
+Compressing  res/drawable-hdpi/contact_detail_tab_left_n.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_left_p.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_left_s.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_middle_n.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_middle_p.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_middle_s.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_right_n.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_right_p.9.png
+Compressing  res/drawable-hdpi/contact_detail_tab_right_s.9.png
+Compressing  res/drawable-hdpi/contact_detail_title_home_icon_n.png
+Compressing  res/drawable-hdpi/contact_detail_title_home_icon_p.png
+Compressing  res/drawable-hdpi/contact_detail_title_home_icon_single_n.png
+Compressing  res/drawable-hdpi/contact_detail_title_home_icon_single_p.png
+Compressing  res/drawable-hdpi/contact_detail_top_mask.png
+Compressing  res/drawable-hdpi/contact_detail_with_photo_photo_mask.9.png
+Compressing  res/drawable-hdpi/contact_detail_with_photo_title_mask.9.png
+Compressing  res/drawable-hdpi/contact_photo_bg.9.png
+Compressing  res/drawable-hdpi/contact_photo_thumbnail_area.png
+Compressing  res/drawable-hdpi/dialer_background.9.png
+Compressing  res/drawable-hdpi/dialer_bottom_bar_bg.9.png
+Compressing  res/drawable-hdpi/dialer_bottom_bar_open_dialpad_normal.png
+Compressing  res/drawable-hdpi/dialer_bottom_bar_open_dialpad_pressed.png
+Compressing  res/drawable-hdpi/dialer_btn_call_normal.png
+Compressing  res/drawable-hdpi/dialer_btn_call_pressed.png
+Compressing  res/drawable-hdpi/dialer_btn_close_dialpad_normal.png
+Compressing  res/drawable-hdpi/dialer_btn_close_dialpad_pressed.png
+Compressing  res/drawable-hdpi/dialer_btn_delete_normal.png
+Compressing  res/drawable-hdpi/dialer_btn_delete_pressed.png
+Compressing  res/drawable-hdpi/dialer_button_pressed.png
+Compressing  res/drawable-hdpi/dialer_buttons.png
+Compressing  res/drawable-hdpi/dialer_buttons_zhuyin.png
+Compressing  res/drawable-hdpi/dialer_digits_clear_btn_normal.png
+Compressing  res/drawable-hdpi/dialer_digits_clear_btn_pressed.png
+Compressing  res/drawable-hdpi/dialer_fire_wall.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_incoming_call.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_incoming_forwarding_call.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_missed_call.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_missed_forwarding_call.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_newcontact.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_outgoing_call.png
+Compressing  res/drawable-hdpi/dialer_ic_call_log_header_voicemail.png
+Compressing  res/drawable-hdpi/divider_vertical_dark.9.png
+Compressing  res/drawable-hdpi/dropdown_indicator_down_n.png
+Compressing  res/drawable-hdpi/dropdown_indicator_down_p.png
+Compressing  res/drawable-hdpi/dropdown_indicator_up_n.png
+Compressing  res/drawable-hdpi/dropdown_indicator_up_p.png
+Compressing  res/drawable-hdpi/edit_contact.png
+Compressing  res/drawable-hdpi/edit_date_picker_bg_n.9.png
+Compressing  res/drawable-hdpi/edit_date_picker_bg_p.9.png
+Compressing  res/drawable-hdpi/edit_nickname_header_bg.9.png
+Compressing  res/drawable-hdpi/editor_title_bg_n.png
+Compressing  res/drawable-hdpi/editor_title_bg_p.png
+Compressing  res/drawable-hdpi/expandable_group_close.png
+Compressing  res/drawable-hdpi/expandable_group_open.png
+Compressing  res/drawable-hdpi/frequency_group.png
+Compressing  res/drawable-hdpi/group_detail_top_bg.9.png
+Compressing  res/drawable-hdpi/ic_add_contact.png
+Compressing  res/drawable-hdpi/ic_bt_cellphone.png
+Compressing  res/drawable-hdpi/ic_bt_imaging.png
+Compressing  res/drawable-hdpi/ic_bt_laptop.png
+Compressing  res/drawable-hdpi/ic_contact_circle_photo_bg.png
+Compressing  res/drawable-hdpi/ic_contact_circle_photo_fg.png
+Compressing  res/drawable-hdpi/ic_contact_circle_photo_mask.png
+Compressing  res/drawable-hdpi/ic_contact_photo_bg.png
+Compressing  res/drawable-hdpi/ic_contact_photo_fg.png
+Compressing  res/drawable-hdpi/ic_contact_photo_mask.png
+Compressing  res/drawable-hdpi/ic_dialog_remind.png
+Compressing  res/drawable-hdpi/ic_launcher_contacts.png
+Compressing  res/drawable-hdpi/ic_launcher_phone.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_contact.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_contact_bg.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_directdial.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_directdial_bg.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_directmessage.png
+Compressing  res/drawable-hdpi/ic_launcher_shortcut_directmessage_bg.png
+Compressing  res/drawable-hdpi/ic_menu_back_n.png
+Compressing  res/drawable-hdpi/ic_menu_back_p.png
+Compressing  res/drawable-hdpi/ic_menu_done_n.png
+Compressing  res/drawable-hdpi/ic_menu_done_p.png
+Compressing  res/drawable-hdpi/ic_menu_expander_maximized_holo_light_n.png
+Compressing  res/drawable-hdpi/ic_menu_expander_maximized_holo_light_p.png
+Compressing  res/drawable-hdpi/ic_menu_expander_minimized_holo_light_n.png
+Compressing  res/drawable-hdpi/ic_menu_expander_minimized_holo_light_p.png
+Compressing  res/drawable-hdpi/ic_menu_group_rename_n.png
+Compressing  res/drawable-hdpi/ic_menu_group_rename_p.png
+Compressing  res/drawable-hdpi/ic_menu_group_ringtone_n.png
+Compressing  res/drawable-hdpi/ic_menu_group_ringtone_p.png
+Compressing  res/drawable-hdpi/ic_menu_group_sms_n.png
+Compressing  res/drawable-hdpi/ic_menu_group_sms_p.png
+Compressing  res/drawable-hdpi/ic_menu_merge_n.png
+Compressing  res/drawable-hdpi/ic_menu_merge_p.png
+Compressing  res/drawable-hdpi/ic_menu_remove_bg.9.png
+Compressing  res/drawable-hdpi/ic_menu_remove_n.png
+Compressing  res/drawable-hdpi/ic_menu_remove_p.png
+Compressing  res/drawable-hdpi/ic_send_sms_n.png
+Compressing  res/drawable-hdpi/ic_send_sms_p.png
+Compressing  res/drawable-hdpi/ic_title_bar_back_button_normal_light.png
+Compressing  res/drawable-hdpi/ic_title_bar_back_button_pressed_light.png
+Compressing  res/drawable-hdpi/icon_mask.png
+Compressing  res/drawable-hdpi/info.png
+Compressing  res/drawable-hdpi/list_empty_image.png
+Compressing  res/drawable-hdpi/list_empty_no_contact.png
+Compressing  res/drawable-hdpi/list_empty_no_favorites.png
+Compressing  res/drawable-hdpi/list_empty_no_group.png
+Compressing  res/drawable-hdpi/list_splitter_opaque.9.png
+Compressing  res/drawable-hdpi/location_group.png
+Compressing  res/drawable-hdpi/merge_contact_info.png
+Compressing  res/drawable-hdpi/merge_contacts_item_bg.9.png
+Compressing  res/drawable-hdpi/multi_phone_picker_background.9.png
+Compressing  res/drawable-hdpi/notify_merge_contact.png
+Compressing  res/drawable-hdpi/picker_tab_indicator_bg.9.png
+Compressing  res/drawable-hdpi/pop_up_window_list_bg.9.png
+Compressing  res/drawable-hdpi/quickcontact_default_photo.png
+Compressing  res/drawable-hdpi/quickcontact_tab_indicator.9.png
+Compressing  res/drawable-hdpi/quickcontact_tab_placeholder.9.png
+Compressing  res/drawable-hdpi/quickcontact_track_background.9.png
+Compressing  res/drawable-hdpi/quickcontact_unknown_window_title_bg.9.png
+Compressing  res/drawable-hdpi/quickcontact_unknown_window_title_bg_press.png
+Compressing  res/drawable-hdpi/quickcontact_window_bg.9.png
+Compressing  res/drawable-hdpi/quickcontact_window_footer.png
+Compressing  res/drawable-hdpi/quickcontact_window_title_bg.9.png
+Compressing  res/drawable-hdpi/quickcontact_window_title_bg_press.png
+Compressing  res/drawable-hdpi/send_sms.png
+Compressing  res/drawable-hdpi/sim_account_icon.png
+Compressing  res/drawable-hdpi/spinner_first_bg_n.png
+Compressing  res/drawable-hdpi/spinner_first_bg_p.png
+Compressing  res/drawable-hdpi/spinner_last_bg_n.png
+Compressing  res/drawable-hdpi/spinner_last_bg_p.png
+Compressing  res/drawable-hdpi/spinner_middle_bg_n.png
+Compressing  res/drawable-hdpi/spinner_middle_bg_p.png
+Compressing  res/drawable-hdpi/spinner_single_bg_n.png
+Compressing  res/drawable-hdpi/spinner_single_bg_p.png
+Compressing  res/drawable-hdpi/stat_notify_sync_remind.png
+Compressing  res/drawable-hdpi/toolbar_bg.9.png
+Compressing  res/drawable-hdpi/toolbar_button_n.9.png
+Compressing  res/drawable-hdpi/toolbar_button_p.9.png
+Compressing  res/drawable-hdpi/topbar_bg.9.png
+Compressing  res/drawable-hdpi/type_icon_calllog.png
+Compressing  res/drawable-hdpi/type_icon_email.png
+Compressing  res/drawable-hdpi/type_icon_event.png
+Compressing  res/drawable-hdpi/type_icon_group.png
+Compressing  res/drawable-hdpi/type_icon_im.png
+Compressing  res/drawable-hdpi/type_icon_lunar_birthday.png
+Compressing  res/drawable-hdpi/type_icon_network.png
+Compressing  res/drawable-hdpi/type_icon_nickname.png
+Compressing  res/drawable-hdpi/type_icon_note.png
+Compressing  res/drawable-hdpi/type_icon_orgnization.png
+Compressing  res/drawable-hdpi/type_icon_phone.png
+Compressing  res/drawable-hdpi/type_icon_phonetic.png
+Compressing  res/drawable-hdpi/type_icon_relation.png
+Compressing  res/drawable-hdpi/type_icon_ringtone.png
+Compressing  res/drawable-hdpi/type_icon_sip_address.png
+Compressing  res/drawable-hdpi/type_icon_structured_postal.png
+Compressing  res/drawable-hdpi/type_icon_unknown.png
+Compressing  res/drawable-hdpi/type_icon_website.png
+Compressing  res/drawable-hdpi/v5_edit_mode_top_bar_button_normal_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_left_normal_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_left_pressed_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_left_selected_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_middle_normal_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_middle_pressed_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_middle_selected_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_right_normal_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_right_pressed_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_bg_right_selected_light.9.png
+Compressing  res/drawable-hdpi/v5_tab_indicator_shadow_light.9.png
+Compressing  res/drawable-hdpi/xiaomi_account_icon.png
+Compressing  res/drawable-nodpi/background_dial_holo_dark.png
+Compressing  res/drawable-xhdpi/ab_solid_custom_blue_inverse_holo.9.png
+Compressing  res/drawable-xhdpi/ab_stacked_opaque_dark_holo.9.png
+Compressing  res/drawable-xhdpi/ab_stacked_solid_inverse_holo.9.png
+Compressing  res/drawable-xhdpi/account_spinner_icon.png
+Compressing  res/drawable-xhdpi/action_bar_item_pressed_holo_light.9.png
+Compressing  res/drawable-xhdpi/aggregation_suggestions_bg.9.png
+Compressing  res/drawable-xhdpi/aggregation_suggestions_bg_light_holo.9.png
+Compressing  res/drawable-xhdpi/badge_action_call.png
+Compressing  res/drawable-xhdpi/badge_action_sms.png
+Compressing  res/drawable-xhdpi/bg_people_updates_holo.9.png
+Compressing  res/drawable-xhdpi/bg_status_contact_widget.9.png
+Compressing  res/drawable-xhdpi/btn_call_pressed.png
+Compressing  res/drawable-xhdpi/btn_star_off_normal_holo_dark.png
+Compressing  res/drawable-xhdpi/btn_star_off_normal_holo_light.png
+Compressing  res/drawable-xhdpi/btn_star_on_normal_holo_dark.png
+Compressing  res/drawable-xhdpi/btn_star_on_normal_holo_light.png
+Compressing  res/drawable-xhdpi/call_note_icon_in_contact_detail_calllog_list_item.png
+Compressing  res/drawable-xhdpi/call_record_icon_in_contact_detail_calllog_list_item.png
+Compressing  res/drawable-xhdpi/circle_photo_bg.9.png
+Compressing  res/drawable-xhdpi/company_group.png
+Compressing  res/drawable-xhdpi/contact_detail_call_dot_line_list_item_n.png
+Compressing  res/drawable-xhdpi/contact_detail_call_list_item_n.9.png
+Compressing  res/drawable-xhdpi/contact_detail_call_list_item_p.9.png
+Compressing  res/drawable-xhdpi/contact_detail_detail_dot_line_list_item_n.png
+Compressing  res/drawable-xhdpi/contact_detail_detail_list_item_divider.9.png
+Compressing  res/drawable-xhdpi/contact_detail_detail_list_item_n.9.png
+Compressing  res/drawable-xhdpi/contact_detail_detail_list_item_p.9.png
+Compressing  res/drawable-xhdpi/contact_detail_pager_bg.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_container_bg.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_indicator.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_left_n.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_left_p.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_left_s.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_middle_n.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_middle_p.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_middle_s.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_right_n.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_right_p.9.png
+Compressing  res/drawable-xhdpi/contact_detail_tab_right_s.9.png
+Compressing  res/drawable-xhdpi/contact_detail_title_home_icon_n.png
+Compressing  res/drawable-xhdpi/contact_detail_title_home_icon_p.png
+Compressing  res/drawable-xhdpi/contact_detail_title_home_icon_single_n.png
+Compressing  res/drawable-xhdpi/contact_detail_title_home_icon_single_p.png
+Compressing  res/drawable-xhdpi/contact_detail_top_mask.png
+Compressing  res/drawable-xhdpi/contact_detail_with_photo_photo_mask.9.png
+Compressing  res/drawable-xhdpi/contact_detail_with_photo_title_mask.9.png
+Compressing  res/drawable-xhdpi/contact_photo_bg.9.png
+Compressing  res/drawable-xhdpi/contact_photo_thumbnail_area.png
+Compressing  res/drawable-xhdpi/contacts_widget_preview.png
+Compressing  res/drawable-xhdpi/dial_background_texture.png
+Compressing  res/drawable-xhdpi/dial_num_0_wht.png
+Compressing  res/drawable-xhdpi/dial_num_1_wht.png
+Compressing  res/drawable-xhdpi/dial_num_2_wht.png
+Compressing  res/drawable-xhdpi/dial_num_3_wht.png
+Compressing  res/drawable-xhdpi/dial_num_4_wht.png
+Compressing  res/drawable-xhdpi/dial_num_5_wht.png
+Compressing  res/drawable-xhdpi/dial_num_6_wht.png
+Compressing  res/drawable-xhdpi/dial_num_7_wht.png
+Compressing  res/drawable-xhdpi/dial_num_8_wht.png
+Compressing  res/drawable-xhdpi/dial_num_9_wht.png
+Compressing  res/drawable-xhdpi/dial_num_pound_wht.png
+Compressing  res/drawable-xhdpi/dial_num_star_wht.png
+Compressing  res/drawable-xhdpi/dialer_background.9.png
+Compressing  res/drawable-xhdpi/dialer_bottom_bar_bg.9.png
+Compressing  res/drawable-xhdpi/dialer_bottom_bar_open_dialpad_normal.png
+Compressing  res/drawable-xhdpi/dialer_bottom_bar_open_dialpad_pressed.png
+Compressing  res/drawable-xhdpi/dialer_btn_call_normal.png
+Compressing  res/drawable-xhdpi/dialer_btn_call_pressed.png
+Compressing  res/drawable-xhdpi/dialer_btn_close_dialpad_normal.png
+Compressing  res/drawable-xhdpi/dialer_btn_close_dialpad_pressed.png
+Compressing  res/drawable-xhdpi/dialer_btn_delete_normal.png
+Compressing  res/drawable-xhdpi/dialer_btn_delete_pressed.png
+Compressing  res/drawable-xhdpi/dialer_button_pressed.png
+Compressing  res/drawable-xhdpi/dialer_buttons.png
+Compressing  res/drawable-xhdpi/dialer_buttons_zhuyin.png
+Compressing  res/drawable-xhdpi/dialer_digits_clear_btn_normal.png
+Compressing  res/drawable-xhdpi/dialer_digits_clear_btn_pressed.png
+Compressing  res/drawable-xhdpi/dialer_fire_wall.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_incoming_call.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_incoming_forwarding_call.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_missed_call.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_missed_forwarding_call.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_newcontact.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_outgoing_call.png
+Compressing  res/drawable-xhdpi/dialer_ic_call_log_header_voicemail.png
+Compressing  res/drawable-xhdpi/dropdown_indicator_down_n.png
+Compressing  res/drawable-xhdpi/dropdown_indicator_down_p.png
+Compressing  res/drawable-xhdpi/dropdown_indicator_up_n.png
+Compressing  res/drawable-xhdpi/dropdown_indicator_up_p.png
+Compressing  res/drawable-xhdpi/edit_contact.png
+Compressing  res/drawable-xhdpi/edit_date_picker_bg_n.9.png
+Compressing  res/drawable-xhdpi/edit_date_picker_bg_p.9.png
+Compressing  res/drawable-xhdpi/edit_nickname_header_bg.9.png
+Compressing  res/drawable-xhdpi/editor_title_bg_n.png
+Compressing  res/drawable-xhdpi/editor_title_bg_p.png
+Compressing  res/drawable-xhdpi/expandable_group_close.png
+Compressing  res/drawable-xhdpi/expandable_group_open.png
+Compressing  res/drawable-xhdpi/frequency_group.png
+Compressing  res/drawable-xhdpi/group_detail_top_bg.9.png
+Compressing  res/drawable-xhdpi/group_photos_container_bg.png
+Compressing  res/drawable-xhdpi/ic_ab_dialer_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_ab_favourites_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_ab_history_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_ab_search_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_add_contact.png
+Compressing  res/drawable-xhdpi/ic_add_contact_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_add_group_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_bt_cellphone.png
+Compressing  res/drawable-xhdpi/ic_bt_imaging.png
+Compressing  res/drawable-xhdpi/ic_bt_laptop.png
+Compressing  res/drawable-xhdpi/ic_call_incoming_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_call_missed_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_call_outgoing_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_call_voicemail_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_contact_circle_photo_bg.png
+Compressing  res/drawable-xhdpi/ic_contact_circle_photo_fg.png
+Compressing  res/drawable-xhdpi/ic_contact_circle_photo_mask.png
+Compressing  res/drawable-xhdpi/ic_contact_photo_bg.png
+Compressing  res/drawable-xhdpi/ic_contact_photo_fg.png
+Compressing  res/drawable-xhdpi/ic_contact_photo_mask.png
+Compressing  res/drawable-xhdpi/ic_contact_picture_180_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_contact_picture_180_holo_light.png
+Compressing  res/drawable-xhdpi/ic_contact_picture_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_contact_picture_holo_light.png
+Compressing  res/drawable-xhdpi/ic_contacts_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_dial_action_call.png
+Compressing  res/drawable-xhdpi/ic_dial_action_delete.png
+Compressing  res/drawable-xhdpi/ic_dial_action_search.png
+Compressing  res/drawable-xhdpi/ic_dialer_fork_add_call.png
+Compressing  res/drawable-xhdpi/ic_dialer_fork_current_call.png
+Compressing  res/drawable-xhdpi/ic_dialer_fork_tt_keypad.png
+Compressing  res/drawable-xhdpi/ic_dialog_remind.png
+Compressing  res/drawable-xhdpi/ic_divider_dashed_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_groups_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_hold_pause_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_hold_pause_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_launcher_contacts.png
+Compressing  res/drawable-xhdpi/ic_launcher_phone.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_contact.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_contact_bg.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_directdial.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_directdial_bg.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_directmessage.png
+Compressing  res/drawable-xhdpi/ic_launcher_shortcut_directmessage_bg.png
+Compressing  res/drawable-xhdpi/ic_list_default_mime_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_menu_add_field_holo_light.png
+Compressing  res/drawable-xhdpi/ic_menu_back_n.png
+Compressing  res/drawable-xhdpi/ic_menu_back_p.png
+Compressing  res/drawable-xhdpi/ic_menu_compose_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_menu_done_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_menu_done_n.png
+Compressing  res/drawable-xhdpi/ic_menu_done_p.png
+Compressing  res/drawable-xhdpi/ic_menu_expander_maximized_holo_light_n.png
+Compressing  res/drawable-xhdpi/ic_menu_expander_maximized_holo_light_p.png
+Compressing  res/drawable-xhdpi/ic_menu_expander_minimized_holo_light_n.png
+Compressing  res/drawable-xhdpi/ic_menu_expander_minimized_holo_light_p.png
+Compressing  res/drawable-xhdpi/ic_menu_group_rename_n.png
+Compressing  res/drawable-xhdpi/ic_menu_group_rename_p.png
+Compressing  res/drawable-xhdpi/ic_menu_group_ringtone_n.png
+Compressing  res/drawable-xhdpi/ic_menu_group_ringtone_p.png
+Compressing  res/drawable-xhdpi/ic_menu_group_sms_n.png
+Compressing  res/drawable-xhdpi/ic_menu_group_sms_p.png
+Compressing  res/drawable-xhdpi/ic_menu_merge_n.png
+Compressing  res/drawable-xhdpi/ic_menu_merge_p.png
+Compressing  res/drawable-xhdpi/ic_menu_overflow.png
+Compressing  res/drawable-xhdpi/ic_menu_remove_bg.9.png
+Compressing  res/drawable-xhdpi/ic_menu_remove_n.png
+Compressing  res/drawable-xhdpi/ic_menu_remove_p.png
+Compressing  res/drawable-xhdpi/ic_menu_settings_holo_light.png
+Compressing  res/drawable-xhdpi/ic_menu_star_holo_light.png
+Compressing  res/drawable-xhdpi/ic_minus_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_minus_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_play_active_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_play_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_play_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_plus_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_plus_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_send_sms_n.png
+Compressing  res/drawable-xhdpi/ic_send_sms_p.png
+Compressing  res/drawable-xhdpi/ic_sound_off_speakerphone_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_sound_off_speakerphone_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_sound_speakerphone_disabled_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_sound_speakerphone_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_text_holo_dark.png
+Compressing  res/drawable-xhdpi/ic_text_holo_light.png
+Compressing  res/drawable-xhdpi/ic_title_bar_back_button_normal_light.png
+Compressing  res/drawable-xhdpi/ic_title_bar_back_button_pressed_light.png
+Compressing  res/drawable-xhdpi/ic_trash_holo_dark.png
+Compressing  res/drawable-xhdpi/icon_mask.png
+Compressing  res/drawable-xhdpi/info.png
+Compressing  res/drawable-xhdpi/list_activated_holo.9.png
+Compressing  res/drawable-xhdpi/list_background_holo.9.png
+Compressing  res/drawable-xhdpi/list_empty_image.png
+Compressing  res/drawable-xhdpi/list_empty_no_contact.png
+Compressing  res/drawable-xhdpi/list_empty_no_favorites.png
+Compressing  res/drawable-xhdpi/list_empty_no_group.png
+Compressing  res/drawable-xhdpi/list_focused_holo.9.png
+Compressing  res/drawable-xhdpi/list_pressed_holo_light.9.png
+Compressing  res/drawable-xhdpi/list_section_divider_holo_custom.9.png
+Compressing  res/drawable-xhdpi/list_selector_disabled_holo_dark.9.png
+Compressing  res/drawable-xhdpi/list_splitter_opaque.9.png
+Compressing  res/drawable-xhdpi/list_title_holo.9.png
+Compressing  res/drawable-xhdpi/location_group.png
+Compressing  res/drawable-xhdpi/merge_contact_info.png
+Compressing  res/drawable-xhdpi/merge_contacts_item_bg.9.png
+Compressing  res/drawable-xhdpi/notify_merge_contact.png
+Compressing  res/drawable-xhdpi/panel_content.9.png
+Compressing  res/drawable-xhdpi/panel_favorites_holo_light.9.png
+Compressing  res/drawable-xhdpi/panel_message.9.png
+Compressing  res/drawable-xhdpi/picker_tab_indicator_bg.9.png
+Compressing  res/drawable-xhdpi/pop_up_window_list_bg.9.png
+Compressing  res/drawable-xhdpi/quickcon_background_texture.png
+Compressing  res/drawable-xhdpi/quickcontact_badge_overlay_normal_light.9.png
+Compressing  res/drawable-xhdpi/quickcontact_badge_overlay_pressed_light.9.png
+Compressing  res/drawable-xhdpi/quickcontact_default_photo.png
+Compressing  res/drawable-xhdpi/quickcontact_tab_indicator.9.png
+Compressing  res/drawable-xhdpi/quickcontact_tab_placeholder.9.png
+Compressing  res/drawable-xhdpi/quickcontact_track_background.9.png
+Compressing  res/drawable-xhdpi/quickcontact_unknown_window_title_bg.9.png
+Compressing  res/drawable-xhdpi/quickcontact_unknown_window_title_bg_press.png
+Compressing  res/drawable-xhdpi/quickcontact_window_bg.9.png
+Compressing  res/drawable-xhdpi/quickcontact_window_footer.png
+Compressing  res/drawable-xhdpi/quickcontact_window_title_bg.9.png
+Compressing  res/drawable-xhdpi/quickcontact_window_title_bg_press.png
+Compressing  res/drawable-xhdpi/send_sms.png
+Compressing  res/drawable-xhdpi/sim_account_icon.png
+Compressing  res/drawable-xhdpi/spinner_default_holo_dark.9.png
+Compressing  res/drawable-xhdpi/spinner_first_bg_n.png
+Compressing  res/drawable-xhdpi/spinner_first_bg_p.png
+Compressing  res/drawable-xhdpi/spinner_last_bg_n.png
+Compressing  res/drawable-xhdpi/spinner_last_bg_p.png
+Compressing  res/drawable-xhdpi/spinner_middle_bg_n.png
+Compressing  res/drawable-xhdpi/spinner_middle_bg_p.png
+Compressing  res/drawable-xhdpi/spinner_single_bg_n.png
+Compressing  res/drawable-xhdpi/spinner_single_bg_p.png
+Compressing  res/drawable-xhdpi/stat_notify_sync_remind.png
+Compressing  res/drawable-xhdpi/sym_action_audiochat_holo_light.png
+Compressing  res/drawable-xhdpi/sym_action_videochat_holo_light.png
+Compressing  res/drawable-xhdpi/tab_selected_focused_holo.9.png
+Compressing  res/drawable-xhdpi/tab_selected_holo.9.png
+Compressing  res/drawable-xhdpi/tab_selected_pressed_holo.9.png
+Compressing  res/drawable-xhdpi/tab_unselected_focused_holo.9.png
+Compressing  res/drawable-xhdpi/tab_unselected_holo.9.png
+Compressing  res/drawable-xhdpi/tab_unselected_pressed_holo.9.png
+Compressing  res/drawable-xhdpi/toolbar_bg.9.png
+Compressing  res/drawable-xhdpi/toolbar_button_n.9.png
+Compressing  res/drawable-xhdpi/toolbar_button_p.9.png
+Compressing  res/drawable-xhdpi/topbar_bg.9.png
+Compressing  res/drawable-xhdpi/transfer_import_notification.png
+Compressing  res/drawable-xhdpi/type_icon_calllog.png
+Compressing  res/drawable-xhdpi/type_icon_email.png
+Compressing  res/drawable-xhdpi/type_icon_event.png
+Compressing  res/drawable-xhdpi/type_icon_group.png
+Compressing  res/drawable-xhdpi/type_icon_im.png
+Compressing  res/drawable-xhdpi/type_icon_lunar_birthday.png
+Compressing  res/drawable-xhdpi/type_icon_network.png
+Compressing  res/drawable-xhdpi/type_icon_nickname.png
+Compressing  res/drawable-xhdpi/type_icon_note.png
+Compressing  res/drawable-xhdpi/type_icon_orgnization.png
+Compressing  res/drawable-xhdpi/type_icon_phone.png
+Compressing  res/drawable-xhdpi/type_icon_phonetic.png
+Compressing  res/drawable-xhdpi/type_icon_relation.png
+Compressing  res/drawable-xhdpi/type_icon_ringtone.png
+Compressing  res/drawable-xhdpi/type_icon_sip_address.png
+Compressing  res/drawable-xhdpi/type_icon_structured_postal.png
+Compressing  res/drawable-xhdpi/type_icon_unknown.png
+Compressing  res/drawable-xhdpi/type_icon_website.png
+Compressing  res/drawable-xhdpi/unknown_source.png
+Compressing  res/drawable-xhdpi/v5_edit_mode_top_bar_button_normal_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_left_normal_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_left_pressed_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_left_selected_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_middle_normal_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_middle_pressed_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_middle_selected_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_right_normal_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_right_pressed_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_bg_right_selected_light.9.png
+Compressing  res/drawable-xhdpi/v5_tab_indicator_shadow_light.9.png
+Compressing  res/drawable-xhdpi/xiaomi_account_icon.png
+Compressing  res/drawable/ab_dropdown_navigation_item_background.xml
+Compressing  res/drawable/ab_dropdown_navigation_item_background_pressed.xml
+Compressing  res/drawable/action_bar_tab.xml
+Compressing  res/drawable/btn_call.xml
+Compressing  res/drawable/btn_close_dialpad.xml
+Compressing  res/drawable/btn_delete.xml
+Compressing  res/drawable/contact_detail_call_dot_line_list_item_bg.xml
+Compressing  res/drawable/contact_detail_call_list_item_bg.xml
+Compressing  res/drawable/contact_detail_detail_dot_line_list_item_bg.xml
+Compressing  res/drawable/contact_detail_detail_list_item_bg.xml
+Compressing  res/drawable/contact_detail_tab_bg.xml
+Compressing  res/drawable/contact_detail_title_home_icon.xml
+Compressing  res/drawable/contact_detail_title_home_icon_single.xml
+Compressing  res/drawable/contacts_widget_preview.png
+Compressing  res/drawable/dialer_bottom_bar_open_dialpad.xml
+Compressing  res/drawable/dialer_button.xml
+Compressing  res/drawable/dialer_digits_clear_btn.xml
+Compressing  res/drawable/dialpad_background.xml
+Compressing  res/drawable/dropdown_indicator_down.xml
+Compressing  res/drawable/dropdown_indicator_up.xml
+Compressing  res/drawable/edit_date_picker_bg.xml
+Compressing  res/drawable/editor_title_bg.xml
+Compressing  res/drawable/frame_thumbnail_contact_widget_holo.xml
+Compressing  res/drawable/gray_action_bar_background.xml
+Compressing  res/drawable/group_detail_title_bar_indicator.xml
+Compressing  res/drawable/group_indicator.xml
+Compressing  res/drawable/ic_hold_pause.xml
+Compressing  res/drawable/ic_menu_back.xml
+Compressing  res/drawable/ic_menu_done.xml
+Compressing  res/drawable/ic_menu_expander_maximized_holo_light.xml
+Compressing  res/drawable/ic_menu_expander_minimized_holo_light.xml
+Compressing  res/drawable/ic_menu_group_rename.xml
+Compressing  res/drawable/ic_menu_group_ringtone.xml
+Compressing  res/drawable/ic_menu_group_sms.xml
+Compressing  res/drawable/ic_menu_merge.xml
+Compressing  res/drawable/ic_menu_remove.xml
+Compressing  res/drawable/ic_minus.xml
+Compressing  res/drawable/ic_play.xml
+Compressing  res/drawable/ic_plus.xml
+Compressing  res/drawable/ic_send_sms.xml
+Compressing  res/drawable/ic_speakerphone_off.xml
+Compressing  res/drawable/ic_speakerphone_on.xml
+Compressing  res/drawable/ic_tab_all.xml
+Compressing  res/drawable/ic_tab_dialer.xml
+Compressing  res/drawable/ic_tab_recent.xml
+Compressing  res/drawable/list_divider.xml
+Compressing  res/drawable/list_item_activated_background.xml
+Compressing  res/drawable/qcb_selected_tab_bg.xml
+Compressing  res/drawable/qcb_unknown_window_title_bg.xml
+Compressing  res/drawable/qcb_window_title_bg.xml
+Compressing  res/drawable/seek_bar_thumb.xml
+Compressing  res/drawable/seekbar_drawable.xml
+Compressing  res/drawable/spinner_first_bg.xml
+Compressing  res/drawable/spinner_last_bg.xml
+Compressing  res/drawable/spinner_middle_bg.xml
+Compressing  res/drawable/spinner_single_bg.xml
+Compressing  res/drawable/toolbar_button.xml
+Compressing  res/drawable/topbar_button.xml
+Compressing  res/layout-land/dialpad_fragment.xml
+Compressing  res/layout-largeui-xhdpi/dialer_list_call_normal_item.xml
+Compressing  res/layout-w470dp/contact_detail_container.xml
+Compressing  res/layout-w470dp/contact_detail_updates_fragment.xml
+Compressing  res/layout-w470dp/group_source_button.xml
+Compressing  res/layout-w470dp/quickcontact_activity.xml
+Compressing  res/layout/account_filter_header.xml
+Compressing  res/layout/account_filter_header_for_phone_favorite.xml
+Compressing  res/layout/account_list.xml
+Compressing  res/layout/account_list_item.xml
+Compressing  res/layout/account_selector_list_item.xml
+Compressing  res/layout/add_xiaomi_account_dialog.xml
+Compressing  res/layout/aggregation_suggestions.xml
+Compressing  res/layout/aggregation_suggestions_item.xml
+Compressing  res/layout/android_list_empty.xml
+Compressing  res/layout/brand_list_item.xml
+Compressing  res/layout/call_detail.xml
+Compressing  res/layout/call_detail_call_log_list_item.xml
+Compressing  res/layout/call_detail_history_header.xml
+Compressing  res/layout/call_detail_history_item.xml
+Compressing  res/layout/call_log_fragment.xml
+Compressing  res/layout/call_log_list_item.xml
+Compressing  res/layout/call_log_voicemail_status.xml
+Compressing  res/layout/carousel_about_tab.xml
+Compressing  res/layout/carousel_updates_tab.xml
+Compressing  res/layout/confirm_add_detail_activity.xml
+Compressing  res/layout/contact_card_edit_item.xml
+Compressing  res/layout/contact_card_layout.xml
+Compressing  res/layout/contact_detail_about_fragment_container.xml
+Compressing  res/layout/contact_detail_add_connection_entry_view.xml
+Compressing  res/layout/contact_detail_calllog_fragment.xml
+Compressing  res/layout/contact_detail_contact_photo.xml
+Compressing  res/layout/contact_detail_container.xml
+Compressing  res/layout/contact_detail_fragment.xml
+Compressing  res/layout/contact_detail_fragment_carousel.xml
+Compressing  res/layout/contact_detail_fragment_list.xml
+Compressing  res/layout/contact_detail_list_item.xml
+Compressing  res/layout/contact_detail_list_item_type_icon.xml
+Compressing  res/layout/contact_detail_list_padding.xml
+Compressing  res/layout/contact_detail_loader_fragment.xml
+Compressing  res/layout/contact_detail_network_title_entry_view.xml
+Compressing  res/layout/contact_detail_separator_entry_view.xml
+Compressing  res/layout/contact_detail_tab_carousel.xml
+Compressing  res/layout/contact_detail_thumbnail.xml
+Compressing  res/layout/contact_detail_title_bar_mask.xml
+Compressing  res/layout/contact_detail_updates_fragment.xml
+Compressing  res/layout/contact_detail_updates_fragment_container.xml
+Compressing  res/layout/contact_detail_without_tab_padding_top_view.xml
+Compressing  res/layout/contact_editor_activity.xml
+Compressing  res/layout/contact_editor_activity_title.xml
+Compressing  res/layout/contact_editor_fragment.xml
+Compressing  res/layout/contact_editor_label_name_dialog.xml
+Compressing  res/layout/contact_group_list_content.xml
+Compressing  res/layout/contact_list_content.xml
+Compressing  res/layout/contact_list_filter.xml
+Compressing  res/layout/contact_list_filter_custom.xml
+Compressing  res/layout/contact_list_filter_item.xml
+Compressing  res/layout/contact_photo_layout.xml
+Compressing  res/layout/contact_picker.xml
+Compressing  res/layout/contact_picker_content.xml
+Compressing  res/layout/contact_tile_frequent.xml
+Compressing  res/layout/contact_tile_frequent_phone.xml
+Compressing  res/layout/contact_tile_list.xml
+Compressing  res/layout/contact_tile_list_frequent.xml
+Compressing  res/layout/contact_tile_phone_starred.xml
+Compressing  res/layout/contact_tile_starred.xml
+Compressing  res/layout/contact_tile_starred_quick_contact.xml
+Compressing  res/layout/contacts_list_content.xml
+Compressing  res/layout/contacts_unavailable_fragment.xml
+Compressing  res/layout/create_new_contact.xml
+Compressing  res/layout/crop_photo_layout.xml
+Compressing  res/layout/custom_action_bar.xml
+Compressing  res/layout/custom_contact_list_filter_account.xml
+Compressing  res/layout/custom_contact_list_filter_group.xml
+Compressing  res/layout/date_picker.xml
+Compressing  res/layout/date_picker_dialog.xml
+Compressing  res/layout/device_bluetooth_fragment.xml
+Compressing  res/layout/device_brand_fragment.xml
+Compressing  res/layout/device_import_fragment.xml
+Compressing  res/layout/device_list_fragment.xml
+Compressing  res/layout/device_list_item.xml
+Compressing  res/layout/device_other_fragment.xml
+Compressing  res/layout/device_version_fragment.xml
+Compressing  res/layout/device_version_item.xml
+Compressing  res/layout/dialer_list_call_normal_item.xml
+Compressing  res/layout/dialer_list_call_simple_item.xml
+Compressing  res/layout/dialer_list_child_contact_item.xml
+Compressing  res/layout/dialer_list_contact_normal_item.xml
+Compressing  res/layout/dialer_list_contact_simple_item.xml
+Compressing  res/layout/dialer_list_empty.xml
+Compressing  res/layout/dialer_list_information_item.xml
+Compressing  res/layout/dialer_list_stranger_item.xml
+Compressing  res/layout/dialpad.xml
+Compressing  res/layout/dialpad_additional_buttons.xml
+Compressing  res/layout/dialpad_chooser_list_item.xml
+Compressing  res/layout/dialpad_fragment.xml
+Compressing  res/layout/dialtacts_activity.xml
+Compressing  res/layout/dialtacts_custom_action_bar.xml
+Compressing  res/layout/directory_header.xml
+Compressing  res/layout/edit_date_picker.xml
+Compressing  res/layout/edit_delete_button.xml
+Compressing  res/layout/edit_expansion_view.xml
+Compressing  res/layout/edit_field_list.xml
+Compressing  res/layout/edit_field_list_with_anchor_view.xml
+Compressing  res/layout/edit_kind_title.xml
+Compressing  res/layout/edit_spinner.xml
+Compressing  res/layout/editor_account_container.xml
+Compressing  res/layout/editor_account_header.xml
+Compressing  res/layout/editor_account_item.xml
+Compressing  res/layout/empty2.xml
+Compressing  res/layout/event_field_editor_view.xml
+Compressing  res/layout/expandable_group_header.xml
+Compressing  res/layout/footer_panel.xml
+Compressing  res/layout/fragment_test.xml
+Compressing  res/layout/group_account_header_horizontal.xml
+Compressing  res/layout/group_browse_list_account_header.xml
+Compressing  res/layout/group_browse_list_fragment.xml
+Compressing  res/layout/group_browse_list_item.xml
+Compressing  res/layout/group_browser_activity.xml
+Compressing  res/layout/group_detail_activity.xml
+Compressing  res/layout/group_detail_fragment.xml
+Compressing  res/layout/group_editor_autocomplete_view.xml
+Compressing  res/layout/group_editor_dialog.xml
+Compressing  res/layout/group_editor_existing_member_list.xml
+Compressing  res/layout/group_editor_fragment.xml
+Compressing  res/layout/group_name_dialog.xml
+Compressing  res/layout/group_source_button.xml
+Compressing  res/layout/import_contact_card_layout.xml
+Compressing  res/layout/item_group_membership.xml
+Compressing  res/layout/item_kind_section.xml
+Compressing  res/layout/item_photo_editor.xml
+Compressing  res/layout/item_read_only_field.xml
+Compressing  res/layout/join_contact_picker.xml
+Compressing  res/layout/join_contact_picker_list_content.xml
+Compressing  res/layout/join_contact_picker_section_header.xml
+Compressing  res/layout/list_empty_view.xml
+Compressing  res/layout/list_section.xml
+Compressing  res/layout/list_separator.xml
+Compressing  res/layout/merge_contact_item.xml
+Compressing  res/layout/multi_phone_picker.xml
+Compressing  res/layout/nickname_custom_dialog.xml
+Compressing  res/layout/nickname_edit_list.xml
+Compressing  res/layout/nickname_edit_list_item.xml
+Compressing  res/layout/phone_contact_tile_list.xml
+Compressing  res/layout/phone_disambig_item.xml
+Compressing  res/layout/phone_loading_contacts.xml
+Compressing  res/layout/phonetic_name_editor_view.xml
+Compressing  res/layout/photo_selector_view.xml
+Compressing  res/layout/picker_all_list_content.xml
+Compressing  res/layout/picker_favorites_list_content.xml
+Compressing  res/layout/picker_group_list_content.xml
+Compressing  res/layout/picker_recent_list_content.xml
+Compressing  res/layout/pinned_header_list_demo.xml
+Compressing  res/layout/playback_layout.xml
+Compressing  res/layout/quickcontact_activity.xml
+Compressing  res/layout/quickcontact_header.xml
+Compressing  res/layout/quickcontact_list_fragment.xml
+Compressing  res/layout/quickcontact_list_item.xml
+Compressing  res/layout/quickcontact_list_item_address.xml
+Compressing  res/layout/quickcontact_list_item_base.xml
+Compressing  res/layout/quickcontact_photo_container.xml
+Compressing  res/layout/quickcontact_tab_placeholder.xml
+Compressing  res/layout/quickcontact_track.xml
+Compressing  res/layout/quickcontact_track_button.xml
+Compressing  res/layout/quickcontact_unknown_header.xml
+Compressing  res/layout/quickcontact_view_pager.xml
+Compressing  res/layout/raw_contact_editor_view.xml
+Compressing  res/layout/raw_contact_list.xml
+Compressing  res/layout/raw_contact_readonly_editor_view.xml
+Compressing  res/layout/remove_duplicate_contact_layout.xml
+Compressing  res/layout/search_view.xml
+Compressing  res/layout/select_dialog_item.xml
+Compressing  res/layout/set_primary_checkbox.xml
+Compressing  res/layout/simple_spinner_item.xml
+Compressing  res/layout/smart_group_browse_list_fragment.xml
+Compressing  res/layout/smart_group_browser_activity.xml
+Compressing  res/layout/smart_group_detail_fragment.xml
+Compressing  res/layout/social_widget.xml
+Compressing  res/layout/split_aggregate_list_item.xml
+Compressing  res/layout/stream_item_container.xml
+Compressing  res/layout/stream_item_photo.xml
+Compressing  res/layout/stream_item_row_images.xml
+Compressing  res/layout/structured_name_editor_view.xml
+Compressing  res/layout/text_fields_editor_view.xml
+Compressing  res/layout/transfer_activity.xml
+Compressing  res/layout/twelve_key_dialer.xml
+Compressing  res/layout/twelve_key_dialpad.xml
+Compressing  res/layout/twelve_key_digits.xml
+Compressing  res/layout/unknown_contact_button_layout.xml
+Compressing  res/layout/unknown_contact_detail_list_item.xml
+Compressing  res/layout/user_profile_button.xml
+Compressing  res/layout/user_profile_header.xml
+Compressing  res/layout/weibo_activity.xml
+Compressing  res/layout/yellow_page_header.xml
+Compressing  res/menu/call_details_cab.xml
+Compressing  res/menu/call_details_options.xml
+Compressing  res/menu/call_log_multi_select_options.xml
+Compressing  res/menu/call_log_options.xml
+Compressing  res/menu/call_log_split_menu_options.xml
+Compressing  res/menu/contact_detail_menu.xml
+Compressing  res/menu/contact_detail_split_menu_options.xml
+Compressing  res/menu/contact_list_options.xml
+Compressing  res/menu/contact_picker_options.xml
+Compressing  res/menu/dialpad_options.xml
+Compressing  res/menu/dialtacts_options.xml
+Compressing  res/menu/dialtacts_search_options.xml
+Compressing  res/menu/edit_contact.xml
+Compressing  res/menu/group_detail_options.xml
+Compressing  res/menu/group_list_options.xml
+Compressing  res/menu/group_source.xml
+Compressing  res/menu/merge_options.xml
+Compressing  res/menu/multi_phone_picker.xml
+Compressing  res/menu/people_all_options.xml
+Compressing  res/menu/people_favorites_options.xml
+Compressing  res/menu/people_groups_options.xml
+Compressing  res/menu/people_options.xml
+Compressing  res/menu/phone_favorite_options.xml
+Compressing  res/menu/smart_group_detail_options.xml
+Compressing  res/menu/star.xml
+Compressing  res/menu/view_unknown_contact.xml
+Compressing  res/mipmap-hdpi/ic_launcher_contacts.png
+Compressing  res/mipmap-hdpi/ic_launcher_phone.png
+Compressing  res/mipmap-hdpi/ic_launcher_shortcut_contact.png
+Compressing  res/mipmap-hdpi/ic_launcher_shortcut_directdial.png
+Compressing  res/mipmap-hdpi/ic_launcher_shortcut_directmessage.png
+Compressing  res/mipmap-mdpi/ic_launcher_contacts.png
+Compressing  res/mipmap-mdpi/ic_launcher_phone.png
+Compressing  res/mipmap-mdpi/ic_launcher_shortcut_contact.png
+Compressing  res/mipmap-mdpi/ic_launcher_shortcut_directdial.png
+Compressing  res/mipmap-mdpi/ic_launcher_shortcut_directmessage.png
+Compressing  res/mipmap-xhdpi/ic_launcher_contacts.png
+Compressing  res/mipmap-xhdpi/ic_launcher_phone.png
+Compressing  res/mipmap-xhdpi/ic_launcher_shortcut_contact.png
+Compressing  res/mipmap-xhdpi/ic_launcher_shortcut_directdial.png
+Compressing  res/mipmap-xhdpi/ic_launcher_shortcut_directmessage.png
+Compressing  res/raw/phone_key_pressed_piano_0.ogg
+Compressing  res/raw/phone_key_pressed_piano_1.ogg
+Compressing  res/raw/phone_key_pressed_piano_10.ogg
+Compressing  res/raw/phone_key_pressed_piano_11.ogg
+Compressing  res/raw/phone_key_pressed_piano_2.ogg
+Compressing  res/raw/phone_key_pressed_piano_3.ogg
+Compressing  res/raw/phone_key_pressed_piano_4.ogg
+Compressing  res/raw/phone_key_pressed_piano_5.ogg
+Compressing  res/raw/phone_key_pressed_piano_6.ogg
+Compressing  res/raw/phone_key_pressed_piano_7.ogg
+Compressing  res/raw/phone_key_pressed_piano_8.ogg
+Compressing  res/raw/phone_key_pressed_piano_9.ogg
+Compressing  res/xml/preference_dial_pad_touch_tone.xml
+Compressing  res/xml/preference_display_options.xml
+Compressing  res/xml/preference_headers.xml
+Compressing  res/xml/preference_import_and_export.xml
+Compressing  res/xml/preference_import_export_headers.xml
+Compressing  res/xml/preference_more.xml
+Compressing  res/xml/preference_settings.xml
+Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for ContactsProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2133,6 +2931,7 @@ Updating archive /home/dan/buildtool/apk_out/ContactsProvider.apk
 Compressing  res/drawable-xhdpi/app_icon.png
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for DeskClock.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2374,6 +3173,7 @@ Compressing  res/xml/analog_appwidget.xml
 Compressing  res/xml/settings.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for DownloadProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2407,6 +3207,7 @@ Updating archive /home/dan/buildtool/apk_out/DownloadProvider.apk
 Compressing  res/drawable/stat_sys_download_failed.png
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for DownloadProviderUi.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -2466,6 +3267,7 @@ Compressing  res/mipmap-xhdpi/ic_launcher_download.png
 Compressing  res/xml/preferences.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Email.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -3015,6 +3817,7 @@ Compressing  res/xml/syncadapter_pop_imap.xml
 Compressing  res/xml/widget_info.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Exchange2.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -3054,6 +3857,7 @@ Compressing  res/xml/syncadapter_contacts.xml
 Compressing  res/xml/syncadapter_email.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for FileExplorer.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -3085,6 +3889,8 @@ Scanning
 Updating archive /home/dan/buildtool/apk_out/FileExplorer.apk
 
 Compressing  res/color/path_item_text_color.xml
+Compressing  res/drawable-da-xhdpi/user_guide_1.png
+Compressing  res/drawable-da-xhdpi/user_guide_2.png
 Compressing  res/drawable-en-xhdpi/user_guide_1.png
 Compressing  res/drawable-en-xhdpi/user_guide_2.png
 Compressing  res/drawable-hdpi/bottom_bar_bg_p.9.png
@@ -3301,6 +4107,7 @@ Compressing  res/xml/searchable.xml
 Compressing  res/xml/server_control_preferences.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for framework-miui-res.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -4192,6 +4999,7 @@ Compressing  res/raw/empty_transparent.png
 Compressing  res/xml/choose_account_type_preference.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for framework-res.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -6448,6 +7256,7 @@ Compressing  res/xml/storage_list.xml
 Compressing  res/xml/time_zones_by_country.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for GuardProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -6489,6 +7298,7 @@ Compressing  res/layout/activity_main.xml
 Compressing  res/menu/activity_main.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for KeyChain.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -6525,6 +7335,7 @@ Compressing  res/layout/cert_chooser_header.xml
 Compressing  res/layout/cert_item.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for LBESEC_MIUI.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -6598,6 +7409,7 @@ Compressing  res/layout/widget_prem.xml
 Compressing  res/menu/appconfig.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for MiuiCompass.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -6628,6 +7440,8 @@ Scanning
 
 Updating archive /home/dan/buildtool/apk_out/MiuiCompass.apk
 
+Compressing  res/drawable-da-xhdpi/altitude_bg.png
+Compressing  res/drawable-da-xhdpi/pressure_bg.png
 Compressing  res/drawable-en-xhdpi/altitude_bg.png
 Compressing  res/drawable-en-xhdpi/pressure_bg.png
 Compressing  res/drawable-hdpi/background_bottom_2.png
@@ -6666,6 +7480,7 @@ Compressing  res/layout/main.xml
 Compressing  res/menu/compass_menu.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for MiuiGallery.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -7054,6 +7869,7 @@ Compressing  res/xml/wallpaper_picker_preview.xml
 Compressing  res/xml/widget_info.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for MiuiHome.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -7660,6 +8476,7 @@ Compressing  res/xml/preferences.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for MiuiSystemUI.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -7691,6 +8508,7 @@ Updating archive /home/dan/buildtool/apk_out/MiuiSystemUI.apk
 
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for MiuiVideoPlayer.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -7894,6 +8712,7 @@ Compressing  res/layout/vp_stub_media_play_in_other_device_desc.xml
 Compressing  res/layout/vp_vertical_line_stroke.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Mms.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -7925,6 +8744,7 @@ Updating archive /home/dan/buildtool/apk_out/Mms.apk
 
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Music.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -8306,6 +9126,7 @@ Compressing  res/xml/music_settings.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for NetworkAssistant.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -8416,6 +9237,7 @@ Compressing  res/drawable/na_action.xml
 Compressing  res/drawable/new_install_app.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for NoiseField.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -8461,6 +9283,7 @@ Compressing  res/raw/noisefield_vs.glsl
 Compressing  res/xml/wallpaper.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Notes.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -8719,6 +9542,7 @@ Compressing  res/xml/searchable.xml
 Compressing  res/xml/widget_4x_info.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for PackageInstaller.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -8771,6 +9595,7 @@ Compressing  res/layout/uninstall_confirm.xml
 Compressing  res/layout/uninstall_progress.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Phone.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -9342,6 +10167,7 @@ Compressing  res/xml/voicemail_setting_miui.xml
 Compressing  res/xml/xdivert.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Provision.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -9402,6 +10228,7 @@ Compressing  res/xml/default_input_method_settings.xml
 Compressing  res/xml/other_service.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for QuickSearchBox.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -9559,6 +10386,7 @@ Compressing  res/xml/preferences_searchable_items.xml
 Compressing  res/xml/search_widget_info.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Settings.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10451,6 +11279,7 @@ Compressing  res/xml/wifi_settings.xml
 Compressing  res/xml/wireless_settings.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for SettingsProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10485,6 +11314,7 @@ Compressing  res/drawable-xhdpi/ic_launcher_settings.png
 Compressing  res/xml/bookmarks.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for SoundRecorder.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10639,6 +11469,7 @@ Compressing  res/menu/miui_preview_list_action_menu.xml
 Compressing  res/raw/noise.ogg
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for TelephonyProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10672,6 +11503,7 @@ Updating archive /home/dan/buildtool/apk_out/TelephonyProvider.apk
 Compressing  res/drawable-xhdpi/ic_launcher_phone.png
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for TelocationProvider.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10705,6 +11537,7 @@ Updating archive /home/dan/buildtool/apk_out/TelocationProvider.apk
 Compressing  res/drawable-hdpi/ic_launcher_android.png
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for ThemeManager.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -10972,6 +11805,7 @@ Compressing  res/xml/micloud_push_theme_resource.xml
 Compressing  res/xml/searchable.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for Updater.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -11104,6 +11938,7 @@ Compressing  res/menu/main_menu.xml
 Compressing  res/xml/update_feedback.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for VpnDialogs.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)
@@ -11138,6 +11973,7 @@ Compressing  res/layout/confirm.xml
 Compressing  res/layout/manage.xml
 
 Everything is Ok
+Injecting res, resources.arsc and classes.dex for XiaomiServiceFramework.apk 
 
 7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
 p7zip Version 9.20 (locale=da_DK.UTF-8,Utf16=on,HugeFiles=on,4 CPUs)

@@ -1,1 +1,2 @@
 Recompiling AntiSpam.apk
+Recompiling BackupRestoreConfirmation.apk
