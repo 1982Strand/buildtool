@@ -899,27 +899,29 @@ echo ""
 echo ""
 
 cd $IN
-if [ "$(ls -A $IN)" ]; then
-echo ""
-    echo "No files found.."
-    echo ""
-else
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
-select file in *.apk
-do
-cat /dev/null > $LOG/decompile_log.txt
+    select file in *.apk
+    do
+    cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $file ]] && echo "Invalid choice for single decompiling" && continue
-echo
-echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+    echo
+    echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
     apktool d -f "$file" $DEC/$file
     cp -f $HJEM/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
-break
-done
+    break
+    done
+else
+    echo ""
+    echo "No files found.."
+    echo ""
 fi
+
 }
+
 
 
 ############################################
@@ -939,22 +941,23 @@ echo ""
 
 cd $DEC
 
-if [ ! -d "$(ls -d $DEC)" ]; then
-    echo ""
-    echo "No files found.."
-    echo ""
-else
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
-select file in *.apk
-do
+    select file in *.apk
+    do
     cat /dev/null > $LOG/recompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $file ]] && echo "Invalid choice for single recompiling" && continue
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
-break
-done
+    break
+    done
+else
+    echo ""
+    echo "No files found.."
+    echo ""
+
 fi 
 }
 
@@ -1165,7 +1168,7 @@ read -p " " answer
     esac
     break
 done
- 
+
 }
 
 ###  clean all  ###
