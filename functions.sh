@@ -1315,19 +1315,21 @@ for i in *.apk; do
     rm -f "$i"
 done
 
-for j in *.jar; do
-    if test -f "$j"
-    then rm -f "$j"
-    else
-	echo "No jar files found in apk_in.." || break
-    fi
-done
-
-
 #for j in *.jar; do
-#    [ -e "$j" ] || echo "No jar files found in apk_in.." || break
-#    rm -f "$j"
+#    if test -f "$j"
+#    then rm -f "$j"
+#    else
+#	echo "No jar files found in apk_in.." || break
+#    fi
 #done
+
+if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
+    for j in *.jar; do
+    rm -f "$j"
+    done
+else
+    echo "No jar files found in apk_in.."
+fi
 
 cd $DEC
 for i in * 
