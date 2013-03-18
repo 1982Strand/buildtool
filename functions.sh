@@ -212,12 +212,8 @@ read -p " " answer
           echo "invalid choice of mods"
        ;;
    esac
-   echo ""
-   echo "" 
-   echo "[--- Press RETURN for menu ---]"
-   read key
+  break
 done
-exit 0
  
 }
 
@@ -492,7 +488,7 @@ for b in *.apk; do
     done
 else
     echo ""
-    echo "No apks found"
+    echo "No apks found to recompile.."
     echo ""
 fi
 
@@ -504,7 +500,7 @@ for jar in *.jar; do
     done
 else
     echo ""
-    echo "No jars found"
+    echo "No jars found to recompile"
     echo ""
 fi
  
@@ -1244,10 +1240,10 @@ do
     [[ -z $zip ]] && echo "Invalid choice" && continue
     echo
 	for apk in $(<$HJEM/translation_list.txt); do 
-unzip -j -o -q $zip system/app/$apk -d $IN 2&>1 > /dev/null;
+unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
 	done
-unzip -j -o -q $zip system/framework/framework-res.apk -d $IN 2&>1 > /dev/null;
-unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN 2&>1 > /dev/null;
+unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
+unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
 break
 done
 
@@ -1310,17 +1306,63 @@ done
 
 ###  clean all  ###
 
+
 cleanup_all () {
-   
-rm -rf $IN/* 2&>1 > /dev/null
-rm -rf $OUT/* 2&>1 > /dev/null
-rm -rf $MODS/out/* 2&>1 > /dev/null
-rm -rf $FLASH/*_DA.zip 2&>1 > /dev/null
 
 cd $IN
-mkdir decompiled
+for i in *.apk; do
+    [ -e "$i" ] || echo "No apk files found in apk_in.." || break
+    rm -f "$i"
+done
 
-rm -rf $MODS/out/* 2&>1 > /dev/null
+for j in *.jar; do
+    if test -f "$j"
+    then rm -f "$j"
+    else
+	echo "No jar files found in apk_in.." || break
+    fi
+done
+
+
+#for j in *.jar; do
+#    [ -e "$j" ] || echo "No jar files found in apk_in.." || break
+#    rm -f "$j"
+#done
+
+cd $DEC
+for i in * 
+do
+    if test -d "$i" 
+    then rm -rf "$i"
+    else
+       echo "No decompile folders found.." || break
+    fi
+done
+
+
+cd $OUT
+for i in *.apk; do
+    [ -e "$i" ] || echo "No apk files found in apk_out.." || break
+    rm -f "$i"
+done
+
+
+cd $MODS/out
+for i in * 
+do
+    if test -d "$i" 
+    then rm -rf "$i"
+    else
+       echo "No files found in MODS folder.." || break
+    fi
+done
+
+
+cd $FLASH
+for i in *_DA.zip; do
+    [ -e "$i" ] || echo "No zip files found in flashables.." || break
+    rm -f "$i"
+done
 
 }
 
@@ -1330,10 +1372,41 @@ rm -rf $MODS/out/* 2&>1 > /dev/null
 
 cleanup_not_apk () {
    
-rm -f -r $DEC/*
-rm -f -r $OUT/*
-rm -f -r $MODS/out/*
-rm -f -r $FLASH/*_DA.zip
+    
+cd $DEC
+for i in * 
+do
+    if test -d "$i" 
+    then rm -f "$i"
+    else
+       echo "No decompile folders found.." || break
+    fi
+done
+
+
+cd $OUT
+for i in *.apk; do
+    [ -e "$i" ] || echo "No apk files found in apk_out.." || break
+    rm -f "$i"
+done
+
+
+cd $MODS/out
+for i in * 
+do
+    if test -d "$i" 
+    then rm -f "$i"
+    else
+       echo "No files found in MODS folder.." || break
+    fi
+done
+
+
+cd $FLASH
+for i in *_DA.zip; do
+    [ -e "$i" ] || echo "No zip files found in flashables.." || break
+    rm -f "$i"
+done
 
 }
 

@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 #  Tool is developed primarily to work with MIUI roms, from miuiandroid.com, for the Samsung Galaxy S3
 #  
 #  It is focusing on adding danish translations for a given rom, creating a language pack for it
@@ -13,8 +15,6 @@
 #
 #
 #
-
-#!/bin/bash
 
 HJEM=$HOME/buildtool
 IN=~/buildtool/apk_in
