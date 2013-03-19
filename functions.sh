@@ -3,15 +3,6 @@
 ##### FUNCTIONS #####
 
 
-# Template for function #
-
-#function () {
-   
-#do something like decompile app
- 
-#}
-
-
 ############################################
 ###                                      ###
 ###      1. Install frameworks           ###
@@ -90,16 +81,16 @@ cd $MAIN
 
 for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
-                cp -r -f "$apk" $DEC;
-fi
+                cp -rf "$apk" $DEC;
+		fi
 done
 
 cd $DEVICE
 
 for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
-                cp -r -f "$apk" $DEC; > /dev/null 2>&1
-fi
+                cp -rf "$apk" $DEC; > /dev/null 2>&1
+		fi
 done
 
 cd $DEC
@@ -262,18 +253,18 @@ do
     echo
     ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
-if [ -d $MODS/out/$ver ]
-then
+    if [ -d $MODS/out/$ver ]
+    then
 	cd $MODS/out/$ver
 	if [ -f android.policy.jar ]
 	then
 	cp -f $MODS/out/$ver/android.policy.jar $MODS/3way
 	else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
 	fi
-else
+    else
         mkdir -p "$MODS/out/$ver"
 	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
-fi
+    fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
 
@@ -362,8 +353,8 @@ do
     echo
     ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
-if [ -d $MODS/out/$ver ]
-then
+    if [ -d $MODS/out/$ver ]
+    then
 	cd $MODS/out/$ver
 	if [ -f android.policy.jar ]
 	then
@@ -376,17 +367,14 @@ then
 	        else unzip -u -j $zip system/framework/services.jar -d "$MODS/crt-off"
 	        fi
 
-else
+    else
         mkdir -p "$MODS/out/$ver"
 	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
 	unzip -u -j $zip system/services.jar -d "$MODS/crt-off"
-fi
-
-
+    fi
 
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
 apktool d -f $MODS/crt-off/services.jar $MODS/crt-off/services.jar.out
-
 
 cd $MODS/crt-off/android.policy.jar.out
 remove_line
@@ -482,7 +470,7 @@ cat /dev/null > $LOG/recompile_log.txt
 cd $DEC
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
-for b in *.apk; do
+    for b in *.apk; do
     echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
     
@@ -499,7 +487,7 @@ fi
 
 if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-for jar in *.jar; do
+    for jar in *.jar; do
     echo "Recompiling $jar" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $jar 2>&1 | tee -a $LOG/recompile_log.txt
     done
@@ -565,7 +553,7 @@ opt_png () {
 
 
 ##functions
-#enter
+
 enter()
 {	echo
 	echo "Please press [enter] to continue";
@@ -574,25 +562,6 @@ enter()
   		echo
   		clear
 	fi
-}
-
-
-#future features
-ff ()
-{	clear
-	echo "Feature coming in a future release. Stay tuned."
-	enter
-}
-
-
-
-#load
-load_dot ()
-{	for DOT in . . . . . . . ; do
-	echo -n "$DOT"
-	sleep .15
-	done
-	echo "."
 }
 
 png_out ()
@@ -863,7 +832,7 @@ read -p " " answer
        . $HJEM/build
        ;;
        *) echo ""
-          echo "invalid choice of cleaning"
+          echo "invalid choice of signing"
        ;;       
     esac
     break
@@ -1256,10 +1225,10 @@ do
     [[ -z $zip ]] && echo "Invalid choice" && continue
     echo
 	for apk in $(<$HJEM/translation_list.txt); do 
-unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
+	unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
 	done
-unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
-unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+    unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
+    unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
 break
 done
 
@@ -1487,3 +1456,8 @@ done
 
 
 ### Deodex (full rom + single jar/apk)
+
+### Any ideas?
+
+
+### 1982Strand ###
