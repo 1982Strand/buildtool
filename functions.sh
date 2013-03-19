@@ -539,7 +539,6 @@ else
     echo ""
     echo "No recompiled files to process.."
     echo ""
-    break
 fi
  
 }
