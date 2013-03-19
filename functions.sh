@@ -485,6 +485,11 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 for b in *.apk; do
     echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
+    
+	if [ -f "$DEC/$b/dist/$b" ]
+	then cp -f $DEC/$b/dist/$b $OUT
+	fi
+       
     done
 else
     echo ""
@@ -520,15 +525,22 @@ echo "[--- Injecting Modified Resources ---]"
 echo ""
 
 cat /dev/null > $LOG/inject_log.txt
-cd $IN
-for apk in *.apk; do
-cp -f -r $apk $OUT
-echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
-7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
-7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
-7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
-done
+cd $OUT
 
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+
+    for apk in *.apk; do
+	echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
+	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
+	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
+	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
+    done
+else
+    echo ""
+    echo "No recompiled files to process.."
+    echo ""
+    break
+fi
  
 }
 
@@ -1084,6 +1096,11 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
+    
+    	if [ -f "$DEC/$file/dist/$file" ]
+	then cp -f $DEC/$file/dist/$file $OUT
+	fi
+    
     break
     done
 else
@@ -1315,13 +1332,6 @@ for i in *.apk; do
     rm -f "$i"
 done
 
-#for j in *.jar; do
-#    if test -f "$j"
-#    then rm -f "$j"
-#    else
-#	echo "No jar files found in apk_in.." || break
-#    fi
-#done
 
 if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for j in *.jar; do
