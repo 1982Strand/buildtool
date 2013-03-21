@@ -1231,6 +1231,7 @@ echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
 echo ""
 
+cd $SRC
 if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
 
     select zip in $SRC/*.zip
