@@ -48,10 +48,14 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
     done
-cp -f $HJEM/sort.py $DEC
-cd $DEC
-python sort.py
-rm -r sort.py
+    cp -f $HJEM/sort.py $DEC
+    cd $DEC
+    python sort.py
+    rm -r sort.py
+else
+    echo ""
+    echo "No apks found to decompile.."
+    echo ""
 fi
 
 if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *jar...
@@ -59,6 +63,10 @@ if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
     done
+else
+    echo ""
+    echo "No jars found to decompile.."
+    echo ""
 fi
 
  
@@ -770,7 +778,7 @@ echo "[--- Zipaligning apks ---]"
 echo ""
 
 cd $OUT
-
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 	for a in *.apk; do 
 	echo "Zipaligning $a" 
 	echo
@@ -779,7 +787,11 @@ cd $OUT
                 mv $a.aligned $a
 	echo
 	done
- 
+else
+    echo ""
+    echo "No apks found to zipalign.."
+    echo ""
+fi 
 }
 
 
@@ -862,7 +874,7 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     done
 else
     echo ""
-    echo "No files found.."
+    echo "No files found to sign.."
     echo ""
 
 fi
@@ -898,7 +910,7 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     done
 else
     echo ""
-    echo "No files found.."
+    echo "No files found to sign.."
     echo ""
 
 fi 
@@ -966,17 +978,20 @@ cd $FLASH
 	    cd $MODS/out/$ver
 	    if [ -f android.policy.jar ]
 	    then
-	    cp -f android.policy.jar $FLASH/template/system/framework
+		echo ""
+		echo "android.policy.jar found..."
+		cp -f android.policy.jar $FLASH/template/system/framework
 	    else echo ""
-		 echo "[--- No android.policy.jar found, aborting copy.. ---]"; break
+		 echo "No android.policy.jar found, skipping copy.."; break
 	    fi
-		    if [ -f services.jar ]
-		    then
-		    cp -f services.jar $FLASH/template/system/framework
-		    else echo ""
-			 echo "[--- No services.jar found, aborting copy.. ---]"; break		
-		    fi
-
+	    if [ -f services.jar ]
+	    then
+		echo ""
+		echo "services.jar found..."
+		cp -f services.jar $FLASH/template/system/framework
+	    else echo ""
+		 echo "No services.jar found, skipping copy"; break		
+	    fi
     else
 	    echo ""
 	    echo "[--- No modded jars found ---]"
@@ -1064,18 +1079,15 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
-    
     	if [ -f "$DEC/$file/dist/$file" ]
 	then cp -f $DEC/$file/dist/$file $OUT
 	fi
-    
     break
     done
 else
     echo ""
     echo "No files found.."
     echo ""
-
 fi 
 }
 
@@ -1219,19 +1231,25 @@ echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
 echo ""
 
-select zip in $SRC/*.zip
-do
-    [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $zip ]] && echo "Invalid choice" && continue
-    echo
-	for apk in $(<$HJEM/translation_list.txt); do 
-	unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
-	done
-    unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
-    unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
-break
-done
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
 
+    select zip in $SRC/*.zip
+    do
+	[[ $REPLY == x ]] && . $HJEM/build
+	[[ -z $zip ]] && echo "Invalid choice" && continue
+	echo
+	    for apk in $(<$HJEM/translation_list.txt); do 
+	    unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
+	    done
+	unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
+	unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+    break
+    done
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
 zip=dummy
  
 }
