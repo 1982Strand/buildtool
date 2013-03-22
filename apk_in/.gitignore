@@ -34,5 +34,3 @@ Thumbs.db
 *.sql
 *.sqlite
 *.directory
-
-decompiled/
