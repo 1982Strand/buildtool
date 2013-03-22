@@ -994,7 +994,7 @@ cd $FLASH
 	    fi
     else
 	    echo ""
-	    echo "[--- No modded jars found ---]"
+	    echo "[--- No modded jars found ---]"; break
     fi
     
     
