@@ -62,6 +62,7 @@ if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 
     for file in *jar; do
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
+	remove_line
     done
 else
     echo ""
@@ -1044,7 +1045,25 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     done
 else
     echo ""
-    echo "No files found.."
+    echo "No apks found to decompile.."
+    echo ""
+fi
+
+if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *jar...
+    
+    select file in *.jar
+    do
+    cat /dev/null > $LOG/decompile_log.txt
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $file ]] && echo "Invalid choice for single decompiling" && continue
+    echo
+    echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
+    apktool d -f "$file" $DEC/$file
+    remove_line
+    done
+else
+    echo ""
+    echo "No jars found to decompile.."
     echo ""
 fi
 

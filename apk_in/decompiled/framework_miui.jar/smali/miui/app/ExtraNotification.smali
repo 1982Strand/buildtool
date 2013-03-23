@@ -1,0 +1,43 @@
+.class public Lmiui/app/ExtraNotification;
+.super Ljava/lang/Object;
+.source "ExtraNotification.java"
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+.method public static getLedPwmOffOn(I)[I
+    .locals 3
+    .parameter "totalLength"
+
+    .prologue
+    const/4 v2, 0x0
+
+    const/4 v1, 0x2
+
+    new-array v0, v1, [I
+
+    .local v0, values:[I
+    div-int/lit8 v1, p0, 0x4
+
+    mul-int/lit8 v1, v1, 0x3
+
+    aput v1, v0, v2
+
+    const/4 v1, 0x1
+
+    aget v2, v0, v2
+
+    sub-int v2, p0, v2
+
+    aput v2, v0, v1
+
+    return-object v0
+.end method
