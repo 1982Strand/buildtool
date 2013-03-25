@@ -135,7 +135,13 @@ sed -i '/  - 1/a \
   - 5
 ' $DEC/framework-miui-res.apk/apktool.yml
 
-
+#echo ""
+#echo "...Fixing MiuiCompass.apk"
+#echo ""
+#
+#sed -i '/  - 1/a \
+#  - 6\
+#' $DEC/framework-miui-res.apk/apktool.yml
 
 echo ""
 echo "...Fixing Browser.apk (arrays.xml)"
@@ -965,11 +971,16 @@ cd $FLASH
 
 # Tilføj apk'er fra apk_out
 
-    for apk in $(<$HJEM/translation_list.txt); do
-    cp -r -f "$OUT/$apk" $FLASH/template/system/app;
-    done
-    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework
+#    for apk in $(<$HJEM/translation_list.txt); do
 
+#    cp -rf "$OUT/$apk" $FLASH/template/system/app;
+    cp -rf $OUT/*.apk $FLASH/template/system/app;
+#    done
+    # If exist, then
+    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework
+    mv -f $FLASH/template/system/app/framework-res.apk $FLASH/template/system/framework
+    # else continue
+    
 # Kopier eventuelle mods over
     echo ""
     echo "[--- Checking if MODS exist ---]"
@@ -1131,10 +1142,10 @@ echo ""
 grep -q -e '<item>da_DK</item>' $DEC/framework-miui-res.apk/res/values/arrays.xml || sed -i 's|<item>zh_TW</item>|<item>da_DK</item>|' $DEC/framework-miui-res.apk/res/values/arrays.xml
 
 sed -i '/ - 1/a \
- - 2\
- - 3\
- - 4\
- - 5
+  - 2\
+  - 3\
+  - 4\
+  - 5
 ' $DEC/framework-miui-res.apk/apktool.yml
 
 if [[ -f $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali ]]
@@ -1187,18 +1198,18 @@ echo ""
 echo ""
 
 read ver
-[[ "$ver" =~ ^[0-9]{1}\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
+[[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
 
-unzip -o $SRC/miui_i9300_${ver}.zip system/build.prop -d $FLASH/original/in
-unzip -o $SRC/miui_i9300_${ver}.zip system/media/theme/.data/meta/\* -d $FLASH/original/in
 
 echo ""
 echo "[--- Patch Miui Theme titles ---]"
 echo ""
 
+unzip -o $SRC/miui_i9300_${ver}.zip system/media/theme/.data/meta/\* -d $FLASH/original/in
+
 # FØLGENDE ER TESTET OG VIRKER !!
 cd $FLASH/original/in
-find $FLASH/original/in -name *.mrm -type f|xargs sed -i 's/默认/Standard/g'
+find -name *.mrm -type f|xargs sed -i 's/默认/Standard/g'
 
 cd $HJEM
 
@@ -1206,22 +1217,36 @@ echo ""
 echo "[--- Patch Build.prop ---]"
 echo ""
 
-cd $FLASH/original/in
-find $FLASH/original/in/system/build.prop -type f|xargs sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g'
-find $FLASH/original/in/system/build.prop -type f|xargs sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g'
+unzip -o $SRC/miui_i9300_${ver}.zip system/build.prop -d $FLASH/original/in
+
+cd $FLASH/original/in/system/
+sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g' build.prop
+sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
 cd $HJEM
 
 cp -f $SRC/miui_i9300_${ver}.zip $FLASH/original/out
 cd $HJEM
-cp -f $HJEM/apk_out/*.apk $FLASH/original/in/system/app
-cp -f $HJEM/apk_out/framework-miui-res.apk $FLASH/original/in/system/framework
-rm -r $FLASH/original/in/system/app/framework-miui-res.apk
-rm -r $FLASH/original/in/system/app/framework-res.apk
-rm -r $FLASH/original/in/system/media/theme/.directory
-cp -f $HJEM/flashable/template/system/media/theme/default/lockscreen $FLASH/original/in/system/media/theme/default/lockscreen
+
+echo ""
+echo "[--- Copy new apks into project ---]"
+echo ""
+
+cp -f $OUT/*.apk $FLASH/original/in/system/app
+mv -f $FLASH/original/in/system/app/framework-miui-res.apk $FLASH/original/in/system/framework
+rm -f $FLASH/original/in/system/app/framework-res.apk
+
+echo ""
+echo "[--- Copy lockscreen and mods into project ---]"
+echo ""
+
+#cp -f $HJEM/flashable/template/system/media/theme/default/lockscreen $FLASH/original/in/system/media/theme/default/lockscreen
 cp -f $HJEM/mods/out/${ver}/*.jar $FLASH/original/in/system/framework
 
-7za u -tzip $FLASH/original/out/miui_i9300_${ver}.zip $IN/system
+echo ""
+echo "[--- Compress project into new rom zip ---]"
+echo ""
+
+7za u -tzip $FLASH/original/out/miui_i9300_${ver}.zip $FLASH/original/in/system
 mv -f $FLASH/original/out/miui_i9300_${ver}.zip $FLASH/original/out/miui_i9300_${ver}_DA.zip
 
 echo ""
