@@ -39,7 +39,7 @@ do
 clear
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
-echo "|                       MIUI building script                     |"
+echo "|                      MIUI V5 building script                   |"
 echo "|                                                 -By 1982Strand |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
@@ -50,8 +50,8 @@ echo "|----------------------------------------------------------------|"
 echo "| 1.  Install frameworks        ||                               |"
 echo "| 2.  Decompile all apks/jars   ||                               |"
 echo "| 3.  Add translations          ||                               |"
-echo "| 4.  Fix MIUI sources          || 14. Fix official sources      |"
-echo "| 5.  Add predefined Mods       || 15. Patch & Build off. ROM    |"
+echo "| 4.  Fix MIUI sources          ||                               |"
+echo "| 5.  Add predefined Mods       ||                               |"
 echo "| 6.  Recompile apks/jars       ||                               |"
 echo "| 7.  Inject resources          ||                               |"
 echo "| 8.  Optimize pngs             ||                               |"
@@ -107,14 +107,8 @@ read -p " " answer
        13) clear
        recompile_single
        ;;
-       14) clear
-       source_fix_official
-       ;;
-       15) clear
-       patch_miui
-       ;;
        e) clear
-       pull
+       pull_apks
        ;;
        c) clear
        clean_menu

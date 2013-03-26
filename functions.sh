@@ -128,6 +128,11 @@ echo ""
 echo "...Fixing framework-miui-res.apk"
 echo ""
 
+
+grep -q -e '<item>da_DK</item>' $DEC/framework-miui-res.apk/res/values/arrays.xml || sed -i '/<item>zh_TW<\/item>/a \
+        <item>da_DK<\/item>' $DEC/framework-miui-res.apk/res/values/arrays.xml
+
+
 sed -i '/  - 1/a \
   - 2\
   - 3\
@@ -148,7 +153,21 @@ echo "...Fixing Browser.apk (arrays.xml)"
 echo ""
 
 sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
- 
+
+
+if [[ -f $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali ]]
+then
+
+echo ""
+echo "...Fixing Browser.apk (smali)"
+echo ""
+
+sed -i '/const-string v2, "baidu"/c \
+const-string v2, "google"' $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
+
+fi
+
+
 }
 
 ############################################
@@ -968,18 +987,36 @@ cd $FLASH
 
     7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance"  > /dev/null
     mv -f lockscreen.zip lockscreen
+    
+# Kopier apker over
 
-# Tilføj apk'er fra apk_out
-
-#    for apk in $(<$HJEM/translation_list.txt); do
-
-#    cp -rf "$OUT/$apk" $FLASH/template/system/app;
     cp -rf $OUT/*.apk $FLASH/template/system/app;
-#    done
-    # If exist, then
-    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework
-    mv -f $FLASH/template/system/app/framework-res.apk $FLASH/template/system/framework
-    # else continue
+
+    
+    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework > /dev/null
+    mv -f $FLASH/template/system/app/framework-res.apk $FLASH/template/system/framework > /dev/null
+
+# Patch tema titler (officiel rom)
+
+echo ""
+echo "[--- Patch Miui Theme titles ---]"
+echo ""
+
+unzip -o $zip system/media/theme/.data/meta/\* -d $FLASH/template
+
+cd $FLASH/template
+find -name '*.mrm' -exec sed -i 's/默认/Standard/g' {} \;
+
+echo ""
+echo "Patching Build.prop..."
+echo ""
+
+unzip -u -j $zip system/build.prop -d $FLASH/template/system
+
+cd $FLASH/template/system
+sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g' build.prop
+sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
+
     
 # Kopier eventuelle mods over
     echo ""
@@ -1124,152 +1161,14 @@ fi
 
 ############################################
 ###                                      ###
-###      14. fix official sources        ###
-###                                      ###
-############################################
-
-
-source_fix_official () {
-   
-echo ""
-echo "[--- Fix MIUI sources ---]"
-echo ""
-
-echo ""
-echo "...Fixing framework-miui-res.apk"
-echo ""
-
-grep -q -e '<item>da_DK</item>' $DEC/framework-miui-res.apk/res/values/arrays.xml || sed -i 's|<item>zh_TW</item>|<item>da_DK</item>|' $DEC/framework-miui-res.apk/res/values/arrays.xml
-
-sed -i '/ - 1/a \
-  - 2\
-  - 3\
-  - 4\
-  - 5
-' $DEC/framework-miui-res.apk/apktool.yml
-
-if [[ -f $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali ]]
-then
-
-echo ""
-echo "...Fixing Browser.apk (smali)"
-echo ""
-
-sed -i '/const-string v2, "baidu"/c \
-const-string v2, "google"' $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
-
-fi
-
-#patch -i $FIX/Browser/MiuiSuggestionsAdapter.diff $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
-#cd $DEC/Browser.apk/smali/com/android/browser/ 
-#rm -f -r *.rej
-#rm -f -r *.orig
-
-echo ""
-echo "...Fixing Browser.apk (arrays.xml)"
-echo ""
-
-sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
- 
-}
-
-
-############################################
-###                                      ###
-###      15. patch/build official rom    ###
-###                                      ###
-############################################
-
-
-patch_miui () {
-   
-# Original rom ligger i source_roms mappe
-# Udpak de nødvendige filer der skal patches, pak dem ud til flashable/original/in mappen, i korrekt mappestruktur
-# udfør patching
-# kopier (og omdøb) original rom til flashable/original/out
-# kopier nye filer ind i omdøbte original rom - dvs ingen "lang-pack", men istedet en moddet full rom - HVER uge.. Kun "lang-pack" til miuiandroids rom.
-
-
-# /system/media/theme/.data/meta/mms/default.mrm
-
-clear
-echo -n "Enter ROM version (x.xx.xx) and press [ENTER]: "
-echo ""
-echo ""
-
-read ver
-[[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Source rom is miui_i9300_${ver}.zip" || echo "Invalid"
-
-
-echo ""
-echo "[--- Patch Miui Theme titles ---]"
-echo ""
-
-unzip -o $SRC/miui_i9300_${ver}.zip system/media/theme/.data/meta/\* -d $FLASH/original/in
-
-# FØLGENDE ER TESTET OG VIRKER !!
-cd $FLASH/original/in
-find -name *.mrm -type f|xargs sed -i 's/默认/Standard/g'
-
-cd $HJEM
-
-echo ""
-echo "[--- Patch Build.prop ---]"
-echo ""
-
-unzip -o $SRC/miui_i9300_${ver}.zip system/build.prop -d $FLASH/original/in
-
-cd $FLASH/original/in/system/
-sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g' build.prop
-sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
-cd $HJEM
-
-cp -f $SRC/miui_i9300_${ver}.zip $FLASH/original/out
-cd $HJEM
-
-echo ""
-echo "[--- Copy new apks into project ---]"
-echo ""
-
-cp -f $OUT/*.apk $FLASH/original/in/system/app
-mv -f $FLASH/original/in/system/app/framework-miui-res.apk $FLASH/original/in/system/framework
-rm -f $FLASH/original/in/system/app/framework-res.apk
-
-echo ""
-echo "[--- Copy lockscreen and mods into project ---]"
-echo ""
-
-#cp -f $HJEM/flashable/template/system/media/theme/default/lockscreen $FLASH/original/in/system/media/theme/default/lockscreen
-cp -f $HJEM/mods/out/${ver}/*.jar $FLASH/original/in/system/framework
-
-echo ""
-echo "[--- Compress project into new rom zip ---]"
-echo ""
-
-7za u -tzip $FLASH/original/out/miui_i9300_${ver}.zip $FLASH/original/in/system
-mv -f $FLASH/original/out/miui_i9300_${ver}.zip $FLASH/original/out/miui_i9300_${ver}_DA.zip
-
-echo ""
-echo "Output ROM is miui_i9300_${ver}_DA.zip"
-echo ""
-
-rm -r $FLASH/original/in/system/app/*.apk
-rm -r $FLASH/original/in/system/framework/*.apk
-rm -r $FLASH/original/in/system/framework/*.jar
- 
-}
-
-
-
-############################################
-###                                      ###
 ###      e. Extract apks from zip        ###
 ###                                      ###
 ############################################
 
 
-pull () {
-   
+pull_apks () {
+
+
 shopt -s failglob
 echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
@@ -1295,7 +1194,7 @@ else
     echo "No zip files found.."
     echo ""
 fi
-zip=dummy
+#zip=dummy
  
 }
 
@@ -1453,6 +1352,7 @@ done
 
 }
 
+
 ############################################
 ###                                      ###
 ###      Remove ".line" -script          ###
@@ -1508,6 +1408,7 @@ do
 done
  
 }
+
 
 
 
