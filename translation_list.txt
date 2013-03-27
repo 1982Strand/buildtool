@@ -1,7 +1,5 @@
 AntiSpam.apk
-ApplicationsProvider.apk
 Backup.apk
-BackupRestoreConfirmation.apk
 Bluetooth.apk
 Browser.apk
 BugReport.apk
@@ -9,7 +7,6 @@ CABLService.apk
 Calculator.apk
 Calendar.apk
 CalendarProvider.apk
-Camera.apk
 CertInstaller.apk
 CloudService.apk
 Contacts.apk

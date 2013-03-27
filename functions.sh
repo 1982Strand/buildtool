@@ -152,6 +152,7 @@ echo ""
 echo "...Fixing Browser.apk (arrays.xml)"
 echo ""
 
+sed -i s/'\&amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
 sed -i s/'\&amp\;amp\;amp\;'/'\&amp\;'/g $DEC/Browser.apk/res/values/arrays.xml
 
 
