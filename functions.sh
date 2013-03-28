@@ -96,11 +96,16 @@ done
 
 cd $DEVICE
 
-for apk in $(<$HJEM/translation_list.txt); do
-                if [ -d "$DEC/$apk" ]; then
-                cp -rf "$apk" $DEC; > /dev/null 2>&1
-		fi
-done
+if [ -d m0 ]
+then
+    if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+	for apk in $(<$HJEM/translation_list.txt); do
+	    if [ -d "$DEC/$apk" ]; then
+	    cp -rf "$apk" $DEC; > /dev/null 2>&1
+	    fi
+	done
+    fi
+fi
 
 cd $DEC
 if [ -d ControlPanel.apk ]
