@@ -1107,10 +1107,19 @@ done
     do rm -rf $apk
     done
     
-#    rm -rf $FLASH/template/system/app/*
-#    rm -rf $FLASH/template/system/framework/*
+    if [[ -e build.prop ]]
+    then rm -f build.prop
+    fi
 
-
+    cd $FLASH/template/system/media/theme/default
+    if [[ -e lockscreen ]]
+    then rm -f lockscreen
+    fi
+    
+    cd $FLASH/template/system/media/theme
+    if [[ -e .data ]]
+    then rm -rf .data
+    fi
 }
 
 
