@@ -44,7 +44,7 @@ echo "|                                                 -By 1982Strand |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                                                                |"
-echo "|                                                                |"
+echo "| 0. Install apktool/aapt                                        |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "| 1.  Install frameworks        ||                               |"
@@ -68,6 +68,9 @@ echo "|----------------------------------------------------------------|"
 printf %s " Select an Option: "
 read -p " " answer
     case $answer in
+       0) clear
+       install_apktool
+       ;;
        1) clear
        install_frameworks
        ;;

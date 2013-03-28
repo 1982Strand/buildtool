@@ -5,6 +5,24 @@
 
 ############################################
 ###                                      ###
+###      0. Install apktool/aapt         ###
+###                                      ###
+############################################
+
+install_apktool () {
+
+echo ""
+echo "[--- Using apktool 1.5.2 and patched aapt ---]"
+echo ""
+
+sudo cp -f $HJEM/apktool/1.5.2/apktool.jar /usr/local/bin
+sudo cp -f $HJEM/apktool/1.5.2/aapt /usr/local/bin
+sudo cp -f $HJEM/apktool/1.5.2/apktool /usr/local/bin
+
+}
+
+############################################
+###                                      ###
 ###      1. Install frameworks           ###
 ###                                      ###
 ############################################
