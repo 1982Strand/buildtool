@@ -1065,11 +1065,13 @@ find -name '*.mrm' -exec sed -i 's/默认/Standard/g' {} \;
 
 find -name '*.mrm' -exec sed -i 's/翻页时钟1/Flip Ur/g' {} \;
 
-find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Dynamisk Ur/g' {} \;
+find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Simpelt Ur/g' {} \;
 
-find -name '*.mrm' -exec sed -i 's/简约时钟1/Minimalistisk Ur/g' {} \;
+find -name '*.mrm' -exec sed -i 's/简约时钟1/Simpelt Ur/g' {} \;
 
-find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (højre)/g' {} \;
+find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (lille)/g' {} \;
+				   
+find -name '*.mrm' -exec sed -i 's/简洁时钟(大右)/Simpelt Ur (stor)/g' {} \;
 
 find -name '*.mrm' -exec sed -i 's/Standard相框4x4/Fotoramme 4x4/g' {} \;
 
