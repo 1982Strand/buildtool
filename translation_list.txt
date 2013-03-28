@@ -3,11 +3,9 @@ Backup.apk
 Bluetooth.apk
 Browser.apk
 BugReport.apk
-CABLService.apk
 Calculator.apk
 Calendar.apk
 CalendarProvider.apk
-CertInstaller.apk
 CloudService.apk
 Contacts.apk
 ContactsProvider.apk

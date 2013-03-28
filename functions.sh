@@ -532,8 +532,8 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
     
-	if [ -f "$DEC/$b/dist/$b" ]
-	then cp -f $DEC/$b/dist/$b $OUT
+	if [ -f "$IN/$b" ]
+	then cp -f $IN/$b $OUT
 	fi
        
     done
@@ -1231,8 +1231,8 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
-    	if [ -f "$DEC/$file/dist/$file" ]
-	then cp -f $DEC/$file/dist/$file $OUT
+    	if [ -f "$IN/$file" ]
+	then cp -f $IN/$file $OUT
 	fi
     break
     done
