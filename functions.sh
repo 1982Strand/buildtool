@@ -988,15 +988,47 @@ cd $FLASH
 
     7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance"  > /dev/null
     mv -f lockscreen.zip lockscreen
+
+# Oversæt 2x4 clock widget
+
+# system/media/theme/.data/content/clock_2x4/simple_clock/images_da
+# system/media/theme/.data/content/clock_2x4/clock/strings/strings_da.xml
+
+    unzip -o $zip system/media/theme/.data/content/clock_2x4/\* -d $FLASH/template
+    cd $FLASH/template/system/media/theme/.data/content/clock_2x4
+    
+    mv -f clock.mrc clock.zip
+    7za u -mx0 -r clock.zip "$XTRA/clock/strings"
+    mv -f clock.zip clock.mrc
+    
+    mv -f simple_clock.mrc simple_clock.zip
+    7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da"
+    mv -f simple_clock.zip simple_clock.mrc
+    
+#   7za u -mx0 -r clock.mrc "$XTRA/clock/strings/strings_da.xml"
     
 # Kopier apker over
-
-    cp -rf $OUT/*.apk $FLASH/template/system/app;
-
     
-    mv -f $FLASH/template/system/app/framework-miui-res.apk $FLASH/template/system/framework > /dev/null
-    mv -f $FLASH/template/system/app/framework-res.apk $FLASH/template/system/framework > /dev/null
-
+    cd $OUT
+    if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
+	for apk in $OUT/*.apk; do
+	cp -rf $apk $FLASH/template/system/app;
+	done
+    else
+	echo ""
+	echo "No apks found to import..."
+	echo ""
+    fi
+    
+    cd $FLASH/template/system/app
+	if [[ -e framework-miui-res.apk ]]
+	then mv -f framework-miui-res.apk $FLASH/template/system/framework > /dev/null
+	fi
+	
+	if [[ -e framework-res.apk ]]
+	then mv -f framework-res.apk $FLASH/template/system/framework > /dev/null
+	fi
+	
 # Patch tema titler (officiel rom)
 
 echo ""
@@ -1007,6 +1039,20 @@ unzip -o $zip system/media/theme/.data/meta/\* -d $FLASH/template
 
 cd $FLASH/template
 find -name '*.mrm' -exec sed -i 's/默认/Standard/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/翻页时钟1/Flip Ur/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Dynamisk Ur/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/简约时钟1/Minimalistisk Ur/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (højre)/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/Standard相框4x4/Fotoramme 4x4/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/Standard相框2x4/Fotoramme 2x4/g' {} \;
+
+find -name '*.mrm' -exec sed -i 's/Standard相框2x2/Fotoramme 2x2/g' {} \;
 
 echo ""
 echo "Patching Build.prop..."
@@ -1055,8 +1101,14 @@ done
     mv -f $FLASH/flashable.zip $FLASH/"$ver"_DA.zip
     echo ""
     echo "[--- Done! Your zip is named: "$ver"_DA.zip"
-    rm -rf $FLASH/template/system/app/*
-    rm -rf $FLASH/template/system/framework/*
+    
+    cd $FLASH/template/system
+    for apk in `find -name \*.apk -type f`
+    do rm -rf $apk
+    done
+    
+#    rm -rf $FLASH/template/system/app/*
+#    rm -rf $FLASH/template/system/framework/*
 
 
 }
