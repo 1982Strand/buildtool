@@ -38,11 +38,14 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
-echo "|                      MIUI V5 building script                   |"
-echo "|                                                 -By 1982Strand |"
+echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
+echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
+echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
+echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
+echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
+echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
+echo "|                                                 	       |"
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "| 0. Install apktool/aapt                                        |"
 echo "|                                                                |"

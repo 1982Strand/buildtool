@@ -208,13 +208,16 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
-echo "|                       MIUI building script                     |"
-echo "|                                                 -By 1982Strand |"
+echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
+echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
+echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
+echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
+echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
+echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
+echo "|                                                 	       |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        MODS SECTION                            |"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
@@ -224,8 +227,6 @@ echo "| 3.  MIUI 3-Way Reboot                                          |"
 echo "| 4.  MIUI CRT-OFF                                               |"
 echo "| 5.  Stock Center Clock (From XXELLA)                           |"
 echo "| 6.  Stock Transparent Statusbar                                |"
-echo "|                                                                |"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Back to Main  Menu                                          |"
@@ -860,20 +861,21 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
-echo "|                       MIUI building script                     |"
-echo "|                                                 -By 1982Strand |"
+echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
+echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
+echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
+echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
+echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
+echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
+echo "|                                                 	       |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        Signing Options                         |"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "| 1.  Sign all apks (in apk_out)                                 |"
 echo "| 2.  Sign single apk                                            |"
-echo "|                                                                |"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Return to main menu                                         |"
@@ -1012,7 +1014,7 @@ cd $FLASH
     7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance"  > /dev/null
     mv -f lockscreen.zip lockscreen
 
-# Oversæt 2x4 clock widget
+# Oversæt clock widget
 
 # system/media/theme/.data/content/clock_2x4/simple_clock/images_da
 # system/media/theme/.data/content/clock_2x4/clock/strings/strings_da.xml
@@ -1125,7 +1127,7 @@ done
     7za a -tzip $FLASH/flashable.zip $FLASH/template/system -mx3 > /dev/null
     mv -f $FLASH/flashable.zip $FLASH/"$ver"_DA.zip
     echo ""
-    echo "[--- Done! Your zip is named: "$ver"_DA.zip"
+    echo "[--- Done! Output zip is: "$ver"_DA.zip"
     
     cd $FLASH/template/system
     for apk in `find -name \*.apk -type f`
@@ -1299,20 +1301,21 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
-echo "|                       MIUI building script                     |"
-echo "|                                                 -By 1982Strand |"
+echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
+echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
+echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
+echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
+echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
+echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
+echo "|                                                 	       |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        Cleaning Options                        |"
 echo "|                                                                |"
-echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "| 1.  Clean all folders                                          |"
 echo "| 2.  Clean all but apks in apk_in folder                        |"
-echo "|                                                                |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Return to main menu                                         |"
@@ -1344,18 +1347,23 @@ done
 cleanup_all () {
 
 cd $IN
-for i in *.apk; do
-    [ -e "$i" ] || echo "No apk files found in apk_in.." || break
-    rm -f "$i"
-done
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+    for i in *.apk; do
+    rm -f $i
+    done
+echo "Cleared apks from apk_in.."
+else 
+    echo "No apk files found in apk_in.." || break
+fi
 
-
+cd $IN
 if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for j in *.jar; do
     rm -f "$j"
     done
+echo "Cleared jars from apk_in.."
 else
-    echo "No jar files found in apk_in.."
+    echo "No jar files found in apk_in.." || break
 fi
 
 cd $DEC
@@ -1363,6 +1371,7 @@ for i in *
 do
     if test -d "$i" 
     then rm -rf "$i"
+    echo "Cleared folders in decompiled.."
     else
        echo "No decompile folders found.." || break
     fi
@@ -1370,10 +1379,14 @@ done
 
 
 cd $OUT
-for i in *.apk; do
-    [ -e "$i" ] || echo "No apk files found in apk_out.." || break
-    rm -f "$i"
-done
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+    for i in *.apk; do
+    rm -f $i
+    echo "Cleared apks from apk_out.."
+    done
+else 
+    echo "No apk files found in apk_out.." || break
+fi
 
 
 cd $MODS/out
@@ -1381,6 +1394,7 @@ for i in *
 do
     if test -d "$i" 
     then rm -rf "$i"
+    echo "Cleared mods from mods folder.."
     else
        echo "No files found in MODS folder.." || break
     fi
@@ -1391,6 +1405,7 @@ cd $FLASH
 for i in *_DA.zip; do
     [ -e "$i" ] || echo "No zip files found in flashables.." || break
     rm -f "$i"
+    echo "Cleared zips from flashables folder.."
 done
 
 }
