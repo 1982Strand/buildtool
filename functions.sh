@@ -1351,7 +1351,7 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     for i in *.apk; do
     rm -f $i
     done
-echo "Cleared apks from apk_in.."
+echo "Deleted apks from apk_in.."
 else 
     echo "No apk files found in apk_in.." || break
 fi
@@ -1361,7 +1361,7 @@ if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for j in *.jar; do
     rm -f "$j"
     done
-echo "Cleared jars from apk_in.."
+echo "Deleted jars from apk_in.."
 else
     echo "No jar files found in apk_in.." || break
 fi
@@ -1371,7 +1371,7 @@ for i in *
 do
     if test -d "$i" 
     then rm -rf "$i"
-    echo "Cleared folders in decompiled.."
+    echo "Deleted folders in decompiled.."
     else
        echo "No decompile folders found.." || break
     fi
@@ -1382,8 +1382,8 @@ cd $OUT
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     for i in *.apk; do
     rm -f $i
-    echo "Cleared apks from apk_out.."
     done
+echo "Deleted apks from apk_out.."
 else 
     echo "No apk files found in apk_out.." || break
 fi
@@ -1394,7 +1394,7 @@ for i in *
 do
     if test -d "$i" 
     then rm -rf "$i"
-    echo "Cleared mods from mods folder.."
+    echo "Deleted $i from mods folder.."
     else
        echo "No files found in MODS folder.." || break
     fi
@@ -1405,7 +1405,6 @@ cd $FLASH
 for i in *_DA.zip; do
     [ -e "$i" ] || echo "No zip files found in flashables.." || break
     rm -f "$i"
-    echo "Cleared zips from flashables folder.."
 done
 
 }
@@ -1416,12 +1415,12 @@ done
 
 cleanup_not_apk () {
    
-    
 cd $DEC
 for i in * 
 do
     if test -d "$i" 
-    then rm -f "$i"
+    then rm -rf "$i"
+    echo "Deleted folders in decompiled.."
     else
        echo "No decompile folders found.." || break
     fi
@@ -1429,17 +1428,22 @@ done
 
 
 cd $OUT
-for i in *.apk; do
-    [ -e "$i" ] || echo "No apk files found in apk_out.." || break
-    rm -f "$i"
-done
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+    for i in *.apk; do
+    rm -f $i
+    done
+echo "Deleted apks from apk_out.."
+else 
+    echo "No apk files found in apk_out.." || break
+fi
 
 
 cd $MODS/out
 for i in * 
 do
     if test -d "$i" 
-    then rm -f "$i"
+    then rm -rf "$i"
+    echo "Deleted $i from mods folder.."
     else
        echo "No files found in MODS folder.." || break
     fi
