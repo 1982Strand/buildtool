@@ -80,7 +80,7 @@ if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 
     for file in *jar; do
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
-	remove_line
+        remove_line
     done
 else
     echo ""
@@ -109,7 +109,7 @@ cd $MAIN
 for apk in $(<$HJEM/translation_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
                 cp -rf "$apk" $DEC;
-		fi
+                fi
 done
 
 cd $DEVICE
@@ -117,11 +117,11 @@ cd $DEVICE
 if [ -d m0 ]
 then
     if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-	for apk in $(<$HJEM/translation_list.txt); do
-	    if [ -d "$DEC/$apk" ]; then
-	    cp -rf "$apk" $DEC; > /dev/null 2>&1
-	    fi
-	done
+        for apk in $(<$HJEM/translation_list.txt); do
+            if [ -d "$DEC/$apk" ]; then
+            cp -rf "$apk" $DEC; > /dev/null 2>&1
+            fi
+        done
     fi
 fi
 
@@ -208,13 +208,13 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
-echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
-echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
-echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
-echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
-echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
-echo "|                                                 	       |"
+echo "| .___  ___.  __   __    __   __                  By 1982Strand  |"
+echo "| |   \/   | |  | |  |  |  | |  |                                |"
+echo "| |  \  /  | |  | |  |  |  | |  |                                |"       
+echo "| |  |\/|  | |  | |  |  |  | |  |                                |"
+echo "| |  |  |  | |  | |  '--'  | |  |                                |"
+echo "| |__|  |__| |__|  \______/  |__| Building script                |"
+echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        MODS SECTION                            |"
@@ -314,15 +314,15 @@ do
 
     if [ -d $MODS/out/$ver ]
     then
-	cd $MODS/out/$ver
-	if [ -f android.policy.jar ]
-	then
-	cp -f $MODS/out/$ver/android.policy.jar $MODS/3way
-	else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
-	fi
+        cd $MODS/out/$ver
+        if [ -f android.policy.jar ]
+        then
+        cp -f $MODS/out/$ver/android.policy.jar $MODS/3way
+        else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
+        fi
     else
         mkdir -p "$MODS/out/$ver"
-	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
+        unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
     fi
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
@@ -333,7 +333,7 @@ cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
     sed -i "s/MiuiGlobalActions\$$tmp/MiuiGlobalActions\$222/g" "$MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali"
     
     cp -arf $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
-		        
+                        
 sed -i '/# instance fields/i \
 # static fields\
 .field protected static rebootMode:I\
@@ -414,22 +414,22 @@ do
 
     if [ -d $MODS/out/$ver ]
     then
-	cd $MODS/out/$ver
-	if [ -f android.policy.jar ]
-	then
-	cp -f $MODS/out/$ver/android.policy.jar $MODS/crt-off
-	else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
-	fi
-		if [ -f services.jar ]
-		then
-	        cp -f $MODS/out/$ver/services.jar $MODS/crt-off
-	        else unzip -u -j $zip system/framework/services.jar -d "$MODS/crt-off"
-	        fi
+        cd $MODS/out/$ver
+        if [ -f android.policy.jar ]
+        then
+        cp -f $MODS/out/$ver/android.policy.jar $MODS/crt-off
+        else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
+        fi
+                if [ -f services.jar ]
+                then
+                cp -f $MODS/out/$ver/services.jar $MODS/crt-off
+                else unzip -u -j $zip system/framework/services.jar -d "$MODS/crt-off"
+                fi
 
     else
         mkdir -p "$MODS/out/$ver"
-	unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
-	unzip -u -j $zip system/services.jar -d "$MODS/crt-off"
+        unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/crt-off"
+        unzip -u -j $zip system/services.jar -d "$MODS/crt-off"
     fi
 
 apktool d -f $MODS/crt-off/android.policy.jar $MODS/crt-off/android.policy.jar.out
@@ -459,18 +459,18 @@ cd $MODS/crt-off;
       echo ""
       echo "[--- patching android.policy.jar failed! ---]";
    fi
-	    if [ -f "$MODS/crt-off/services.jar.out/build/apk/classes.dex" ]; then
+            if [ -f "$MODS/crt-off/services.jar.out/build/apk/classes.dex" ]; then
    
-	    cd $MODS/crt-off/services.jar.out/build/apk/
+            cd $MODS/crt-off/services.jar.out/build/apk/
       
-	    7za u -mx0 -tzip -r "$MODS/crt-off/services.jar" "classes.dex"  > /dev/null
-	    cp -rf $MODS/crt-off/services.jar $MODS/out/$ver
-	    echo ""
-	    echo "[--- patching services.jar completed! ---]"
-	    else
-	    echo ""
-	    echo "[--- patching services.jar failed! ---]";
-	    fi
+            7za u -mx0 -tzip -r "$MODS/crt-off/services.jar" "classes.dex"  > /dev/null
+            cp -rf $MODS/crt-off/services.jar $MODS/out/$ver
+            echo ""
+            echo "[--- patching services.jar completed! ---]"
+            else
+            echo ""
+            echo "[--- patching services.jar failed! ---]";
+            fi
       
 
 rm -rf $MODS/crt-off/android.policy.jar.out
@@ -533,9 +533,9 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
     
-	if [ -f "$IN/$b" ]
-	then cp -f $IN/$b $OUT
-	fi
+        if [ -f "$IN/$b" ]
+        then cp -f $IN/$b $OUT
+        fi
        
     done
 else
@@ -577,10 +577,10 @@ cd $OUT
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
     for apk in *.apk; do
-	echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
-	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
-	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
-	7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
+        echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
     done
 else
     echo ""
@@ -614,17 +614,17 @@ opt_png () {
 ##functions
 
 enter()
-{	echo
-	echo "Please press [enter] to continue";
-	read -s -n 1 key
-	if [[ $key = "" ]]; then 
-  		echo
-  		clear
-	fi
+{       echo
+        echo "Please press [enter] to continue";
+        read -s -n 1 key
+        if [[ $key = "" ]]; then 
+                echo
+                clear
+        fi
 }
 
 png_out ()
-{	clear
+{       clear
 echo "Warning. Pngout has been known to render the png 'un-editible'"
 echo "Even so, it is arguably the best at optimizing pngs"
 echo "Proceed only after you've made backups of your png/apk"
@@ -638,22 +638,22 @@ echo
 
 echo
 if ! [[ -s tmp ]] ; then
-	mkdir tmp
+        mkdir tmp
 fi
 for a in *.apk ; do
-	cd $OUT
-	echo "PNGS in $a will be optimized with PNGout"
-	unzip -o $a -d ${a/.apk}-png
-	cd ${a/.apk}-png
-	find . -iname "*.png" | while read PNG 
-		do 
-		if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-			$p/pngout "$PNG"  
-		fi 
-		done
-	zip -r $OUT/tmp/$a *
-	rm -rf $OUT/${a/.apk}-png
-	echo
+        cd $OUT
+        echo "PNGS in $a will be optimized with PNGout"
+        unzip -o $a -d ${a/.apk}-png
+        cd ${a/.apk}-png
+        find . -iname "*.png" | while read PNG 
+                do 
+                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
+                        $p/pngout "$PNG"  
+                fi 
+                done
+        zip -r $OUT/tmp/$a *
+        rm -rf $OUT/${a/.apk}-png
+        echo
 done
 echo "New apks might need to be resigned if third-party app"
 cd $OUT/tmp
@@ -664,7 +664,7 @@ rm -r $OUT/tmp
 }
 
 png_crush ()
-{	clear
+{       clear
 echo
 echo "These apks are about to optimized with pngCrush."
 echo
@@ -673,22 +673,22 @@ ls *.apk
 echo
 echo
 if ! [[ -s tmp ]] ; then
-	mkdir tmp
+        mkdir tmp
 fi
 for a in *.apk ; do
-	cd $OUT
-	echo "PNGS in $a will be optimized with pngCrush"
-	unzip -o $a -d ${a/.apk}-png
-	cd ${a/.apk}-png
-	find . -iname "*.png" | while read PNG 
-		do 
-		if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-			$p/pngcrush "$PNG"  
-		fi 
-		done
-	zip -r $OUT/tmp/$a *
-	rm -rf $OUT/${a/.apk}-png
-	echo
+        cd $OUT
+        echo "PNGS in $a will be optimized with pngCrush"
+        unzip -o $a -d ${a/.apk}-png
+        cd ${a/.apk}-png
+        find . -iname "*.png" | while read PNG 
+                do 
+                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
+                        $p/pngcrush "$PNG"  
+                fi 
+                done
+        zip -r $OUT/tmp/$a *
+        rm -rf $OUT/${a/.apk}-png
+        echo
 done
 echo "New apks might need to be resigned if third-party app"
 cd $OUT/tmp
@@ -699,7 +699,7 @@ rm -r $OUT/tmp
 }
 
 opti_png ()
-{	clear
+{       clear
 echo
 echo "These apks are about to optimized with OptiPNG."
 echo
@@ -708,22 +708,22 @@ ls *.apk
 echo
 echo
 if ! [[ -s tmp ]] ; then
-	mkdir tmp
+        mkdir tmp
 fi
 for a in *.apk ; do
-	cd $OUT
-	echo "PNGS in $a will be optimized with OptiPNG"
-	unzip -o $a -d ${a/.apk}-png
-	cd ${a/.apk}-png
-	find . -iname "*.png" | while read PNG 
-		do 
-		if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-			$p/optipng "$PNG"  
-		fi 
-		done
-	zip -r $OUT/tmp/$a *
-	rm -rf $OUT/${a/.apk}-png
-	echo
+        cd $OUT
+        echo "PNGS in $a will be optimized with OptiPNG"
+        unzip -o $a -d ${a/.apk}-png
+        cd ${a/.apk}-png
+        find . -iname "*.png" | while read PNG 
+                do 
+                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
+                        $p/optipng "$PNG"  
+                fi 
+                done
+        zip -r $OUT/tmp/$a *
+        rm -rf $OUT/${a/.apk}-png
+        echo
 done
 echo "New apks might need to be resigned if third-party app"
 cd $OUT/tmp
@@ -734,7 +734,7 @@ rm -r $OUT/tmp
 }
 
 adv_png ()
-{	clear
+{       clear
 echo
 echo "These apks are about to optimized with AdvPNG."
 echo
@@ -743,22 +743,22 @@ ls *.apk
 echo
 echo
 if ! [[ -s tmp ]] ; then
-	mkdir tmp
+        mkdir tmp
 fi
 for a in *.apk ; do
-	cd $OUT
-	echo "PNGS in $a will be optimized with AdvPNG"
-	unzip -o $a -d ${a/.apk}-png
-	cd ${a/.apk}-png
-	find . -iname "*.png" | while read PNG 
-		do 
-		if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-			$p/advpng "$PNG"  
-		fi 
-		done
-	zip -r $OUT/tmp/$a *
-	rm -rf $OUT/${a/.apk}-png
-	echo
+        cd $OUT
+        echo "PNGS in $a will be optimized with AdvPNG"
+        unzip -o $a -d ${a/.apk}-png
+        cd ${a/.apk}-png
+        find . -iname "*.png" | while read PNG 
+                do 
+                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
+                        $p/advpng "$PNG"  
+                fi 
+                done
+        zip -r $OUT/tmp/$a *
+        rm -rf $OUT/${a/.apk}-png
+        echo
 done
 echo "New apks might need to be resigned if third-party app"
 cd $OUT/tmp
@@ -808,7 +808,7 @@ esac
 
 while :
 do
-	apk_opt_script
+        apk_opt_script
 done
 
  
@@ -830,14 +830,14 @@ echo ""
 
 cd $OUT
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-	for a in *.apk; do 
-	echo "Zipaligning $a" 
-	echo
-	zipalign -f 4 $a $a.aligned
+        for a in *.apk; do 
+        echo "Zipaligning $a" 
+        echo
+        zipalign -f 4 $a $a.aligned
                 rm $a
                 mv $a.aligned $a
-	echo
-	done
+        echo
+        done
 else
     echo ""
     echo "No apks found to zipalign.."
@@ -861,13 +861,13 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
-echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
-echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
-echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
-echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
-echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
-echo "|                                                 	       |"
+echo "| .___  ___.  __   __    __   __                  By 1982Strand  |"
+echo "| |   \/   | |  | |  |  |  | |  |                                |"
+echo "| |  \  /  | |  | |  |  |  | |  |                                |"       
+echo "| |  |\/|  | |  | |  |  |  | |  |                                |"
+echo "| |  |  |  | |  | |  '--'  | |  |                                |"
+echo "| |__|  |__| |__|  \______/  |__| Building script                |"
+echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        Signing Options                         |"
@@ -1036,24 +1036,24 @@ cd $FLASH
     
     cd $OUT
     if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
-	for apk in $OUT/*.apk; do
-	cp -rf $apk $FLASH/template/system/app;
-	done
+        for apk in $OUT/*.apk; do
+        cp -rf $apk $FLASH/template/system/app;
+        done
     else
-	echo ""
-	echo "No apks found to import..."
-	echo ""
+        echo ""
+        echo "No apks found to import..."
+        echo ""
     fi
     
     cd $FLASH/template/system/app
-	if [[ -e framework-miui-res.apk ]]
-	then mv -f framework-miui-res.apk $FLASH/template/system/framework > /dev/null
-	fi
-	
-	if [[ -e framework-res.apk ]]
-	then mv -f framework-res.apk $FLASH/template/system/framework > /dev/null
-	fi
-	
+        if [[ -e framework-miui-res.apk ]]
+        then mv -f framework-miui-res.apk $FLASH/template/system/framework > /dev/null
+        fi
+        
+        if [[ -e framework-res.apk ]]
+        then mv -f framework-res.apk $FLASH/template/system/framework > /dev/null
+        fi
+        
 # Patch tema titler (officiel rom)
 
 echo ""
@@ -1072,7 +1072,7 @@ find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Simpelt Ur/g' {} \;
 find -name '*.mrm' -exec sed -i 's/简约时钟1/Simpelt Ur/g' {} \;
 
 find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (lille)/g' {} \;
-				   
+                                   
 find -name '*.mrm' -exec sed -i 's/简洁时钟(大右)/Simpelt Ur (stor)/g' {} \;
 
 find -name '*.mrm' -exec sed -i 's/Standard相框4x4/Fotoramme 4x4/g' {} \;
@@ -1098,26 +1098,26 @@ sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
     echo ""
     if [ -d $MODS/out/$ver ]
     then
-	    cd $MODS/out/$ver
-	    if [ -f android.policy.jar ]
-	    then
-		echo ""
-		echo "android.policy.jar found..."
-		cp -f android.policy.jar $FLASH/template/system/framework
-	    else echo ""
-		 echo "No android.policy.jar found, skipping copy.."; break
-	    fi
-	    if [ -f services.jar ]
-	    then
-		echo ""
-		echo "services.jar found..."
-		cp -f services.jar $FLASH/template/system/framework
-	    else echo ""
-		 echo "No services.jar found, skipping copy"; break		
-	    fi
+            cd $MODS/out/$ver
+            if [ -f android.policy.jar ]
+            then
+                echo ""
+                echo "android.policy.jar found..."
+                cp -f android.policy.jar $FLASH/template/system/framework
+            else echo ""
+                 echo "No android.policy.jar found, skipping copy.."; break
+            fi
+            if [ -f services.jar ]
+            then
+                echo ""
+                echo "services.jar found..."
+                cp -f services.jar $FLASH/template/system/framework
+            else echo ""
+                 echo "No services.jar found, skipping copy"; break             
+            fi
     else
-	    echo ""
-	    echo "[--- No modded jars found ---]"; break
+            echo ""
+            echo "[--- No modded jars found ---]"; break
     fi
     
     
@@ -1235,9 +1235,9 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     echo
     echo "Recompiling $file" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool b -f "$file"
-    	if [ -f "$IN/$file" ]
-	then cp -f $IN/$file $OUT
-	fi
+        if [ -f "$IN/$file" ]
+        then cp -f $IN/$file $OUT
+        fi
     break
     done
 else
@@ -1268,14 +1268,14 @@ if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
 
     select zip in $SRC/*.zip
     do
-	[[ $REPLY == x ]] && . $HJEM/build
-	[[ -z $zip ]] && echo "Invalid choice" && continue
-	echo
-	    for apk in $(<$HJEM/translation_list.txt); do 
-	    unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
-	    done
-	unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
-	unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $zip ]] && echo "Invalid choice" && continue
+        echo
+            for apk in $(<$HJEM/translation_list.txt); do 
+            unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
+            done
+        unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
     break
     done
 else
@@ -1301,13 +1301,13 @@ while [ answer != "0" ]
 do
 clear
 echo "|----------------------------------------------------------------|"
-echo "|	.___  ___.  __   __    __   __ 			By 1982Strand  |"
-echo "|	|   \/   | |  | |  |  |  | |  |			  	       |"
-echo "|	|  \  /  | |  | |  |  |  | |  |			               |"	
-echo "|	|  |\/|  | |  | |  |  |  | |  |				       |"
-echo "|	|  |  |  | |  | |  `--'  | |  |				       |"
-echo "|	|__|  |__| |__|  \______/  |__| Building script		       |"
-echo "|                                                 	       |"
+echo "| .___  ___.  __   __    __   __                  By 1982Strand  |"
+echo "| |   \/   | |  | |  |  |  | |  |                                |"
+echo "| |  \  /  | |  | |  |  |  | |  |                                |"       
+echo "| |  |\/|  | |  | |  |  |  | |  |                                |"
+echo "| |  |  |  | |  | |  '--'  | |  |                                |"
+echo "| |__|  |__| |__|  \______/  |__| Building script                |"
+echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "|                        Cleaning Options                        |"
