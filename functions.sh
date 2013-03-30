@@ -61,8 +61,8 @@ echo ""
 cat /dev/null > $LOG/decompile_log.txt
 
 cd $IN
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
-    for file in *.apk ; do
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
+    for file in *.apk *.jar ; do
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
     done
@@ -72,23 +72,10 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than
     rm -r sort.py
 else
     echo ""
-    echo "No apks found to decompile.."
+    echo "No apks/jars found to decompile.."
     echo ""
 fi
 
-if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *jar...
-    for file in *jar; do
-        echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
-        apktool -q d -f $file $DEC/$file
-        remove_line
-    done
-else
-    echo ""
-    echo "No jars found to decompile.."
-    echo ""
-fi
-
- 
 }
 
 
@@ -527,9 +514,9 @@ echo ""
 cat /dev/null > $LOG/recompile_log.txt
 
 cd $DEC
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    for b in *.apk; do
+    for b in *.apk *.jar; do
     echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
     apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
     
@@ -540,21 +527,10 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     done
 else
     echo ""
-    echo "No apks found to recompile.."
+    echo "No apks/jars found to recompile.."
     echo ""
 fi
 
-if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
-
-    for jar in *.jar; do
-    echo "Recompiling $jar" 2>&1 | tee -a $LOG/recompile_log.txt
-    apktool -q b -f $jar 2>&1 | tee -a $LOG/recompile_log.txt
-    done
-else
-    echo ""
-    echo "No jars found to recompile"
-    echo ""
-fi
  
 }
 
@@ -1165,9 +1141,9 @@ echo ""
 echo ""
 
 cd $IN
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    select file in *.apk
+    select file in *.apk *.jar
     do
     cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1182,27 +1158,10 @@ if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
     done
 else
     echo ""
-    echo "No apks found to decompile.."
+    echo "No apks/jars found to decompile.."
     echo ""
 fi
 
-if [ "$(ls -1 | grep '.\+\jar$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *jar...
-    
-    select file in *.jar
-    do
-    cat /dev/null > $LOG/decompile_log.txt
-    [[ $REPLY == x ]] && . $HJEM/build
-    [[ -z $file ]] && echo "Invalid choice for single decompiling" && continue
-    echo
-    echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
-    apktool d -f "$file" $DEC/$file
-    remove_line
-    done
-else
-    echo ""
-    echo "No jars found to decompile.."
-    echo ""
-fi
 
 }
 
@@ -1225,9 +1184,9 @@ echo ""
 
 cd $DEC
 
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    select file in *.apk
+    select file in *.apk *.jar
     do
     cat /dev/null > $LOG/recompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1347,23 +1306,13 @@ done
 cleanup_all () {
 
 cd $IN
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-    for i in *.apk; do
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
+    for i in *.apk *.jar; do
     rm -f $i
     done
-echo "Deleted apks from apk_in.."
+echo "Deleted apks/jars from apk_in.."
 else 
-    echo "No apk files found in apk_in.." || break
-fi
-
-cd $IN
-if [ "$(ls -1 | grep '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for j in *.jar; do
-    rm -f "$j"
-    done
-echo "Deleted jars from apk_in.."
-else
-    echo "No jar files found in apk_in.." || break
+    echo "No apk/jars files found in apk_in.." || break
 fi
 
 cd $DEC
@@ -1379,13 +1328,13 @@ done
 
 
 cd $OUT
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-    for i in *.apk; do
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
+    for i in *.apk *.jar; do
     rm -f $i
     done
-echo "Deleted apks from apk_out.."
+echo "Deleted apks/jars from apk_out.."
 else 
-    echo "No apk files found in apk_out.." || break
+    echo "No apk/jar files found in apk_out.." || break
 fi
 
 
@@ -1428,13 +1377,13 @@ done
 
 
 cd $OUT
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-    for i in *.apk; do
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
+    for i in *.apk *.jar; do
     rm -f $i
     done
-echo "Deleted apks from apk_out.."
+echo "Deleted apks/jars from apk_out.."
 else 
-    echo "No apk files found in apk_out.." || break
+    echo "No apk/jar files found in apk_out.." || break
 fi
 
 
