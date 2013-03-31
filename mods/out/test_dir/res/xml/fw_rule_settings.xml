@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen android:title="@string/fw_action_settings" android:key="pref_root"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <miui.preference.RadioButtonPreference android:persistent="false" android:title="@string/close_rule" android:key="rule_action_disable" />
-    <com.miui.antispam.firewall.ShowModifyPreference android:persistent="false" android:title="@string/opt_reject_blacklist" android:key="rule_action_reject_blacklist" />
-    <com.miui.antispam.firewall.ShowModifyPreference android:persistent="false" android:title="@string/opt_reject_blacklist_stranger" android:key="rule_action_reject_stranger" android:summary="@string/opt_reject_blacklist_stranger_summary" />
-    <com.miui.antispam.firewall.ShowModifyPreference android:persistent="false" android:title="@string/opt_accept_whitelist" android:key="rule_action_accept_whitelist" />
-    <com.miui.antispam.firewall.ShowModifyPreference android:persistent="false" android:title="@string/opt_reject_all" android:key="rule_action_reject_all" />
-</PreferenceScreen>
