@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ActionBarStyle" parent="@miui:style/V5.Widget.ActionBar">
+        <item name="android:height">@dimen/log_detail_title_height</item>
+        <item name="android:displayOptions">showTitle</item>
+    </style>
+    <style name="AntiSpam.Theme.Tab" parent="@miui:style/V5.Theme.Light.ActionBar.NoTitle">
+        <item name="miui:v5_action_bar_tab">true</item>
+    </style>
+    <style name="AntiSpam.Theme.LogActivity" parent="@miui:style/V5.Theme.Light">
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="miui:v5_action_bar_title_layout">@layout/fw_title_panel</item>
+    </style>
+</resources>

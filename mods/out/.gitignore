@@ -25,6 +25,7 @@ Thumbs.db
 *.iso
 *.rar
 *.tar
+1
 *.zip
 *.apk
 
@@ -34,3 +35,5 @@ Thumbs.db
 *.sql
 *.sqlite
 *.directory
+
+3*/

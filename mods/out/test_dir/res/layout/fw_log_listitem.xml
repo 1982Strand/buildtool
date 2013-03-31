@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_vertical" android:id="@id/root" android:paddingTop="@dimen/list_item_padding" android:paddingBottom="@dimen/list_item_padding" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@miui:style/V5.Widget.ListView.Item.DoubleLine"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/head1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:layout_alignParentLeft="true" style="@miui:style/V5.TextAppearance.List.Primary" />
+    <TextView android:id="@id/head2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:layout_alignBottom="@id/head1" android:layout_alignParentRight="true" style="@miui:style/V5.TextAppearance.List.Secondary" />
+    <TextView android:id="@id/body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="false" android:layout_below="@id/head1" style="@miui:style/V5.TextAppearance.List.Secondary" />
+</RelativeLayout>

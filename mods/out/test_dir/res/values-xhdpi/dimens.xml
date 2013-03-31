@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_item_maxwidth">200.0dip</dimen>
+    <dimen name="list_item_title_maxwidth">240.0dip</dimen>
+    <dimen name="log_detail_title_height">71.0dip</dimen>
+</resources>
