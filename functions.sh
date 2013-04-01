@@ -62,7 +62,7 @@ cat /dev/null > $LOG/decompile_log.txt
 
 cd $IN
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for file in *.apk *.jar ; do
+    for file in *; do
         echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $file $DEC/$file
     done
@@ -1140,10 +1140,13 @@ echo "[--- Choose apk number, or x to exit ---]"
 echo ""
 echo ""
 
-cd $IN
-if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    select file in *.apk *.jar
+cd $IN
+list=$(find * ! -name 'decompiled' -prune | grep -v '.gitignore' | awk 'FNR>1') 
+
+if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+
+    select file in $list
     do
     cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1186,7 +1189,7 @@ cd $DEC
 
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    select file in *.apk *.jar
+    select file in *
     do
     cat /dev/null > $LOG/recompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1305,59 +1308,64 @@ done
 
 cleanup_all () {
 
+
+exclude=$(find . ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1') 
+
+    #This is the nested function that we will call to for several directories
+    rm_files () {
+    (IFS='
+    ' 
+    echo "$exclude" | while read i; do
+        rm $i
+    done)
+    }
+
+
 cd $IN
-if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for i in *.apk *.jar; do
-    rm -f $i
-    done
-echo "Deleted apks/jars from apk_in.."
+if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+    rm_files
+echo "Deleted files from apk_in.."
 else 
-    echo "No apk/jars files found in apk_in.." || break
+    echo "No files found in apk_in.." || break
 fi
 
 cd $DEC
-for i in * 
-do
-    if test -d "$i" 
-    then rm -rf "$i"
-    echo "Deleted folders in decompiled.."
-    else
-       echo "No decompile folders found.." || break
-    fi
-done
-
+if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+    rm_files
+echo "Deleted files from decompiled.."
+else 
+    echo "No files found in decompiled.." || break
+fi
 
 cd $OUT
-if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for i in *.apk *.jar; do
-    rm -f $i
-    done
-echo "Deleted apks/jars from apk_out.."
+if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+    rm_files
+echo "Deleted files from apk_out.."
 else 
-    echo "No apk/jar files found in apk_out.." || break
+    echo "No files found in apk_out.." || break
+fi
+
+cd $MODS/out
+if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+    rm_files
+    echo "Deleted files from mods folder.."
+    else
+       echo "No files found in MODS folder.." || break
 fi
 
 
-cd $MODS/out
-for i in * 
-do
-    if test -d "$i" 
-    then rm -rf "$i"
-    echo "Deleted $i from mods folder.."
-    else
-       echo "No files found in MODS folder.." || break
-    fi
-done
-
 
 cd $FLASH
-for i in *_DA.zip; do
-    [ -e "$i" ] || echo "No zip files found in flashables.." || break
-    rm -f "$i"
-done
+if [ "$(find . -name *_DA.zip | wc -l)" -gt 0 ]; then
+    for $i in $(find . -name *_DA.zip); do
+        rm $i
+    done
+    echo "Present zip files deleted"
+else
+    echo "No zip files found"
+fi
 
 }
-
 
 ###  clean all but apks  ####
 

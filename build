@@ -32,6 +32,8 @@ XTRA=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/extras
 
 source $HJEM/functions.sh
 
+
+
 clear
 
 while [ answer != "0" ] 
