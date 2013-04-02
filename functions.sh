@@ -61,10 +61,11 @@ echo ""
 cat /dev/null > $LOG/decompile_log.txt
 
 cd $IN
+exclude="$(find . -maxdepth 1 -name '*.apk' | cut -c 3- | sort  && find . -maxdepth 1 -name '*.jar' | cut -c 3- | sort)"
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for file in *; do
-        echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
-        apktool -q d -f $file $DEC/$file
+    for i in $(echo $exclude); do
+	echo "Decompiling $i" 2>&1 | tee -a $LOG/decompile_log.txt
+        apktool -q d -f $i $DEC/$i
     done
     cp -f $HJEM/sort.py $DEC
     cd $DEC
@@ -1226,18 +1227,20 @@ echo ""
 echo ""
 
 cd $SRC
+
 if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
 
-    select zip in $SRC/*.zip
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
     do
         [[ $REPLY == x ]] && . $HJEM/build
-        [[ -z $zip ]] && echo "Invalid choice" && continue
+        [[ -z $choice ]] && echo "Invalid choice" && continue
         echo
             for apk in $(<$HJEM/translation_list.txt); do 
-            unzip -j -o -q $zip system/app/$apk -d $IN >& /dev/null;
+            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
             done
-        unzip -j -o -q $zip system/framework/framework-res.apk -d $IN >& /dev/null;
-        unzip -j -o -q $zip system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
     break
     done
 else
@@ -1308,65 +1311,60 @@ done
 
 cleanup_all () {
 
-
-exclude=$(find . ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1') 
-
-    #This is the nested function that we will call to for several directories
     rm_files () {
     (IFS='
-    ' 
+    '
+    exclude="$(find . -maxdepth 1 ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1' | sort -r)"
     echo "$exclude" | while read i; do
-        rm $i
+        rm -r $i
     done)
     }
 
-
-cd $IN
-if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
-    rm_files
-echo "Deleted files from apk_in.."
-else 
-    echo "No files found in apk_in.." || break
-fi
-
 cd $DEC
-if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+if [ "$(ls $DEC | wc -l)" -gt 0 ]; then
     rm_files
 echo "Deleted files from decompiled.."
 else 
-    echo "No files found in decompiled.." || break
+    echo "No files found in decompiled.." 
+fi
+
+cd $IN
+if [ "$(ls $IN | wc -l)" -gt 1 ]; then
+    rm_files
+echo "Deleted files from apk_in.."
+else 
+    echo "No files found in apk_in.." 
 fi
 
 cd $OUT
-if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+if [ "$(ls $OUT | wc -l)" -gt 0 ]; then
     rm_files
 echo "Deleted files from apk_out.."
 else 
-    echo "No files found in apk_out.." || break
+    echo "No files found in apk_out.." 
 fi
 
 cd $MODS/out
-if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
+if [ "$(ls $MODS/out | wc -l)" -gt 0 ]; then
     rm_files
-    echo "Deleted files from mods folder.."
+    echo "Deleted files from MODS folder.."
     else
-       echo "No files found in MODS folder.." || break
+       echo "No files found in MODS folder.." 
 fi
 
-
-
-cd $FLASH
-if [ "$(find . -name *_DA.zip | wc -l)" -gt 0 ]; then
-    for $i in $(find . -name *_DA.zip); do
+cd $FLASH 
+if [ "$(ls $FLASH | wc -l)" -gt 0 ]; then
+    (IFS='
+    '
+    echo $(find . -name *_DA.zip) | while read i; do
         rm $i
-    done
-    echo "Present zip files deleted"
+    done >/dev/null)
+    echo "flashable folder cleaned"
 else
-    echo "No zip files found"
+    echo "No files found in flashable.."
 fi
 
 }
-
 ###  clean all but apks  ####
 
 
