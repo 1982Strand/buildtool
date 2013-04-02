@@ -515,14 +515,14 @@ echo ""
 cat /dev/null > $LOG/recompile_log.txt
 
 cd $DEC
+exclude="$(find . -maxdepth 1 -name '*.apk' | cut -c 3- | sort  && find . -maxdepth 1 -name '*.jar' | cut -c 3- | sort)"
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-
-    for b in *.apk *.jar; do
-    echo "Recompiling $b" 2>&1 | tee -a $LOG/recompile_log.txt
-    apktool -q b -f $b 2>&1 | tee -a $LOG/recompile_log.txt
+    for i in $(echo $exclude); do
+    echo "Recompiling $i" 2>&1 | tee -a $LOG/recompile_log.txt
+    apktool -q b -f $i 2>&1 | tee -a $LOG/recompile_log.txt
     
-        if [ -f "$IN/$b" ]
-        then cp -f $IN/$b $OUT
+        if [ -f "$IN/$i" ]
+        then cp -f $IN/$i $OUT
         fi
        
     done
@@ -973,11 +973,11 @@ echo ""
 echo ""
 
 select zip in $SRC/*.zip
-do 
+do
     [[ $REPLY == x ]] && . $HJEM/build
     [[ -z $zip ]] && echo "Invalid choice for flashable zip" && continue
-    echo
-    ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
+echo
+ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
 
 cd $FLASH
 
@@ -988,7 +988,7 @@ cd $FLASH
     cd $FLASH/template/system/media/theme/default
     mv -f lockscreen lockscreen.zip
 
-    7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance"  > /dev/null
+    7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance" > /dev/null
     mv -f lockscreen.zip lockscreen
 
 # Oversæt clock widget
@@ -1007,27 +1007,25 @@ cd $FLASH
     7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da"
     mv -f simple_clock.zip simple_clock.mrc
     
-#   7za u -mx0 -r clock.mrc "$XTRA/clock/strings/strings_da.xml"
+# 7za u -mx0 -r clock.mrc "$XTRA/clock/strings/strings_da.xml"
     
 # Kopier apker over
     
     cd $OUT
     if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
         for apk in $OUT/*.apk; do
-        cp -rf $apk $FLASH/template/system/app;
+cp -rf $apk $FLASH/template/system/app;
         done
-    else
-        echo ""
+else
+echo ""
         echo "No apks found to import..."
         echo ""
     fi
-    
-    cd $FLASH/template/system/app
+cd $FLASH/template/system/app
         if [[ -e framework-miui-res.apk ]]
         then mv -f framework-miui-res.apk $FLASH/template/system/framework > /dev/null
         fi
-        
-        if [[ -e framework-res.apk ]]
+if [[ -e framework-res.apk ]]
         then mv -f framework-res.apk $FLASH/template/system/framework > /dev/null
         fi
         
@@ -1075,32 +1073,32 @@ sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
     echo ""
     if [ -d $MODS/out/$ver ]
     then
-            cd $MODS/out/$ver
+cd $MODS/out/$ver
             if [ -f android.policy.jar ]
             then
-                echo ""
+echo ""
                 echo "android.policy.jar found..."
                 cp -f android.policy.jar $FLASH/template/system/framework
             else echo ""
                  echo "No android.policy.jar found, skipping copy.."; break
-            fi
-            if [ -f services.jar ]
+fi
+if [ -f services.jar ]
             then
-                echo ""
+echo ""
                 echo "services.jar found..."
                 cp -f services.jar $FLASH/template/system/framework
             else echo ""
-                 echo "No services.jar found, skipping copy"; break             
-            fi
-    else
-            echo ""
+                 echo "No services.jar found, skipping copy"; break
+fi
+else
+echo ""
             echo "[--- No modded jars found ---]"; break
-    fi
+fi
     
     
 # Pak filerne og navngiv efter version, ryd op, løkke afsluttet
 done
-    cp -f $FLASH/template.zip $FLASH/flashable.zip
+cp -f $FLASH/template.zip $FLASH/flashable.zip
     7za a -tzip $FLASH/flashable.zip $FLASH/template/system -mx3 > /dev/null
     mv -f $FLASH/flashable.zip $FLASH/"$ver"_DA.zip
     echo ""
@@ -1110,23 +1108,19 @@ done
     for apk in `find -name \*.apk -type f`
     do rm -rf $apk
     done
-    
-    if [[ -e build.prop ]]
+if [[ -e build.prop ]]
     then rm -f build.prop
     fi
 
-    cd $FLASH/template/system/media/theme/default
+cd $FLASH/template/system/media/theme/default
     if [[ -e lockscreen ]]
     then rm -f lockscreen
     fi
-    
-    cd $FLASH/template/system/media/theme
+cd $FLASH/template/system/media/theme
     if [[ -e .data ]]
     then rm -rf .data
     fi
 }
-
-
 
 ############################################
 ###                                      ###
@@ -1143,11 +1137,10 @@ echo ""
 
 
 cd $IN
-list=$(find * ! -name 'decompiled' -prune | grep -v '.gitignore' | awk 'FNR>1') 
+exclude="$(find . -maxdepth 1 -name '*.apk' | cut -c 3- | sort  && find . -maxdepth 1 -name '*.jar' | cut -c 3- | sort)"
+if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-if [ "$(echo $exclude | wc -l)" -gt 0 ]; then
-
-    select file in $list
+    select file in $(echo $exclude)
     do
     cat /dev/null > $LOG/decompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1188,9 +1181,10 @@ echo ""
 
 cd $DEC
 
+exclude="$(find . -maxdepth 1 -name '*.apk' | cut -c 3- | sort  && find . -maxdepth 1 -name '*.jar' | cut -c 3- | sort)"
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 
-    select file in *
+    select file in $(echo $exclude)
     do
     cat /dev/null > $LOG/recompile_log.txt
     [[ $REPLY == x ]] && . $HJEM/build
@@ -1281,6 +1275,7 @@ echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
 echo "| 1.  Clean all folders                                          |"
 echo "| 2.  Clean all but apks in apk_in folder                        |"
+echo "| 3.  Clean apk_out folder                                       |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Return to main menu                                         |"
@@ -1294,6 +1289,9 @@ read -p " " answer
        2) clear
        cleanup_not_apk
        ;;
+       3) clear
+       cleanup_apk_out
+       ;;
        x) clear
        . $HJEM/build
        ;;
@@ -1306,6 +1304,10 @@ done
 
 }
 
+### universal clean function ###
+
+
+    
 ###  clean all  ###
 
 
@@ -1369,50 +1371,65 @@ fi
 
 
 cleanup_not_apk () {
+    
+    rm_files () {
+    (IFS='
+    '
+    exclude="$(find . -maxdepth 1 ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1' | sort -r)"
+    echo "$exclude" | while read i; do
+        rm -r $i
+    done)
+    }
    
 cd $DEC
-for i in * 
-do
-    if test -d "$i" 
-    then rm -rf "$i"
-    echo "Deleted folders in decompiled.."
-    else
-       echo "No decompile folders found.." || break
-    fi
-done
-
-
-cd $OUT
-if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
-    for i in *.apk *.jar; do
-    rm -f $i
-    done
-echo "Deleted apks/jars from apk_out.."
+if [ "$(ls $DEC | wc -l)" -gt 0 ] &> /dev/null; then
+    rm_files
+echo "Deleted files from decompiled.."
 else 
-    echo "No apk/jar files found in apk_out.." || break
+    echo "No files found in decompiled.." 
 fi
 
+cd $OUT
+if [ "$(ls $OUT | wc -l)" -gt 0 ]; then
+    rm_files
+echo "Deleted files from apk_out.."
+else 
+    echo "No files found in apk_out.." 
+fi
 
 cd $MODS/out
-for i in * 
-do
-    if test -d "$i" 
-    then rm -rf "$i"
-    echo "Deleted $i from mods folder.."
+if [ "$(ls $MODS/out | wc -l)" -gt 0 ]; then
+    rm_files
+    echo "Deleted files from MODS folder.."
     else
-       echo "No files found in MODS folder.." || break
-    fi
-done
+       echo "No files found in MODS folder.." 
+fi
 
-
-cd $FLASH
-for i in *_DA.zip; do
-    [ -e "$i" ] || echo "No zip files found in flashables.." || break
-    rm -f "$i"
-done
+cd $FLASH 
+if [ "$(ls $FLASH | wc -l)" -gt 0 ]; then
+    (IFS='
+    '
+    echo $(find . -name *_DA.zip) | while read i; do
+        rm $i
+    done >/dev/null)
+    echo "flashable folder cleaned"
+else
+    echo "No files found in flashable.."
+fi
 
 }
 
+cleanup_apk_out () {
+
+cd $OUT
+if [ "$(ls $OUT | wc -l)" -gt 0 ]; then
+    rm_files
+echo "Deleted files from apk_out.."
+else 
+    echo "No files found in apk_out.." 
+fi
+
+}
 
 ############################################
 ###                                      ###
