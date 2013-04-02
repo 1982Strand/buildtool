@@ -1355,7 +1355,7 @@ if [ "$(ls $MODS/out | wc -l)" -gt 0 ]; then
 fi
 
 cd $FLASH 
-if [ "$(ls $FLASH | wc -l)" -gt 0 ]; then
+if [ "$(ls $FLASH | grep -e '.\+\DA.zip$' | wc -l)" -gt 0 ]; then
     (IFS='
     '
     echo $(find . -name *_DA.zip) | while read i; do
