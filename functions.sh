@@ -53,6 +53,8 @@ apktool if $IN/framework-miui-res.apk
 ## Thanks to Soupmagnet (xdadevelopers.com) for the improved code!
 
 decompile_apks () {
+
+TIMES=$SECONDS
    
 echo ""
 echo "[--- Decompiling apks/jars ---]"
@@ -76,6 +78,12 @@ else
     echo "No apks/jars found to decompile.."
     echo ""
 fi
+
+TIMEE=$SECONDS
+DIFF=$(echo "$TIMEE-$TIMES" | bc)
+
+echo ""
+printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF%3600/60)) $(($DIFF%60))
 
 }
 
@@ -508,6 +516,8 @@ patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/
 
 recompile_apks () {
 
+TIMES=$SECONDS
+
 echo ""
 echo "[--- Recompile apks/jars ---]"
 echo ""
@@ -532,7 +542,12 @@ else
     echo ""
 fi
 
- 
+TIMEE=$SECONDS
+DIFF=$(echo "$TIMEE-$TIMES" | bc)
+
+echo ""
+printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF%3600/60)) $(($DIFF%60))
+
 }
 
 ############################################
@@ -1306,21 +1321,19 @@ done
 
 ### universal clean function ###
 
-
-    
-###  clean all  ###
-
-
-cleanup_all () {
-
-    rm_files () {
+rm_files () {
     (IFS='
     '
     exclude="$(find . -maxdepth 1 ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1' | sort -r)"
     echo "$exclude" | while read i; do
         rm -r $i
     done)
-    }
+}
+    
+###  clean all  ###
+
+
+cleanup_all () {
 
 cd $DEC
 if [ "$(ls $DEC | wc -l)" -gt 0 ]; then
@@ -1355,7 +1368,7 @@ if [ "$(ls $MODS/out | wc -l)" -gt 0 ]; then
 fi
 
 cd $FLASH 
-if [ "$(ls $FLASH | grep -e '.\+\DA.zip$' | wc -l)" -gt 0 ]; then
+if [ "$(ls $FLASH | grep -e '.\+DA.zip$' | wc -l)" -gt 0 ]; then
     (IFS='
     '
     echo $(find . -name *_DA.zip) | while read i; do
@@ -1372,15 +1385,7 @@ fi
 
 cleanup_not_apk () {
     
-    rm_files () {
-    (IFS='
-    '
-    exclude="$(find . -maxdepth 1 ! -name 'decompiled' | grep -v '.gitignore' | awk 'FNR>1' | sort -r)"
-    echo "$exclude" | while read i; do
-        rm -r $i
-    done)
-    }
-   
+    
 cd $DEC
 if [ "$(ls $DEC | wc -l)" -gt 0 ] &> /dev/null; then
     rm_files
@@ -1406,7 +1411,7 @@ if [ "$(ls $MODS/out | wc -l)" -gt 0 ]; then
 fi
 
 cd $FLASH 
-if [ "$(ls $FLASH | wc -l)" -gt 0 ]; then
+if [ "$(ls $FLASH | grep -e '.\+DA.zip$' |wc -l)" -gt 0 ]; then
     (IFS='
     '
     echo $(find . -name *_DA.zip) | while read i; do
