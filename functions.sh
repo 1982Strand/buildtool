@@ -15,11 +15,12 @@ echo ""
 echo "[--- Using apktool 1.5.2 and patched aapt ---]"
 echo ""
 
-sudo cp -f $HJEM/apktool/1.5.2/apktool.jar /usr/local/bin
-sudo cp -f $HJEM/apktool/1.5.2/aapt /usr/local/bin
-sudo cp -f $HJEM/apktool/1.5.2/apktool /usr/local/bin
+sudo cp -f $TOOLS/apktool_1.5.2.jar /usr/local/bin/apktool.jar
+sudo cp -f $TOOLS/aapt /usr/local/bin
+sudo cp -f $TOOLS/apktool /usr/local/bin
 
 }
+
 
 ############################################
 ###                                      ###
@@ -69,7 +70,7 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 	echo "Decompiling $i" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $i $DEC/$i
     done
-    cp -f $HJEM/sort.py $DEC
+    cp -f $TOOLS/sort.py $DEC
     cd $DEC
     python sort.py
     rm -r sort.py
@@ -186,9 +187,8 @@ sed -i '/const-string v2, "baidu"/c \
 const-string v2, "google"' $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
 
 fi
-
-
 }
+
 
 ############################################
 ###                                      ###
@@ -278,6 +278,7 @@ patch -i $MODS/centerclock/status_bar.diff $DEC/MiuiSystemUI.apk/res/layout/stat
 
 }
 
+
 ###  Add emoji tab to mms  ###
 
 mms () {
@@ -289,7 +290,6 @@ echo ""
 patch -i $MODS/Mms/bools.diff $DEC/Mms.apk/res/values/bools.xml
  
 }
-
 
 
 ###  Add 3way reboot option  ###
@@ -480,7 +480,6 @@ done
 }
 
 
-
 ### Add center clock to stock rom ###
 
 stock_centerclock () {
@@ -506,6 +505,7 @@ patch -i $MODS/stock_transparent_statusbar/tw_super_status_bar.diff $DEC/SystemU
 patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/values/drawables.xml
  
 }
+
 
 ############################################
 ###                                      ###
@@ -550,9 +550,50 @@ printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF
 
 }
 
+
 ############################################
 ###                                      ###
-###      7. Inject resources             ###
+###      7. Optimize PNGs                ###
+###                                      ###
+############################################
+
+
+opt_png () {
+
+TIMES=$SECONDS
+
+echo ""
+echo "[--- Optimize PNGs ---]"
+echo ""
+
+echo "This operation may take a while, please wait..."
+echo ""
+    
+cd $DEC    
+    for a in *.apk; do
+    echo "Processing $a..."
+    find $DEC/$a/build/apk/ -iname "*.png" | while read PNG
+	do
+	    if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then
+	    $TOOLS/pngcrush "$PNG" "opt_png.png" &>/dev/null
+	    mv -f opt_png.png $PNG
+	    fi
+	done
+    done
+
+
+TIMEE=$SECONDS
+DIFF=$(echo "$TIMEE-$TIMES" | bc)
+
+echo ""
+printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF%3600/60)) $(($DIFF%60))
+
+}
+
+
+############################################
+###                                      ###
+###      8. Inject resources             ###
 ###                                      ###
 ############################################
 
@@ -579,230 +620,6 @@ else
     echo "No recompiled files to process.."
     echo ""
 fi
- 
-}
-
-
-
-############################################
-###                                      ###
-###      8. Optimize PNGs                ###
-###                                      ###
-############################################
-
-
-opt_png () {
-   
-# Png Optimization
-# Author: Tommy Nguyen [tommytomatoe]
-# Version: 1.0.2
-# Date: August 23, 2011
-# Contact: tommytomatoe@gmail.com
-
-# Modified by Dan Strand [1982Strand]
-
-
-
-##functions
-
-enter()
-{       echo
-        echo "Please press [enter] to continue";
-        read -s -n 1 key
-        if [[ $key = "" ]]; then 
-                echo
-                clear
-        fi
-}
-
-png_out ()
-{       clear
-echo "Warning. Pngout has been known to render the png 'un-editible'"
-echo "Even so, it is arguably the best at optimizing pngs"
-echo "Proceed only after you've made backups of your png/apk"
-echo
-cd $OUT
-echo "These apks are about to optimized with PNGout."
-echo
-cd $OUT
-ls *.apk
-echo
-
-echo
-if ! [[ -s tmp ]] ; then
-        mkdir tmp
-fi
-for a in *.apk ; do
-        cd $OUT
-        echo "PNGS in $a will be optimized with PNGout"
-        unzip -o $a -d ${a/.apk}-png
-        cd ${a/.apk}-png
-        find . -iname "*.png" | while read PNG 
-                do 
-                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-                        $p/pngout "$PNG"  
-                fi 
-                done
-        zip -r $OUT/tmp/$a *
-        rm -rf $OUT/${a/.apk}-png
-        echo
-done
-echo "New apks might need to be resigned if third-party app"
-cd $OUT/tmp
-for a in *.apk ; do
-mv -f $a $OUT
-done
-rm -r $OUT/tmp
-}
-
-png_crush ()
-{       clear
-echo
-echo "These apks are about to optimized with pngCrush."
-echo
-cd $OUT
-ls *.apk
-echo
-echo
-if ! [[ -s tmp ]] ; then
-        mkdir tmp
-fi
-for a in *.apk ; do
-        cd $OUT
-        echo "PNGS in $a will be optimized with pngCrush"
-        unzip -o $a -d ${a/.apk}-png
-        cd ${a/.apk}-png
-        find . -iname "*.png" | while read PNG 
-                do 
-                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-                        $p/pngcrush "$PNG"  
-                fi 
-                done
-        zip -r $OUT/tmp/$a *
-        rm -rf $OUT/${a/.apk}-png
-        echo
-done
-echo "New apks might need to be resigned if third-party app"
-cd $OUT/tmp
-for a in *.apk ; do
-mv -f $a $OUT
-done
-rm -r $OUT/tmp
-}
-
-opti_png ()
-{       clear
-echo
-echo "These apks are about to optimized with OptiPNG."
-echo
-cd $OUT
-ls *.apk
-echo
-echo
-if ! [[ -s tmp ]] ; then
-        mkdir tmp
-fi
-for a in *.apk ; do
-        cd $OUT
-        echo "PNGS in $a will be optimized with OptiPNG"
-        unzip -o $a -d ${a/.apk}-png
-        cd ${a/.apk}-png
-        find . -iname "*.png" | while read PNG 
-                do 
-                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-                        $p/optipng "$PNG"  
-                fi 
-                done
-        zip -r $OUT/tmp/$a *
-        rm -rf $OUT/${a/.apk}-png
-        echo
-done
-echo "New apks might need to be resigned if third-party app"
-cd $OUT/tmp
-for a in *.apk ; do
-mv -f $a $OUT
-done
-rm -r $OUT/tmp
-}
-
-adv_png ()
-{       clear
-echo
-echo "These apks are about to optimized with AdvPNG."
-echo
-cd $OUT
-ls *.apk
-echo
-echo
-if ! [[ -s tmp ]] ; then
-        mkdir tmp
-fi
-for a in *.apk ; do
-        cd $OUT
-        echo "PNGS in $a will be optimized with AdvPNG"
-        unzip -o $a -d ${a/.apk}-png
-        cd ${a/.apk}-png
-        find . -iname "*.png" | while read PNG 
-                do 
-                if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then 
-                        $p/advpng "$PNG"  
-                fi 
-                done
-        zip -r $OUT/tmp/$a *
-        rm -rf $OUT/${a/.apk}-png
-        echo
-done
-echo "New apks might need to be resigned if third-party app"
-cd $OUT/tmp
-for a in *.apk ; do
-mv -f $a $OUT
-done
-rm -r $OUT/tmp
-}
-
-apk_opt_script () 
-{
-clear
-p=~/buildtool/png_tool
-echo "PNG Optimzers"
-echo
-echo "Please be aware that this process could take some time"
-echo "New apks might need to be resigned if third-party app"
-echo 
-echo "|---------------------------------------------|"
-echo "| 1.  pngout   - best, but SLOW! read Warning |"
-echo "|              - version 07.22.2011           |"
-echo "|                                             |"
-echo "| 2.  pngcrush - used by cyanogenmod          |"
-echo "|              - v1.7.16 [compiled 08.23.2011]|"
-echo "|                                             |"
-echo "| 3.  optipng  - fastest pngopt method        |"
-echo "|              - v0.6.5 [compiled 08.23.2011] |"
-echo "|                                             |"
-echo "| 4.  advpng   - opts with the 7-zip method   |"
-echo "|              - v1.15 [compiled 08.23.2011]  |"
-echo "|                                             |"
-echo "|---------------------------------------------|"
-echo "| x.  Return to main menu                     |"
-echo "|---------------------------------------------|"
-echo "|---------------------------------------------|"
-printf %s " Select a png opt tool: "
-read num
-case $num in
- 1) png_out;;
- 2) png_crush;;
- 3) opti_png;;
- 4) adv_png;;
- x) clear; . $HJEM/build;;
- *) echo; echo "$num is not a valid option"; enter;
-esac
-}
-
-while :
-do
-        apk_opt_script
-done
-
  
 }
 
@@ -836,7 +653,6 @@ else
     echo ""
 fi 
 }
-
 
 
 ############################################
@@ -895,6 +711,7 @@ read -p " " answer
 done
 
 }
+
 
 ### Sign all apks
 
@@ -1137,6 +954,7 @@ cd $FLASH/template/system/media/theme
     fi
 }
 
+
 ############################################
 ###                                      ###
 ###      12. decompile singke apk/jar    ###
@@ -1163,7 +981,7 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     echo
     echo "Decompiling $file" 2>&1 | tee -a $LOG/decompile_log.txt
     apktool d -f "$file" $DEC/$file
-    cp -f $HJEM/sort.py $DEC/$file
+    cp -f $TOOLS/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
     break
@@ -1176,7 +994,6 @@ fi
 
 
 }
-
 
 
 ############################################
@@ -1252,12 +1069,12 @@ if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
         unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
     break
     done
+echo "Files extracted..."
 else
     echo ""
     echo "No zip files found.."
     echo ""
 fi
-#zip=dummy
  
 }
 
@@ -1491,8 +1308,6 @@ do
 done
  
 }
-
-
 
 
 

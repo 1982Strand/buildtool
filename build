@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Tool is developed primarily to work with MIUI roms, from miuiandroid.com, for the Samsung Galaxy S3
+#  Tool is developed primarily to work with MIUI roms, for the Samsung Galaxy S3
 #  
 #  It is focusing on adding danish translations for a given rom, creating a language pack for it
 #  
@@ -26,6 +26,7 @@ SIGN=~/buildtool/signing
 FLASH=~/buildtool/flashable
 LOG=~/buildtool/log
 MODS=~/buildtool/mods
+TOOLS=~/buildtool/tools
 MAIN=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/main
 DEVICE=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/device
 XTRA=~/buildtool/translations/XML_MIUI-v5_Danish/Danish/extras
@@ -35,6 +36,7 @@ source $HJEM/functions.sh
 
 
 clear
+cd $HJEM
 
 while [ answer != "0" ] 
 do
@@ -58,8 +60,8 @@ echo "| 3.  Add translations          ||                               |"
 echo "| 4.  Fix MIUI sources          ||                               |"
 echo "| 5.  Add predefined Mods       ||                               |"
 echo "| 6.  Recompile apks/jars       ||                               |"
-echo "| 7.  Inject resources          ||                               |"
-echo "| 8.  Optimize pngs             ||                               |"
+echo "| 7.  Optimize PNGS             ||                               |"
+echo "| 8.  Inject resources          ||                               |"
 echo "| 9.  Zipalign apks             ||                               |"
 echo "| 10. Signing Options           ||                               |"
 echo "| 11. Build Flashable Zip       ||                               |"
@@ -95,10 +97,10 @@ read -p " " answer
        recompile_apks
        ;;
        7) clear
-       inject_res
+       opt_png
        ;;
        8) clear
-       opt_png
+       inject_res
        ;;
        9) clear
        zip_align
