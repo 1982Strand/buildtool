@@ -610,10 +610,11 @@ cd $OUT
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
 
     for apk in *.apk; do
-        echo "Injecting res, resources.arsc and classes.dex for $apk " 2>&1 | tee -a $LOG/inject_log.txt
-        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc 2>&1 | tee -a $LOG/inject_log.txt
-        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex 2>&1 | tee -a $LOG/inject_log.txt
-        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res 2>&1 | tee -a $LOG/inject_log.txt
+	echo "Injecting res, resources.arsc and classes.dex for $apk " &>> $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/resources.arsc &>> $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/classes.dex &>> $LOG/inject_log.txt
+        7za u -r -mx0 -tzip $OUT/$apk $DEC/$apk/build/apk/res &>> $LOG/inject_log.txt
+
     done
 else
     echo ""
