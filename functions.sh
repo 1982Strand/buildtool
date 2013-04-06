@@ -849,7 +849,10 @@ ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create ve
 cd $FLASH
 
 # Tilføj oversættelse til låseskærm
-
+    echo ""
+    echo "Adding translation to lockscreen..."
+    echo ""
+    
     unzip -u -j $zip system/media/theme/default/lockscreen -d "$FLASH/template/system/media/theme/default" > /dev/null
 
     cd $FLASH/template/system/media/theme/default
@@ -858,25 +861,52 @@ cd $FLASH
     7za u -mx0 -tzip -r lockscreen.zip "$XTRA/lockscreen/advance" > /dev/null
     mv -f lockscreen.zip lockscreen
 
+
+# Tilføj oversættelse til alarmskærm (deskclock)
+    
+    echo ""
+    echo "Adding translation to alarmscreen (Deskclock)..."
+    echo ""
+
+    
+    unzip -u -j $zip system/media/theme/default/alarmscreen -d "$FLASH/template/system/media/theme/default" > /dev/null
+
+    cd $FLASH/template/system/media/theme/default
+    mv -f alarmscreen alarmscreen.zip
+
+    7za u -mx0 -tzip -r alarmscreen.zip "$XTRA/alarmscreen/strings" > /dev/null
+    mv -f alarmscreen.zip alarmscreen
+
+
 # Oversæt clock widget
 
 # system/media/theme/.data/content/clock_2x4/simple_clock/images_da
 # system/media/theme/.data/content/clock_2x4/clock/strings/strings_da.xml
 
-    unzip -o $zip system/media/theme/.data/content/clock_2x4/\* -d $FLASH/template
+    echo ""
+    echo "Adding translation to clock widgets..."
+    echo ""
+
+
+    unzip -o $zip system/media/theme/.data/content/clock_2x4/\* -d $FLASH/template > /dev/null
     cd $FLASH/template/system/media/theme/.data/content/clock_2x4
     
     mv -f clock.mrc clock.zip
-    7za u -mx0 -r clock.zip "$XTRA/clock/strings"
+    7za u -mx0 -r clock.zip "$XTRA/clock/strings" > /dev/null
     mv -f clock.zip clock.mrc
     
     mv -f simple_clock.mrc simple_clock.zip
-    7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da"
+    7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da" > /dev/null
     mv -f simple_clock.zip simple_clock.mrc
     
 # 7za u -mx0 -r clock.mrc "$XTRA/clock/strings/strings_da.xml"
     
 # Kopier apker over
+    
+    echo ""
+    echo "Importing apks from apk_out..."
+    echo ""
+
     
     cd $OUT
     if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then #if there are more than 0 results of *.apk...
@@ -899,35 +929,35 @@ if [[ -e framework-res.apk ]]
 # Patch tema titler (officiel rom)
 
 echo ""
-echo "[--- Patch Miui Theme titles ---]"
+echo "Adding translation to Miui Theme titles..."
 echo ""
 
-unzip -o $zip system/media/theme/.data/meta/\* -d $FLASH/template
+unzip -o $zip system/media/theme/.data/meta/\* -d $FLASH/template > /dev/null
 
 cd $FLASH/template
-find -name '*.mrm' -exec sed -i 's/默认/Standard/g' {} \;
+find -name '*.mrm' -exec sed -i 's/默认/Standard/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/翻页时钟1/Flip Ur/g' {} \;
+find -name '*.mrm' -exec sed -i 's/翻页时钟1/Flip Ur/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Simpelt Ur/g' {} \;
+find -name '*.mrm' -exec sed -i 's/动态指针时钟2/Simpelt Ur/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/简约时钟1/Simpelt Ur/g' {} \;
+find -name '*.mrm' -exec sed -i 's/简约时钟1/Simpelt Ur/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (lille)/g' {} \;
+find -name '*.mrm' -exec sed -i 's/简洁时钟(小右)/Simpelt Ur (lille)/g' {} \; > /dev/null
                                    
-find -name '*.mrm' -exec sed -i 's/简洁时钟(大右)/Simpelt Ur (stor)/g' {} \;
+find -name '*.mrm' -exec sed -i 's/简洁时钟(大右)/Simpelt Ur (stor)/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/Standard相框4x4/Fotoramme 4x4/g' {} \;
+find -name '*.mrm' -exec sed -i 's/Standard相框4x4/Fotoramme 4x4/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/Standard相框2x4/Fotoramme 2x4/g' {} \;
+find -name '*.mrm' -exec sed -i 's/Standard相框2x4/Fotoramme 2x4/g' {} \; > /dev/null
 
-find -name '*.mrm' -exec sed -i 's/Standard相框2x2/Fotoramme 2x2/g' {} \;
+find -name '*.mrm' -exec sed -i 's/Standard相框2x2/Fotoramme 2x2/g' {} \; > /dev/null
 
 echo ""
-echo "Patching Build.prop..."
+echo "Patching Build.prop for danish locale..."
 echo ""
 
-unzip -u -j $zip system/build.prop -d $FLASH/template/system
+unzip -u -j $zip system/build.prop -d $FLASH/template/system > /dev/null
 
 cd $FLASH/template/system
 sed -i 's/ro.product.locale.language=zh/ro.product.locale.language=da/g' build.prop
@@ -936,7 +966,7 @@ sed -i 's/ro.product.locale.region=CN/ro.product.locale.region=DK/g' build.prop
     
 # Kopier eventuelle mods over
     echo ""
-    echo "[--- Checking if MODS exist ---]"
+    echo "Importing MODS if present..."
     echo ""
     if [ -d $MODS/out/$ver ]
     then
@@ -959,17 +989,23 @@ echo ""
 fi
 else
 echo ""
-            echo "[--- No modded jars found ---]"; break
+            echo "No modded jars found..."; break
 fi
     
     
 # Pak filerne og navngiv efter version, ryd op, løkke afsluttet
 done
+
+    echo ""
+    echo "Compressing files to new zip..."
+    echo ""
+
+
 cp -f $FLASH/template.zip $FLASH/flashable.zip
     7za a -tzip $FLASH/flashable.zip $FLASH/template/system -mx3 > /dev/null
     mv -f $FLASH/flashable.zip $FLASH/"$ver"_DA.zip
     echo ""
-    echo "[--- Done! Output zip is: "$ver"_DA.zip"
+    echo "[--- Done! Output zip is: "$ver"_DA.zip ---]"
     
     cd $FLASH/template/system
     for apk in `find -name \*.apk -type f`
@@ -983,6 +1019,12 @@ cd $FLASH/template/system/media/theme/default
     if [[ -e lockscreen ]]
     then rm -f lockscreen
     fi
+    
+    cd $FLASH/template/system/media/theme/default
+    if [[ -e alarmscreen ]]
+    then rm -f alarmscreen
+    fi
+    
 cd $FLASH/template/system/media/theme
     if [[ -e .data ]]
     then rm -rf .data
