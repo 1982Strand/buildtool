@@ -1,0 +1,31 @@
+*** MiuiGlobalActions.smali.orig	Sat Apr  6 20:39:46 2013
+--- MiuiGlobalActions.smali	Sun Apr  7 00:01:25 2013
+***************
+*** 455,467 ****
+  
+      iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions;->mItems:Ljava/util/ArrayList;
+  
+!     new-instance v1, Lcom/android/internal/policy/impl/MiuiGlobalActions$3;
+  
+      const v2, 0x6020074
+  
+      const v3, 0x60c000d
+  
+!     invoke-direct {v1, p0, v2, v3}, Lcom/android/internal/policy/impl/MiuiGlobalActions$3;-><init>(Lcom/android/internal/policy/impl/MiuiGlobalActions;II)V
+  
+      invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+  
+--- 455,467 ----
+  
+      iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions;->mItems:Ljava/util/ArrayList;
+  
+!     new-instance v1, Lcom/android/internal/policy/impl/MiuiGlobalActions$222;
+  
+      const v2, 0x6020074
+  
+      const v3, 0x60c000d
+  
+!     invoke-direct {v1, p0, v2, v3}, Lcom/android/internal/policy/impl/MiuiGlobalActions$222;-><init>(Lcom/android/internal/policy/impl/MiuiGlobalActions;II)V
+  
+      invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+  

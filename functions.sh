@@ -75,6 +75,12 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for i in $(echo $exclude); do
 	echo "Decompiling $i" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $i $DEC/$i
+	    if [[ $file == *.jar ]]; then
+	    echo ""
+	    echo "Removing '.line' entries from smalis..."
+	    echo ""
+	    remove_line
+	    fi
     done
     cp -f $TOOLS/sort.py $DEC
     cd $DEC
@@ -1066,6 +1072,12 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     cp -f $TOOLS/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
+	if [[ $file == *.jar ]]; then
+	    echo ""
+	    echo "Removing '.line' entries from smalis..."
+	    echo ""
+	    remove_line
+	fi
     break
     done
 else
