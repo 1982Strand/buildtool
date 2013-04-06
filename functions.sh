@@ -56,10 +56,16 @@ apktool if $IN/framework-miui-res.apk
 decompile_apks () {
 
 TIMES=$SECONDS
+
+cd $LOG
+if [ ! -f decompile_log.txt ]
+then touch decompile_log.txt
+fi
    
 echo ""
 echo "[--- Decompiling apks/jars ---]"
 echo ""
+
 
 cat /dev/null > $LOG/decompile_log.txt
 
@@ -518,6 +524,11 @@ recompile_apks () {
 
 TIMES=$SECONDS
 
+cd $LOG
+if [ ! -f recompile_log.txt ]
+then touch recompile_log.txt
+fi
+
 echo ""
 echo "[--- Recompile apks/jars ---]"
 echo ""
@@ -568,25 +579,33 @@ echo ""
 
 echo "This operation may take a while, please wait..."
 echo ""
-    
-cd $DEC    
-    for a in *.apk; do
-    echo "Processing $a..."
-    find $DEC/$a/build/apk/ -iname "*.png" | while read PNG
-	do
-	    if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then
-	    $TOOLS/pngcrush "$PNG" "opt_png.png" &>/dev/null
-	    mv -f opt_png.png $PNG
-	    fi
-	done
-    done
 
+cd $DEC
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+    
+    for a in *.apk; do
+	if [ -d $a/build ]; then   
+	    echo "Processing $a..."
+	    find $DEC/$a/build/apk/ -iname "*.png" | while read PNG
+		do
+		    if [ `echo "$PNG" | grep -c "\.9\.png$"` -eq 0 ] ; then
+		    $TOOLS/pngcrush "$PNG" "opt_png.png" &>/dev/null
+		    mv -f opt_png.png $PNG
+		    fi
+		done
+	fi
+    done  
+else
+    echo "No files to process..."
+    echo ""
 
 TIMEE=$SECONDS
 DIFF=$(echo "$TIMEE-$TIMES" | bc)
 
 echo ""
 printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF%3600/60)) $(($DIFF%60))
+    
+fi
 
 }
 
@@ -599,6 +618,11 @@ printf "[--- Operation completed in "%dh:%dm:%ds" ---]" $(($DIFF/3600)) $(($DIFF
 
 
 inject_res () {
+
+cd $LOG
+if [ ! -f inject_log.txt ]
+then touch inject_log.txt
+fi
    
 echo ""
 echo "[--- Injecting Modified Resources ---]"
@@ -718,6 +742,10 @@ done
 
 sign_all () {
 
+cd $LOG
+if [ ! -f signing_log.txt ]
+then touch signing_log.txt
+fi
 
 echo ""
 echo "[--- Sign all apks (Test Keys) ---]"
@@ -746,6 +774,12 @@ fi
 ### Sign single apk
 
 sign_single () {
+
+
+cd $LOG
+if [ ! -f signing_log.txt ]
+then touch signing_log.txt
+fi
 
 shopt -s failglob
 echo "[--- Choose apk number, or x to exit ---]"
@@ -963,6 +997,11 @@ cd $FLASH/template/system/media/theme
 ############################################
 
 decompile_single () {
+
+cd $LOG
+if [ ! -f decompile_log.txt ]
+then touch decompile_log.txt
+fi
   
 shopt -s failglob
 echo "[--- Choose apk number, or x to exit ---]"
@@ -1005,6 +1044,11 @@ fi
 
 
 recompile_single () {
+
+cd $LOG
+if [ ! -f recompile_log.txt ]
+then touch recompile_log.txt
+fi
    
 shopt -s failglob
 echo "[--- Choose apk number, or x to exit ---]"
