@@ -66,7 +66,7 @@ echo "| 10. Signing Options           ||                               |"
 echo "| 11. Build Flashable Zip       ||                               |"
 echo "| 12. Decompile single apk      ||                               |"
 echo "| 13. Recompile single apk      || e. Extract apks from zip      |"
-echo "|                               ||                               |"
+echo "|                               || p. Pull translations          |"
 echo "|                               || c. Cleaning Options           |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Exit                                                        |"
@@ -121,6 +121,9 @@ read -p " " answer
        ;;
        c) clear
        clean_menu
+       ;;
+       p) clear
+       extract_xml
        ;;
        x) clear 
        exit;;

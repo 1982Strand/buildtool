@@ -75,7 +75,7 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for i in $(echo $exclude); do
 	echo "Decompiling $i" 2>&1 | tee -a $LOG/decompile_log.txt
         apktool -q d -f $i $DEC/$i
-	    if [[ $file == *.jar ]]; then
+	    if [[ $i == *.jar ]]; then
 	    echo ""
 	    echo "Removing '.line' entries from smalis..."
 	    echo ""
@@ -115,7 +115,7 @@ echo ""
 
 cd $MAIN
 
-for apk in $(<$HJEM/translation_list.txt); do
+for apk in $(<$HJEM/apk_list.txt); do
                 if [ -d "$DEC/$apk" ]; then
                 cp -rf "$apk" $DEC;
                 fi
@@ -126,7 +126,7 @@ cd $DEVICE
 if [ -d m0 ]
 then
     if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-        for apk in $(<$HJEM/translation_list.txt); do
+        for apk in $(<$HJEM/apk_list.txt); do
             if [ -d "$DEC/$apk" ]; then
             cp -rf "$apk" $DEC; > /dev/null 2>&1
             fi
@@ -672,10 +672,9 @@ cd $OUT
 if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
         for a in *.apk; do 
         echo "Zipaligning $a" 
-        echo
         zipalign -f 4 $a $a.aligned
-                rm $a
-                mv $a.aligned $a
+        rm $a
+        mv $a.aligned $a
         echo
         done
 else
@@ -1161,7 +1160,7 @@ if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
         [[ $REPLY == x ]] && . $HJEM/build
         [[ -z $choice ]] && echo "Invalid choice" && continue
         echo
-            for apk in $(<$HJEM/translation_list.txt); do 
+            for apk in $(<$HJEM/apk_list.txt); do 
             unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
             done
         unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
@@ -1352,6 +1351,82 @@ fi
 
 }
 
+
+############################################
+###                                      ###
+###      p. Pull translations            ###
+###                                      ###
+############################################
+
+extract_xml () {
+
+cd $DEC
+
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+
+echo ""
+echo ""
+echo "This function will pull xmls and images from values folders, ready for translation"
+echo ""
+echo ""
+echo -n "Enter version (x.xx.xx) and press [ENTER]: "
+read ver
+[[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Rom version: ${ver}" || echo "Invalid"
+    
+    cd $HJEM
+    if ! [[ -s temp ]] ; then
+    mkdir -p temp
+    cd temp
+	if ! [[ -s $ver ]]; then
+	mkdir -p $ver
+	cd $DEC
+	fi
+    else cd temp
+	if ! [[ -s $ver ]]; then
+	mkdir -p $ver
+	cd $DEC
+	fi
+    fi
+    
+    rsync -R `find -type d -not \( -name 'values-*' -prune -o -name 'xml-*' -prune -o -name 'raw-*' -prune \) -o -name strings.xml -o -name arrays.xml -o -name plurals.xml -o -name timezones.xml -o -name sms_frequently_used_phrase -o -name introduction` $ver &>/dev/null
+    
+    for a in `find -maxdepth 1 -name '*.apk' | cut -c 3- | sort`; do
+    
+	x=$a/res/drawable-xhdpi
+	y=$a/res/drawable-hdpi
+	z=$a/res/raw
+	while read image; do
+	    if [ -f $x/$image ]; then
+		rsync -R $x/$image $ver &>/dev/null
+	    fi
+	    if [ -f $y/$image ]; then
+		rsync -R $y/$image $ver &>/dev/null
+	    fi
+	    if [ -f $z/$image ]; then
+		rsync -R $z/$image $ver &>/dev/null
+	    fi
+	done < $HJEM/image_list.txt
+    done
+
+    if [ -d $DEC/$ver ]; then
+    mv -f $DEC/$ver $HJEM/temp
+    fi
+
+echo ""
+echo "Files copied.. Ready for translation :)"
+echo ""
+echo "Files are located in temp/$ver..."
+echo ""
+else
+    echo ""
+    echo "No decompiled folders to process..."
+    echo ""
+fi
+
+
+} 
+
+
 ############################################
 ###                                      ###
 ###      Remove ".line" -script          ###
@@ -1408,12 +1483,16 @@ done
  
 }
 
+############################################
+############################################
+
 
 
 ############################################
 ############################################
 
 ### FUTURE ADDITIONS ####
+
 
 
 ### Deodex (full rom + single jar/apk)
