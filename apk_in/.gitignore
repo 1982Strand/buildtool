@@ -28,6 +28,7 @@ Thumbs.db
 1
 *.zip
 *.apk
+*.jar
 
 # Logs and databases #
 ######################

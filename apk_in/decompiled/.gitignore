@@ -36,3 +36,6 @@ Thumbs.db
 *.sql
 *.sqlite
 *.directory
+
+*jar/
+*apk/
