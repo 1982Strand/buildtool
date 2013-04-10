@@ -1137,6 +1137,46 @@ fi
 
 ############################################
 ###                                      ###
+###      j. Extract jars from zip        ###
+###                                      ###
+############################################
+
+
+pull_jars () {
+    
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+cd $SRC
+
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
+
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
+    do
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $choice ]] && echo "Invalid choice" && continue
+        echo
+	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
+    break
+    done
+echo "Files extracted..."
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
+ 
+}
+
+
+############################################
+###                                      ###
 ###      e. Extract apks from zip        ###
 ###                                      ###
 ############################################
