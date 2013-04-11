@@ -199,6 +199,15 @@ sed -i '/const-string v2, "baidu"/c \
 const-string v2, "google"' $DEC/Browser.apk/smali/com/android/browser/MiuiSuggestionsAdapter.smali
 
 fi
+
+echo ""
+echo "...Fixing Settings.apk - Remove Dock Settings and correct manufacturer settings icon"
+echo ""
+
+
+sed -i s/'<bool name="has_dock_settings">true</bool>'/'<bool name="has_dock_settings">false</bool>'/g $DEC/Settings.apk/res/values/bools.xml
+sed -i s/'<header android:id="@id/manufacturer_settings">'/'<header android:icon="@drawable/factory_settings" android:id="@id/manufacturer_settings">'/g $DEC/Settings.apk/res/xml/settings_headers.xml
+
 }
 
 
