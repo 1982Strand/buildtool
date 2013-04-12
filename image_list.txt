@@ -9,7 +9,7 @@ language_settings_map.png
 lockscreen_mask.png
 miui_logo.png
 pressure_bg.png
-preview_alarmscreen_0.png
+preview_alarmscreen_0.jpg
 setup_complete.png
 show_all_albums.png
 show_all_camera_media.png

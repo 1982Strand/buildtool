@@ -205,8 +205,8 @@ echo "...Fixing Settings.apk - Remove Dock Settings and correct manufacturer set
 echo ""
 
 
-sed -i s/'<bool name="has_dock_settings">true</bool>'/'<bool name="has_dock_settings">false</bool>'/g $DEC/Settings.apk/res/values/bools.xml
-sed -i s/'<header android:id="@id/manufacturer_settings">'/'<header android:icon="@drawable/factory_settings" android:id="@id/manufacturer_settings">'/g $DEC/Settings.apk/res/xml/settings_headers.xml
+sed -i s/'<bool name="has_dock_settings">true<\/bool>'/'<bool name="has_dock_settings">false<\/bool>'/g $DEC/Settings.apk/res/values/bools.xml
+sed -i s/'<header android:id="@id\/manufacturer_settings">'/'<header android:icon="@drawable\/factory_settings" android:id="@id\/manufacturer_settings">'/g $DEC/Settings.apk/res/xml/settings_headers.xml
 
 }
 
@@ -1423,19 +1423,31 @@ read ver
 [[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Rom version: ${ver}" || echo "Invalid"
     
     cd $HJEM
-    if ! [[ -s temp ]] ; then
+    
+    if [[ -d temp ]]; then
+    cd temp
+	if ! [[ -d $ver ]]; then
+	mkdir -p $ver
+	fi
+    else
     mkdir -p temp
     cd temp
-	if ! [[ -s $ver ]]; then
-	mkdir -p $ver
-	cd $DEC
-	fi
-    else cd temp
-	if ! [[ -s $ver ]]; then
-	mkdir -p $ver
-	cd $DEC
-	fi
+    mkdir -p $ver
     fi
+    
+    cd $DEC
+#    if ! [[ -d temp ]] ; then
+#    mkdir -p temp
+#    cd temp
+#    mkdir -p $ver
+#    cd $DEC
+#    
+#    else cd temp
+#	if ! [[ -d $ver ]]; then
+#	mkdir -p $ver
+#	cd $DEC
+#	fi
+#    fi
     
     rsync -R `find -type d -not \( -name 'values-*' -prune -o -name 'xml-*' -prune -o -name 'raw-*' -prune \) -o -name strings.xml -o -name arrays.xml -o -name plurals.xml -o -name timezones.xml -o -name sms_frequently_used_phrase -o -name introduction` $ver &>/dev/null
     
@@ -1458,7 +1470,8 @@ read ver
     done
 
     if [ -d $DEC/$ver ]; then
-    mv -f $DEC/$ver $HJEM/temp
+    cp -rf $DEC/$ver $HJEM/temp
+    rm -rf $DEC/$ver
     fi
 
 echo ""
