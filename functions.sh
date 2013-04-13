@@ -1148,87 +1148,6 @@ fi
 
 ############################################
 ###                                      ###
-###      j. Extract jars from zip        ###
-###                                      ###
-############################################
-
-
-pull_jars () {
-    
-shopt -s failglob
-echo "[--- Choose rom zip to extract from, or x to exit ---]"
-echo ""
-echo ""
-
-cd $SRC
-
-if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
-
-    zips=$(ls -1 $SRC | grep '.\+\.zip')
-    select choice in $zips
-    do
-        [[ $REPLY == x ]] && . $HJEM/build
-        [[ -z $choice ]] && echo "Invalid choice" && continue
-        echo
-	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
-        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
-	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
-	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
-    break
-    done
-echo "Files extracted..."
-else
-    echo ""
-    echo "No zip files found.."
-    echo ""
-fi
- 
-}
-
-
-############################################
-###                                      ###
-###      e. Extract apks from zip        ###
-###                                      ###
-############################################
-
-
-pull_apks () {
-
-
-shopt -s failglob
-echo "[--- Choose rom zip to extract from, or x to exit ---]"
-echo ""
-echo ""
-
-cd $SRC
-
-if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
-
-    zips=$(ls -1 $SRC | grep '.\+\.zip')
-    select choice in $zips
-    do
-        [[ $REPLY == x ]] && . $HJEM/build
-        [[ -z $choice ]] && echo "Invalid choice" && continue
-        echo
-            for apk in $(<$HJEM/apk_list.txt); do 
-            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
-            done
-        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
-        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
-    break
-    done
-echo "Files extracted..."
-else
-    echo ""
-    echo "No zip files found.."
-    echo ""
-fi
- 
-}
-
-############################################
-###                                      ###
 ###      c. Cleaning options             ###
 ###                                      ###
 ############################################
@@ -1403,92 +1322,6 @@ fi
 }
 
 
-############################################
-###                                      ###
-###      p. Pull translations            ###
-###                                      ###
-############################################
-
-extract_xml () {
-
-cd $DEC
-
-if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
-
-echo ""
-echo ""
-echo "This function will pull xmls and images from values folders, ready for translation"
-echo ""
-echo ""
-echo -n "Enter version (x.xx.xx) and press [ENTER]: "
-read ver
-[[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Rom version: ${ver}" || echo "Invalid"
-    
-    cd $HJEM
-    
-    if [[ -d temp ]]; then
-    cd temp
-	if ! [[ -d $ver ]]; then
-	mkdir -p $ver
-	fi
-    else
-    mkdir -p temp
-    cd temp
-    mkdir -p $ver
-    fi
-    
-    cd $DEC
-#    if ! [[ -d temp ]] ; then
-#    mkdir -p temp
-#    cd temp
-#    mkdir -p $ver
-#    cd $DEC
-#    
-#    else cd temp
-#	if ! [[ -d $ver ]]; then
-#	mkdir -p $ver
-#	cd $DEC
-#	fi
-#    fi
-    
-    rsync -R `find -type d -not \( -name 'values-*' -prune -o -name 'xml-*' -prune -o -name 'raw-*' -prune \) -o -name strings.xml -o -name arrays.xml -o -name plurals.xml -o -name timezones.xml -o -name sms_frequently_used_phrase -o -name introduction` $ver &>/dev/null
-    
-    for a in `find -maxdepth 1 -name '*.apk' | cut -c 3- | sort`; do
-    
-	x=$a/res/drawable-xhdpi
-	y=$a/res/drawable-hdpi
-	z=$a/res/raw
-	while read image; do
-	    if [ -f $x/$image ]; then
-		rsync -R $x/$image $ver &>/dev/null
-	    fi
-	    if [ -f $y/$image ]; then
-		rsync -R $y/$image $ver &>/dev/null
-	    fi
-	    if [ -f $z/$image ]; then
-		rsync -R $z/$image $ver &>/dev/null
-	    fi
-	done < $HJEM/image_list.txt
-    done
-
-    if [ -d $DEC/$ver ]; then
-    cp -rf $DEC/$ver $HJEM/temp
-    rm -rf $DEC/$ver
-    fi
-
-echo ""
-echo "Files copied.. Ready for translation :)"
-echo ""
-echo "Files are located in temp/$ver..."
-echo ""
-else
-    echo ""
-    echo "No decompiled folders to process..."
-    echo ""
-fi
-
-
-} 
 
 
 ############################################
@@ -1550,6 +1383,7 @@ done
 ############################################
 ############################################
 
+
 ### Revert to old 3-way patch
 
 
@@ -1608,18 +1442,326 @@ rm -rf $MODS/3way/android.policy.jar.out
 rm -rf $MODS/3way/android.policy.jar
 break
 done   
-
-
-
-#apktool b -f $MODS/3way/android.policy.jar.out
-#
-#cd $MODS/out
-#mkdir -p $ver
-#cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/$ver
-#rm -r $MODS/3way/android.policy.jar.out
-#rm -r $MODS/3way/android.policy.jar
  
 } 
+
+
+### Test of new extraction options menu ####
+
+extract_menu () {
+ 
+clear
+
+while [ answer != "0" ] 
+do
+clear
+echo "|----------------------------------------------------------------|"
+echo "|  ___  ___   __   __    __   __                  By 1982Strand  |"
+echo "| |   \/   | |  | |  |  |  | |  |                                |"
+echo "| |  \  /  | |  | |  |  |  | |  |                                |"       
+echo "| |  |\/|  | |  | |  |  |  | |  |                                |"
+echo "| |  |  |  | |  | |  '--'  | |  |                                |"
+echo "| |__|  |__| |__|  \______/  |__| Building script                |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "|                      Extraction Options                        |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|                                                                |"
+echo "| 1.  Extract all MIUI apks from zip                             |"
+echo "| 2.  Extract all MIUI apks and jars from zip                    |"
+echo "| 3.  Extract all MIUI jars from zip                             |"
+echo "| 4.  Extract single apk or jar from zip                         |"
+echo "| 5.  Pull translation files from decompiled folders             |"
+echo "|                                                                |"
+echo "|----------------------------------------------------------------|"
+echo "|x - Return to main menu                                         |"
+echo "|----------------------------------------------------------------|"
+printf %s " Select an Option: "
+read -p " " answer
+    case $answer in
+       1) clear
+       pull_apks
+       ;;
+       2) clear
+       pull_apkjar
+       ;;
+       3) clear
+       pull_jars
+       ;;
+       4) clear
+       pull_single
+       ;;
+       5) clear
+       pull_xml
+       ;;
+       x) clear
+       . $HJEM/build
+       ;;
+       *) echo ""
+          echo "invalid choice of extaction"
+       ;;       
+    esac
+    break
+done
+
+}
+
+
+############################################
+###                                      ###
+###      1. Extract apks from zip        ###
+###                                      ###
+############################################
+
+
+pull_apks () {
+
+
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+cd $SRC
+
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
+
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
+    do
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $choice ]] && echo "Invalid choice" && continue
+        echo
+            for apk in $(<$HJEM/apk_list.txt); do 
+            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
+            done
+        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+    break
+    done
+echo "Files extracted..."
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
+ 
+}
+
+
+############################################
+###                                      ###
+###    2. Extract apks/jars from zip     ###
+###                                      ###
+############################################
+
+
+pull_apkjar () {
+
+
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+cd $SRC
+
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
+
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
+    do
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $choice ]] && echo "Invalid choice" && continue
+        echo
+            for apk in $(<$HJEM/apk_list.txt); do 
+            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
+            done
+        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
+    break
+    done
+echo "Files extracted..."
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
+ 
+}
+
+
+############################################
+###                                      ###
+###      3. Extract jars from zip        ###
+###                                      ###
+############################################
+
+
+pull_jars () {
+    
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+cd $SRC
+
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
+
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
+    do
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $choice ]] && echo "Invalid choice" && continue
+        echo
+	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
+    break
+    done
+echo "Files extracted..."
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
+ 
+}
+
+
+############################################
+###                                      ###
+###    4. Extract single apks/jars       ###
+###                                      ###
+############################################
+
+
+pull_single () {
+
+
+# unzip miui_3.4.12.zip \*.apk *.jar   -- unzips all apks + jars found in zip, preserving paths, into current dir
+
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+cd $SRC
+
+if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
+
+    zips=$(ls -1 $SRC | grep '.\+\.zip')
+    select choice in $zips
+    do
+        [[ $REPLY == x ]] && . $HJEM/build
+        [[ -z $choice ]] && echo "Invalid choice" && continue
+        echo
+            for apk in $(<$HJEM/apk_list.txt); do 
+            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
+            done
+        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
+        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
+	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
+    break
+    done
+echo "Files extracted..."
+else
+    echo ""
+    echo "No zip files found.."
+    echo ""
+fi
+ 
+}
+
+
+
+############################################
+###                                      ###
+###      5. Pull translations            ###
+###                                      ###
+############################################
+
+pull_xml () {
+
+cd $DEC
+
+if [ "$(ls -1 | grep '.\+\.apk$' | wc -l)" -gt 0 ]; then
+
+echo ""
+echo ""
+echo "This function will pull xmls and images from values folders, ready for translation"
+echo ""
+echo ""
+echo -n "Enter version (x.xx.xx) and press [ENTER]: "
+read ver
+[[ "$ver" =~ ^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$ ]] && echo "Rom version: ${ver}" || echo "Invalid"
+    
+    cd $HJEM
+    
+    if [[ -d temp ]]; then
+    cd temp
+	if ! [[ -d $ver ]]; then
+	mkdir -p $ver
+	fi
+    else
+    mkdir -p temp
+    cd temp
+    mkdir -p $ver
+    fi
+    
+    cd $DEC
+    
+    rsync -R `find -type d -not \( -name 'values-*' -prune -o -name 'xml-*' -prune -o -name 'raw-*' -prune \) -o -name strings.xml -o -name arrays.xml -o -name plurals.xml -o -name timezones.xml -o -name sms_frequently_used_phrase -o -name introduction` $ver &>/dev/null
+    
+    for a in `find -maxdepth 1 -name '*.apk' | cut -c 3- | sort`; do
+    
+	x=$a/res/drawable-xhdpi
+	y=$a/res/drawable-hdpi
+	z=$a/res/raw
+	while read image; do
+	    if [ -f $x/$image ]; then
+		rsync -R $x/$image $ver &>/dev/null
+	    fi
+	    if [ -f $y/$image ]; then
+		rsync -R $y/$image $ver &>/dev/null
+	    fi
+	    if [ -f $z/$image ]; then
+		rsync -R $z/$image $ver &>/dev/null
+	    fi
+	done < $HJEM/image_list.txt
+    done
+
+    if [ -d $DEC/$ver ]; then
+    cp -rf $DEC/$ver $HJEM/temp
+    rm -rf $DEC/$ver
+    fi
+
+echo ""
+echo "Files copied.. Ready for translation :)"
+echo ""
+echo "Files are located in temp/$ver..."
+echo ""
+else
+    echo ""
+    echo "No decompiled folders to process..."
+    echo ""
+fi
+
+
+} 
+
+
 
 ############################################
 ############################################
@@ -1628,7 +1770,7 @@ done
 
 
 
-### Deodex (full rom + single jar/apk)
+### Deodex (full rom + single jar/apk) -- But maybe not.. Havn't found myself needing it since i started developing on this tool :)
 
 ### Any ideas?
 

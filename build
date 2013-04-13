@@ -64,9 +64,9 @@ echo "| 8.  Inject resources          ||                               |"
 echo "| 9.  Zipalign apks             ||                               |"
 echo "| 10. Signing Options           ||                               |"
 echo "| 11. Build Flashable Zip       ||                               |"
-echo "| 12. Decompile single apk      || j. Extract jars from zip      |"
-echo "| 13. Recompile single apk      || e. Extract apks from zip      |"
-echo "|                               || p. Pull translations          |"
+echo "| 12. Decompile single apk      ||                               |"
+echo "| 13. Recompile single apk      ||                               |"
+echo "|                               || e. Extraction Options         |"
 echo "|                               || c. Cleaning Options           |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Exit                                                        |"
@@ -117,16 +117,10 @@ read -p " " answer
        recompile_single
        ;;
        e) clear
-       pull_apks
+       extract_menu
        ;;
        c) clear
        clean_menu
-       ;;
-       p) clear
-       extract_xml
-       ;;
-       j) clear
-       pull_jars
        ;;
        t) clear
        3way_old
