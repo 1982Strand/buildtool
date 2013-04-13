@@ -1648,6 +1648,7 @@ pull_single () {
 
 
 # unzip miui_3.4.12.zip \*.apk *.jar   -- unzips all apks + jars found in zip, preserving paths, into current dir
+# Need to make it unzip apks from apk_list.txt + 4 specific jars, list those files into a menu and process whatever choice is made
 
 shopt -s failglob
 echo "[--- Choose rom zip to extract from, or x to exit ---]"
