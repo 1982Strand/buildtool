@@ -5,13 +5,13 @@
   
       iget-object v0, p0, Lcom/android/internal/policy/impl/MiuiGlobalActions;->mItems:Ljava/util/ArrayList;
   
-!     new-instance v1, Lcom/android/internal/policy/impl/MiuiGlobalActions$3;
+!     new-instance v1, Lcom/android/internal/policy/impl/MiuiGlobalActions$4;
   
       const v2, 0x6020074
   
       const v3, 0x60c000d
   
-!     invoke-direct {v1, p0, v2, v3}, Lcom/android/internal/policy/impl/MiuiGlobalActions$3;-><init>(Lcom/android/internal/policy/impl/MiuiGlobalActions;II)V
+!     invoke-direct {v1, p0, v2, v3}, Lcom/android/internal/policy/impl/MiuiGlobalActions$4;-><init>(Lcom/android/internal/policy/impl/MiuiGlobalActions;II)V
   
       invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
   

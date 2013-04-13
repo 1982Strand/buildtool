@@ -128,6 +128,9 @@ read -p " " answer
        j) clear
        pull_jars
        ;;
+       t) clear
+       3way_old
+       ;;
        x) clear 
        exit;;
        *) echo ""

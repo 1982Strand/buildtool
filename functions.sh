@@ -79,6 +79,7 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 	    echo ""
 	    echo "Removing '.line' entries from smalis..."
 	    echo ""
+	    cd $DEC/$i
 	    remove_line
 	    fi
     done
@@ -1084,6 +1085,7 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
 	    echo ""
 	    echo "Removing '.line' entries from smalis..."
 	    echo ""
+	    cd $DEC/$file
 	    remove_line
 	fi
     break
@@ -1548,7 +1550,76 @@ done
 ############################################
 ############################################
 
+### Revert to old 3-way patch
 
+
+3way_old () {
+   
+shopt -s failglob
+echo "[--- Choose rom zip to extract from, or x to exit ---]"
+echo ""
+echo ""
+
+select zip in $SRC/*.zip
+do 
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $zip ]] && echo "Invalid choice for 3way mod" && continue
+    echo
+    ver=$(echo $zip| sed -E 's/.*([0-9]\.[0-9]{1,2}\.[0-9]{1,2}).*/\1/') # create version number ($ver) from filename in $zip
+
+    if [ -d $MODS/out/$ver ]
+    then
+        cd $MODS/out/$ver
+        if [ -f android.policy.jar ]
+        then
+        cp -f $MODS/out/$ver/android.policy.jar $MODS/3way
+        else unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
+        fi
+    else
+        mkdir -p "$MODS/out/$ver"
+        unzip -u -j $zip system/framework/android.policy.jar -d "$MODS/3way"
+    fi
+
+apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
+
+cd $MODS/3way/android.policy.jar.out
+remove_line
+
+cd $MODS/3way
+patch -i $MODS/3way/MiuiGlobalActions_no_line_new.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
+patch -i $MODS/3way/MiuiGlobalActions\$SinglePressAction_no_line_new.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
+cp -r -f $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/
+
+apktool b android.policy.jar.out
+   
+   if [ -f "$MODS/3way/android.policy.jar.out/build/apk/classes.dex" ]; then
+   
+      cd $MODS/3way/android.policy.jar.out/build/apk/
+      
+      7za u -mx0 -tzip -r "$MODS/3way/android.policy.jar" "classes.dex"  > /dev/null
+      cp -rf $MODS/3way/android.policy.jar $MODS/out/$ver
+      echo ""
+      echo "[--- 3way Reboot Mod Succesful! ---]"
+   else
+      echo ""
+      echo "[--- 3way Reboot Mod Failed! ---]";
+   fi
+rm -rf $MODS/3way/android.policy.jar.out
+rm -rf $MODS/3way/android.policy.jar
+break
+done   
+
+
+
+#apktool b -f $MODS/3way/android.policy.jar.out
+#
+#cd $MODS/out
+#mkdir -p $ver
+#cp -r -f $MODS/3way/android.policy.jar.out/dist/android.policy.jar $MODS/out/$ver
+#rm -r $MODS/3way/android.policy.jar.out
+#rm -r $MODS/3way/android.policy.jar
+ 
+} 
 
 ############################################
 ############################################
