@@ -55,6 +55,8 @@ apktool if $IN/framework-miui-res.apk
 
 decompile_apks () {
 
+
+
 TIMES=$SECONDS
 
 cd $LOG
@@ -74,13 +76,14 @@ exclude="$(find . -maxdepth 1 -name '*.apk' | cut -c 3- | sort  && find . -maxde
 if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     for i in $(echo $exclude); do
 	echo "Decompiling $i" 2>&1 | tee -a $LOG/decompile_log.txt
-        apktool -q d -f $i $DEC/$i
+	apktool -q d -f $i $DEC/$i
 	    if [[ $i == *.jar ]]; then
 	    echo ""
 	    echo "Removing '.line' entries from smalis..."
 	    echo ""
 	    cd $DEC/$i
 	    remove_line
+	    cd $IN
 	    fi
     done
     cp -f $TOOLS/sort.py $DEC
@@ -1081,12 +1084,14 @@ if [ "$(ls -1 | grep -e '.\+\.apk$' -e '.\+\.jar$' | wc -l)" -gt 0 ]; then
     cp -f $TOOLS/sort.py $DEC/$file
     python $DEC/$file/sort.py
     rm -r $DEC/$file/sort.py
+
 	if [[ $file == *.jar ]]; then
 	    echo ""
 	    echo "Removing '.line' entries from smalis..."
 	    echo ""
 	    cd $DEC/$file
 	    remove_line
+	    cd $IN
 	fi
     break
     done
