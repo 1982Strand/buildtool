@@ -1651,10 +1651,6 @@ fi
 
 pull_single () {
 
-
-# unzip miui_3.4.12.zip \*.apk *.jar   -- unzips all apks + jars found in zip, preserving paths, into current dir
-# Need to make it unzip apks from apk_list.txt + 4 specific jars, list those files into a menu and process whatever choice is made
-
 shopt -s failglob
 echo "[--- Choose rom zip to extract from, or x to exit ---]"
 echo ""
@@ -1665,23 +1661,26 @@ cd $SRC
 if [ "$(ls -1 | grep '.\+\.zip$' | wc -l)" -gt 0 ]; then
 
     zips=$(ls -1 $SRC | grep '.\+\.zip')
-    select choice in $zips
+    select rom in $zips
     do
-        [[ $REPLY == x ]] && . $HJEM/build
-        [[ -z $choice ]] && echo "Invalid choice" && continue
-        echo
-            for apk in $(<$HJEM/apk_list.txt); do 
-            unzip -j -o -q $choice system/app/$apk -d $IN >& /dev/null;
-            done
-        unzip -j -o -q $choice system/framework/framework-res.apk -d $IN >& /dev/null;
-        unzip -j -o -q $choice system/framework/framework-miui-res.apk -d $IN >& /dev/null;
-	unzip -j -o -q $choice system/framework/framework.jar -d $IN >& /dev/null;
-        unzip -j -o -q $choice system/framework/framework2.jar -d $IN >& /dev/null;
-	unzip -j -o -q $choice system/framework/android.policy.jar -d $IN >& /dev/null;
-	unzip -j -o -q $choice system/framework/services.jar -d $IN >& /dev/null;
-    break
+    [[ $REPLY == x ]] && . $HJEM/build
+    [[ -z $rom ]] && echo "Invalid choice of zip" && continue
+    echo
+        select single in $(unzip -l ./$rom | sed -n 4,50000p | head -n $(echo $(unzip -l ./$rom | sed -n 4,50000p | wc -l) -2 | bc) | tr -s " " | cut -d " " -f5 | grep -f "$HJEM/apk_list.txt") $(unzip -l ./$rom | sed -n 4,50000p | head -n $(echo $(unzip -l ./$rom | sed -n 4,50000p | wc -l) -2 | bc) | tr -s " " | cut -d " " -f5 | grep -f "$HJEM/jar_list.txt")
+        do
+	[[ $REPLY == x ]] && . $HJEM/build
+	[[ -z $single ]] && echo "Invalid choice for single extraction" && continue
+	echo
+            unzip -u -j $rom $single -d $IN # Edit this 'unzip' command to suit your needs
+	    echo ""
+	    echo "Files extracted..."
+	    echo ""
+	    break
+#            mv $SRC/$single $IN/$(echo $single | rev | cut -d "/" -f1 | rev )
+#            rm -r ./system
+        done
     done
-echo "Files extracted..."
+
 else
     echo ""
     echo "No zip files found.."
@@ -1689,7 +1688,6 @@ else
 fi
  
 }
-
 
 
 ############################################
