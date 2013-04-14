@@ -348,10 +348,11 @@ do
 apktool d -f $MODS/3way/android.policy.jar $MODS/3way/android.policy.jar.out
 cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
 
-    tmp=`grep -l 'invoke-static {v0, v1, v2}, Lcom/android/internal/app/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V' *.smali`;
-    tmp=`echo $tmp | sed 's/MiuiGlobalActions$\(.*\)*.smali/\1/g'`;
-    tmp=`echo $tmp | sed 's/[^ ]* //'`;
-    sed -i "s/MiuiGlobalActions\$$tmp/MiuiGlobalActions\$222/g" "$MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali"
+#    tmp=`grep -l 'invoke-static {v0, v1, v2}, Lcom/android/internal/app/ShutdownThread;->reboot(Landroid/content/Context;Ljava/lang/String;Z)V' *.smali`;
+#    tmp=`echo $tmp | sed 's/MiuiGlobalActions$\(.*\)*.smali/\1/g'`;
+#    tmp=`echo $tmp | sed 's/[^ ]* //'`;
+#    sed -i "s/MiuiGlobalActions\$$tmp/MiuiGlobalActions\$222/g" "$MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali"
+     sed -i s/MiuiGlobalActions\$4/MiuiGlobalActions\$222/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
     
     cp -arf $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
                         
@@ -1425,7 +1426,8 @@ cd $MODS/3way/android.policy.jar.out
 remove_line
 
 cd $MODS/3way
-patch -i $MODS/3way/MiuiGlobalActions_no_line_new.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
+#patch -i $MODS/3way/MiuiGlobalActions_no_line_new.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
+sed -i s/MiuiGlobalActions\$4/MiuiGlobalActions\$222/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions.smali
 patch -i $MODS/3way/MiuiGlobalActions\$SinglePressAction_no_line_new.diff $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/MiuiGlobalActions\$SinglePressAction.smali
 cp -r -f $MODS/3way/*.smali $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/
 
