@@ -356,7 +356,7 @@ cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
      
      #### EXPERIMENTAL!! ####
      
-#    sed -i s/".method private showTimeoutDialog()V"/".method private showTimeoutDialog2()V"/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/LockPatternKeyguardView.smali
+    sed -i s/".method private showTimeoutDialog()V"/".method private showTimeoutDialog2()V"/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/LockPatternKeyguardView.smali
      
      
     
@@ -945,10 +945,10 @@ echo ""
     fi
 cd $FLASH/template/system/app
         if [[ -e framework-miui-res.apk ]]
-        then mv -f framework-miui-res.apk $FLASH/template/system/framework &>/dev/null
+        then mv -f framework-miui-res.apk $FLASH/template/system/framework > /dev/null
         fi
 if [[ -e framework-res.apk ]]
-        then mv -f framework-res.apk $FLASH/template/system/framework &>/dev/null
+        then mv -f framework-res.apk $FLASH/template/system/framework > /dev/null
         fi
         
 # Patch tema titler (officiel rom)
