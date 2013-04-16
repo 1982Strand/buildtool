@@ -1,0 +1,67 @@
+*** manifest.xml.orig	Mon Apr 15 20:01:08 2013
+--- manifest.xml	Tue Apr 16 05:44:47 2013
+***************
+*** 17,47 ****
+  		</Vars>
+  
+  		<Items>
+! 			<Item value="Clear"/>
+! 			<Item value="Cloudy"/>
+! 			<Item value="Hazy"/>
+! 			<Item value="Foggy"/>
+! 			<Item value="Severe rainstorm"/>
+! 			<Item value="Rainstorm"/>
+! 			<Item value="Very heavy rainfall"/>
+! 			<Item value="Thunderstorm"/>
+! 			<Item value="Shower"/>
+! 			<Item value="Heavy rainfall"/>
+! 			<Item value="Rain"/>
+! 			<Item value="Drizzle"/>
+! 			<Item value="Sleet"/>
+! 			<Item value="Snowstorm"/>
+! 			<Item value="Patches of snowfall"/>
+! 			<Item value="Heavy snowfall"/>
+! 			<Item value="Snowfall"/>
+! 			<Item value="Light snowfall"/>
+! 			<Item value="Strong sandstorm"/>
+  			<Item value="Sandstorm"/>
+! 			<Item value="Light sandstorm"/>
+  			<Item value="Sandstorm"/>
+! 			<Item value="Hail"/>
+! 			<Item value="Floating Dust"/>
+! 			<Item value="Haze"/>
+  		</Items>
+  	</VarArray>
+  	<VarArray type="string">
+--- 17,47 ----
+  		</Vars>
+  
+  		<Items>
+! 			<Item value="Klart"/>
+! 			<Item value="Overskyet"/>
+! 			<Item value="Diset"/>
+! 			<Item value="Tåget"/>
+! 			<Item value="Kraftig Regnstorm"/>
+! 			<Item value="Regnstorm"/>
+! 			<Item value="Meget Kraftig Regn"/>
+! 			<Item value="Tordenstorm"/>
+! 			<Item value="Regnskyl"/>
+! 			<Item value="Kraftig Regn"/>
+! 			<Item value="Regn"/>
+! 			<Item value="Let Regn"/>
+! 			<Item value="Slud"/>
+! 			<Item value="Snestorm"/>
+! 			<Item value="Snebyger"/>
+! 			<Item value="Kraftige Snebyger"/>
+! 			<Item value="Sne"/>
+! 			<Item value="Lette Snebyger"/>
+! 			<Item value="Kraftig Sandstorm"/>
+  			<Item value="Sandstorm"/>
+! 			<Item value="Let sandstorm"/>
+  			<Item value="Sandstorm"/>
+! 			<Item value="Hagl"/>
+! 			<Item value="Støvet"/>
+! 			<Item value="Dis"/>
+  		</Items>
+  	</VarArray>
+  	<VarArray type="string">

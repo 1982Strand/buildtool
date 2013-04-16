@@ -917,15 +917,22 @@ cd $FLASH
     cd $FLASH/template/system/media/theme/.data/content/clock_2x4
     
     mv -f clock.mrc clock.zip
+	# Oversæt vejr-del af manifest.xml, fra 2x4 - clock.mrc #
+        unzip -j clock.zip manifest.xml
+	patch -i $FIX/manifest.diff $FLASH/template/system/media/theme/.data/content/clock_2x4/manifest.xml
+	7za u -mx0 -r clock.zip "manifest.xml" &>/dev/null
+	rm -f manifest.xml
+
+    
     7za u -mx0 -r clock.zip "$XTRA/clock/strings" > /dev/null
+    
     mv -f clock.zip clock.mrc
     
     mv -f simple_clock.mrc simple_clock.zip
     7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da" > /dev/null
     mv -f simple_clock.zip simple_clock.mrc
     
-# 7za u -mx0 -r clock.mrc "$XTRA/clock/strings/strings_da.xml"
-    
+   
 # Kopier apker over
     
     echo ""
