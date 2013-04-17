@@ -356,7 +356,7 @@ cd $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl
      
      #### EXPERIMENTAL!! ####
      
-#    sed -i s/".method private showTimeoutDialog()V"/".method private showTimeoutDialog2()V"/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/LockPatternKeyguardView.smali
+    sed -i s/".method private showTimeoutDialog()V"/".method private showTimeoutDialog2()V"/g $MODS/3way/android.policy.jar.out/smali/com/android/internal/policy/impl/LockPatternKeyguardView.smali
      
      
     
