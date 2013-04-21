@@ -1803,6 +1803,25 @@ fi
 } 
 
 
+############################################
+###                                      ###
+###      part file test                  ###
+###                                      ###
+############################################
+
+part_file_test () {
+
+XMLMERGYTOOL=$TOOLS/ResValuesModify  
+  
+cd $HJEM/temp/part_file_test
+
+if [ -d Provision.apk ];then
+$XMLMERGYTOOL $HJEM/temp/part_file_test/Provision.apk $DEC/Provision.apk/res/values-da
+fi
+}
+
+### TEST COMPLETE - WORKS! ###
+
 
 ############################################
 ############################################
