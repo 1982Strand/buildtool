@@ -264,12 +264,11 @@ echo "|                        MODS SECTION                            |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|                                                                |"
-echo "| 1.  MIUI Center Clock                                          |"
-echo "| 2.  MIUI Emoji  tabs       - ..But still no emoji :(           |"
-echo "| 3.  MIUI 3-Way Reboot                                          |"
-echo "| 4.  MIUI CRT-OFF                                               |"
-echo "| 5.  Stock Center Clock (From XXELLA)                           |"
-echo "| 6.  Stock Transparent Statusbar                                |"
+echo "| 1.  Center Clock                                               |"
+echo "| 2.  Emoji  tabs        - ..But still no emoji :(               |"
+echo "| 3.  3-Way Reboot       -- NOT WORKING YET --                   |"
+echo "| 4.  CRT-OFF            -- NOT WORKING YET --                   |"
+echo "| 5.  Hide carrier name from statusbar                           |"
 echo "|                                                                |"
 echo "|----------------------------------------------------------------|"
 echo "|x - Back to Main  Menu                                          |"
@@ -290,13 +289,7 @@ read -p " " answer
        crt_off
        ;;
        5) clear
-       stock_centerclock
-       ;;
-       6) clear
-       stock_transparent_statusbar
-       ;;
-       8) clear
-       crt-off_official
+       hide_carrier
        ;;
        x) clear
        . $HJEM/build
@@ -534,30 +527,18 @@ done
 }
 
 
-### Add center clock to stock rom ###
+###  Hide carrier name from statusbar  ###
 
-stock_centerclock () {
+hide_carrier () {
    
+
 echo ""
-echo "Adding Center Clock to Stock SystemUI.apk"
-echo ""
-
-patch -i $MODS/stock_centerclock/tw_status_bar.diff $DEC/SystemUI.apk/res/layout/tw_status_bar.xml
- 
-}
-
-
-### Stock transparent statusbar  ###
-
-stock_transparent_statusbar () {
-   
-echo ""
-echo "Adding Transparent Statusbar to Stock SystemUI.apk"
+echo "Hide carriername from statusbar"
 echo ""
 
-patch -i $MODS/stock_transparent_statusbar/tw_super_status_bar.diff $DEC/SystemUI.apk/res/layout/tw_super_status_bar.xml
-patch -i $MODS/stock_transparent_statusbar/drawables.diff $DEC/SystemUI.apk/res/values/drawables.xml
- 
+sed -i s/'TextAppearance.StatusBar.Carrier" android:gravity="left'/'TextAppearance.StatusBar.Carrier" android:textSize="0.0sp" android:gravity="left'/g $DEC/MiuiSystemUI.apk/res/layout/status_bar.xml
+
+
 }
 
 
