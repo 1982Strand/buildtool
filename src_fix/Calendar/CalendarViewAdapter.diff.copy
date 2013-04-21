@@ -1,0 +1,95 @@
+*** temp/CalendarViewAdapter.smali.orig	Sat Apr 20 08:00:37 2013
+--- apk_in/decompiled/Calendar.apk/smali/com/android/calendar/CalendarViewAdapter.smali	Sat Apr 20 08:17:58 2013
+***************
+*** 452,458 ****
+  
+      const/4 v4, 0x0
+  
+!     iget v5, v0, Landroid/text/format/Time;->year:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+--- 452,458 ----
+  
+      const/4 v4, 0x0
+  
+!     iget v5, v0, Landroid/text/format/Time;->monthDay:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+***************
+*** 474,480 ****
+  
+      const/4 v4, 0x2
+  
+!     iget v5, v0, Landroid/text/format/Time;->monthDay:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+--- 474,480 ----
+  
+      const/4 v4, 0x2
+  
+!     iget v5, v0, Landroid/text/format/Time;->year:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+***************
+*** 591,597 ****
+  
+      const/4 v4, 0x0
+  
+!     iget v5, v0, Landroid/text/format/Time;->year:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+--- 591,597 ----
+  
+      const/4 v4, 0x0
+  
+!     iget v5, v0, Landroid/text/format/Time;->month:I
+  
+      invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+  
+***************
+*** 601,607 ****
+  
+      const/4 v4, 0x1
+  
+!     iget v5, v0, Landroid/text/format/Time;->month:I
+  
+      add-int/lit8 v5, v5, 0x1
+  
+--- 601,607 ----
+  
+      const/4 v4, 0x1
+  
+!     iget v5, v0, Landroid/text/format/Time;->year:I
+  
+      add-int/lit8 v5, v5, 0x1
+  
+***************
+*** 1018,1028 ****
+  
+      move-result-object v2
+  
+!     iget v3, v1, Landroid/text/format/Time;->year:I
+  
+      iget v4, v1, Landroid/text/format/Time;->month:I
+  
+!     iget v5, v1, Landroid/text/format/Time;->monthDay:I
+  
+      invoke-static {v2, v3, v4, v5}, Lmiui/util/LunarDate;->solar2lunar(Landroid/content/res/Resources;III)Ljava/lang/String;
+  
+--- 1018,1028 ----
+  
+      move-result-object v2
+  
+!     iget v3, v1, Landroid/text/format/Time;->monthDay:I
+  
+      iget v4, v1, Landroid/text/format/Time;->month:I
+  
+!     iget v5, v1, Landroid/text/format/Time;->year:I
+  
+      invoke-static {v2, v3, v4, v5}, Lmiui/util/LunarDate;->solar2lunar(Landroid/content/res/Resources;III)Ljava/lang/String;
+  

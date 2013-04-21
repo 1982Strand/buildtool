@@ -1,0 +1,70 @@
+*** temp/CalendarViewAdapter.smali.orig	Sat Apr 20 08:00:37 2013
+--- apk_in/decompiled/Calendar.apk/smali/com/android/calendar/CalendarViewAdapter.smali	Sun Apr 21 17:57:09 2013
+***************
+*** 450,456 ****
+  
+      new-array v3, v3, [Ljava/lang/Object;
+  
+!     const/4 v4, 0x0
+  
+      iget v5, v0, Landroid/text/format/Time;->year:I
+  
+--- 450,456 ----
+  
+      new-array v3, v3, [Ljava/lang/Object;
+  
+!     const/4 v4, 0x2
+  
+      iget v5, v0, Landroid/text/format/Time;->year:I
+  
+***************
+*** 472,478 ****
+  
+      aput-object v5, v3, v4
+  
+!     const/4 v4, 0x2
+  
+      iget v5, v0, Landroid/text/format/Time;->monthDay:I
+  
+--- 472,478 ----
+  
+      aput-object v5, v3, v4
+  
+!     const/4 v4, 0x0
+  
+      iget v5, v0, Landroid/text/format/Time;->monthDay:I
+  
+***************
+*** 589,595 ****
+  
+      new-array v3, v3, [Ljava/lang/Object;
+  
+!     const/4 v4, 0x0
+  
+      iget v5, v0, Landroid/text/format/Time;->year:I
+  
+--- 589,595 ----
+  
+      new-array v3, v3, [Ljava/lang/Object;
+  
+!     const/4 v4, 0x1
+  
+      iget v5, v0, Landroid/text/format/Time;->year:I
+  
+***************
+*** 599,605 ****
+  
+      aput-object v5, v3, v4
+  
+!     const/4 v4, 0x1
+  
+      iget v5, v0, Landroid/text/format/Time;->month:I
+  
+--- 599,605 ----
+  
+      aput-object v5, v3, v4
+  
+!     const/4 v4, 0x0
+  
+      iget v5, v0, Landroid/text/format/Time;->month:I
+  
