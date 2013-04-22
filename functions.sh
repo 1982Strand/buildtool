@@ -988,6 +988,7 @@ find -name '*.mrm' -exec sed -i 's/Standard相框2x4/Fotoramme 2x4/g' {} \; > /d
 
 find -name '*.mrm' -exec sed -i 's/Standard相框2x2/Fotoramme 2x2/g' {} \; > /dev/null
 
+
 echo ""
 echo "Patching Build.prop for danish locale..."
 echo ""
