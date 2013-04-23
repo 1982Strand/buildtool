@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.android.systemui.statusbar.phone.PhoneStatusBarView android:id="@id/status_bar" android:background="@drawable/status_bar_background" android:focusable="true" android:fitsSystemWindows="true" android:descendantFocusability="afterDescendants"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.android.systemui.statusbar.policy.Clock android:textAppearance="@style/TextAppearance.StatusBar.Clock" android:gravity="center" android:id="@id/clock" android:layout_width="fill_parent" android:layout_height="fill_parent" android:singleLine="true" />
     <com.android.systemui.TorchServiceView android:layout_gravity="top|left|center" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:foreground="#ff000000" />
     <com.android.systemui.statusbar.phone.BatteryIndicator android:layout_gravity="top" android:id="@id/battery_indicator" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/battery_indicator" android:scaleType="fitXY" />
     <com.android.systemui.statusbar.phone.BatteryIndicatorCharging android:layout_gravity="top|right|center" android:id="@id/battery_indicator_charging" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/battery_indicator_charging" />
@@ -14,6 +13,7 @@
                 <com.android.systemui.statusbar.phone.IconMerger android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/notificationIcons" android:layout_width="wrap_content" android:layout_height="fill_parent" />
             </LinearLayout>
         </LinearLayout>
+        <com.android.systemui.statusbar.policy.Clock android:textAppearance="@style/TextAppearance.StatusBar.Clock" android:gravity="center" android:id="@id/clock" android:layout_width="fill_parent" android:layout_height="fill_parent" android:singleLine="true" />
         <com.android.systemui.statusbar.NetworkSpeedView android:textAppearance="@style/TextAppearance.StatusBar.Clock" android:gravity="center" android:id="@id/network_speed_view" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="4.0dip" android:singleLine="true" />
         <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/statusIcons" android:layout_width="wrap_content" android:layout_height="fill_parent" />
         <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/signal_battery_cluster" android:layout_width="wrap_content" android:layout_height="fill_parent">
