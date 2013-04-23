@@ -123,7 +123,7 @@ read -p " " answer
        clean_menu
        ;;
        t) clear
-       part_file_test
+       part_file_test_test
        ;;
        x) clear 
        exit;;

@@ -934,8 +934,8 @@ cd $FLASH
     mv -f simple_clock.mrc simple_clock.zip
     7za u -mx0 -r simple_clock.zip "$XTRA/simple_clock/images_da" > /dev/null
     mv -f simple_clock.zip simple_clock.mrc
-    
-   
+
+
 # Kopier apker over
     
     echo ""
@@ -988,6 +988,13 @@ find -name '*.mrm' -exec sed -i 's/Standard相框2x4/Fotoramme 2x4/g' {} \; > /d
 
 find -name '*.mrm' -exec sed -i 's/Standard相框2x2/Fotoramme 2x2/g' {} \; > /dev/null
 
+echo ""
+echo "Adding translated MIUI theme previews..."
+echo ""
+
+cd $XTRA
+rsync -rR system/ $FLASH/template/
+cd $FLASH/template
 
 echo ""
 echo "Patching Build.prop for danish locale..."
@@ -1795,10 +1802,10 @@ part_file_test () {
 
 XMLMERGYTOOL=$TOOLS/ResValuesModify  
   
-cd $HJEM/temp/part_file_test
+cd $HJEM/temp/part_file_test # Go to dir with part files
 
-if [ -d Provision.apk ];then
-$XMLMERGYTOOL $HJEM/temp/part_file_test/Provision.apk $DEC/Provision.apk/res/values-da
+if [ -d Provision.apk ];then 
+$XMLMERGYTOOL $HJEM/temp/part_file_test/Provision.apk $DEC/Provision.apk/res/values-da # merge part files into xmls in decompiled folder
 fi
 }
 
