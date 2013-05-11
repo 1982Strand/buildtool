@@ -38,6 +38,7 @@ SettingsProvider.apk
 SoundRecorder.apk
 TelephonyProvider.apk
 TelocationProvider.apk
+Transfer.apk
 ThemeManager.apk
 Updater.apk
 VpnDialogs.apk
